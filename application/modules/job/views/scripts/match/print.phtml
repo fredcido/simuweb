@@ -1,0 +1,68 @@
+<div class="form-actions no-print">
+    <button type="button" class="btn blue" onClick="self.print();"><i class="icon-print"></i> Print</button>
+    <button type="button" class="btn red" onClick="self.close();"><i class="icon-remove-sign"></i> Taka</button>
+</div>
+
+<?php echo $this->action( 'header-report', 'index', 'default', array( 'id' => $this->vacancy->fk_id_dec ) ); ?>
+
+<div class="form-view">
+    
+    <div class="row-fluid">
+	<h4 class="form-section bold">
+	    KANDIDATOS BA VAGA: <?php echo str_pad( $this->vacancy->id_jobvacancy, 5, '0', STR_PAD_LEFT ); ?>
+	    - 
+	    <?php echo $this->vacancy->vacancy_titule; ?>
+	    &nbsp;IHA 
+	    <?php echo $this->vacancy->enterprise_name; ?>
+	    - &nbsp;
+	    <?php echo $this->vacancy->ocupation_name_timor; ?>
+	</h4>
+    </div>
+    
+    <div class="row-fluid margin-bottom-25">
+	<table class="table table-striped table-hover table-bordered">
+		<thead>
+			<tr>
+			    <th>No</th>
+			    <th>No KARTAUN EVIDENSIA</th>
+			    <th>NARAN</th>
+			    <th>SEKSU</th>
+			    <th>EDUKASAUN</th>
+			    <th>TELEMOVEL</th>
+			</tr>
+		</thead>
+		<tbody>
+		    <?php foreach ( $this->shortlist as $key => $client ) : ?>
+			<tr>
+			    <td><?php echo ++$key; ?></td>
+			    <td><?php echo Client_Model_Mapper_Client::buildNumRow( $client ); ?></td>
+			    <td><?php echo Client_Model_Mapper_Client::buildName( $client ); ?></td>
+			    <td><?php echo $client->gender; ?></td>
+			    <td><?php echo empty( $client->max_scholarity ) ? ' - ' : $client->max_scholarity; ?></td>
+			    <td><?php echo empty( $client->client_fone ) ? ' - ' : $client->client_fone; ?></td>
+			</tr>
+
+		    <?php endforeach; ?>
+		</tbody>
+	</table>
+    </div>
+    
+    <div class="row-fluid">
+	<div class="span4 offset8 text-center">
+	    <div class="row-fluid">
+		<?php
+		    $auth = Zend_Auth::getInstance()->getIdentity();
+		    echo $auth->name_dec . ' - ' . Zend_Date::now()->toString( 'dd/MM/yyyy' );
+		?>
+	    </div>
+	    <div class="row-fluid">Tekniknu Profisional Empregu</div>
+	    <div class="row-fluid">
+		<br />
+	    </div>
+	    <div class="row-fluid">
+		<?php echo $auth->name; ?>
+	    </div>
+	</div>
+    </div>
+  
+</div>

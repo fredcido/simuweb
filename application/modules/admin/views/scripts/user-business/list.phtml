@@ -1,0 +1,19 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->name; ?></td>
+	<td><?php echo $row->name_dec; ?></td>
+	<td>
+	    <?php if ( $this->access( Admin_Form_UserBusiness::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn green" href="<?php echo $this->baseUrl( 'admin/user-business/edit/id/' . $row->id_user_business_plan ); ?>">
+		    <i class="icon-edit"></i>  
+		    Troka                                            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

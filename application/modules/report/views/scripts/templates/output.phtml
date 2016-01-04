@@ -1,0 +1,25 @@
+<div id="control-bar" class="noPrint">
+    <div class="row-fluid">
+	<a href="javascript:;" class="btn red button-pdf" onClick="parent.Report.print();">
+	    <i class="icon-share"></i>
+	    Imprimir / Save PDF
+	</a>
+	<a href="javascript:;" onClick="parent.Report.exporting( '<?php echo $this->baseUrl( 'report/general/to-doc' ); ?>' );" class="btn blue button-doc">
+	    <i class="icon-remove icon-white"></i>
+	    Gera WORD
+	</a>
+	<a href="javascript:;" onClick="parent.Report.exporting( '<?php echo $this->baseUrl( 'report/general/to-excel' ); ?>' );" class="btn green button-excel">
+	    <i class="m-icon-swapright m-icon-white"></i>
+	    Gera EXCEL
+	</a>
+	<a href="javascript:;" onClick="parent.Report.closeIframe();" class="btn yellow button-close">
+	    <i class="icon-user icon-white"></i>
+	    Taka
+	</a>
+    </div>
+</div>
+
+<div class="report-container">
+    <input type="hidden" id="hash-report" value="<?php echo $this->id; ?>" />
+    <?php echo $this->content; ?>
+</div>

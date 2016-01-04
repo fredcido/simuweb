@@ -1,0 +1,36 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+    	<tr>
+    	    <th>País</th>
+    	    <th>Total</th>
+    	    <th>Valor de Contrato</th>
+    	    <th>Valor Pago</th>
+    	</tr>
+    </thead>
+    <tbody>
+    	<?php foreach ($this->data['rows'] as $country): ?>
+    	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+                <td><?php echo $country['country']; ?></td>
+                <td><?php echo $country['total']; ?></td>
+                <td><?php echo $this->currency($country['amount_contracted']); ?></td>
+                <td><?php echo $this->currency($country['amount']); ?></td>
+    	    </tr>
+	    <?php endforeach; ?>
+    </tbody>
+    <tfoot>
+        <tr>
+    	    <th></th>
+    	    <th><?php echo array_sum(array_map(function($item){return $item['total'];}, $this->data['rows'])); ?></th>
+    	    <th><?php echo $this->currency(array_sum(array_map(function($item){ return App_General_String::toFloat($item['amount_contracted']); }, $this->data['rows']))); ?></th>
+    	    <th><?php echo $this->currency(array_sum(array_map(function($item){ return App_General_String::toFloat($item['amount']); }, $this->data['rows']))); ?></th>
+        </tr>
+    	<tr>
+    	    <th colspan="3">Total</th>
+    	    <th><?php echo count($this->data['rows']); ?></th>
+        </tr>
+    </tfoot>
+</table>

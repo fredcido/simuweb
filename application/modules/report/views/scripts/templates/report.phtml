@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<style type="text/css">
+	    <?php echo file_get_contents( APPLICATION_PATH . '/../public/styles/report.css' ); ?>
+	</style>
+	
+    </head>
+
+    <body>
+	
+	<div class="logo">
+	    <img src="<?php echo $this->serverUrl( $this->baseUrl( '/public/images/logo_report.png' ) ); ?>" />
+	</div>
+	
+	<div class="header">
+	    <h4>Secretaria de Estado para Política da Formação Profissional e Emprego - SEPFOPE. </h4>
+	    <h4>
+		<?php 
+		    if ( $this->department ) :
+			echo $this->department;
+		    else : 
+		?>
+		    Departamento da Informação sobre o Mercado de Trabalho - DMIT.
+		<?php endif; ?>
+	    </h4>
+	    <h4>Sistema Base de Dados - SIMU-WEB</h4>
+	</div>
+	
+	<div class="title">
+	    <h5><?php echo $this->title; ?></h5>
+	</div>
+	
+	<div class="content">
+	    <?php echo $this->content; ?>	
+	</div>
+	
+    </body>
+</html>

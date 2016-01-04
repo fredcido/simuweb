@@ -1,0 +1,136 @@
+<?php 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/controller/external/pce.js' ) );
+?>
+
+<?php if ( !empty( $this->revision ) ) : ?>
+    <div class="alert alert-error">
+	<?php echo $this->revision['description']; ?>
+    </div>
+<?php endif; ?>
+
+<?php if ( !empty( $this->is_group ) ) : ?>
+    <div class="alert alert-error">
+	Keta edita Planu Negosiu ne'e. Nia uza iha grupu seluk!
+    </div>
+<?php endif; ?>
+
+<?php if ( empty( $this->can_create ) ) : ?>
+    <div class="alert alert-error">
+	Kliente ne'e seidauk iha Kontratu Formasaun Profisional
+    </div>
+<?php endif; ?>
+
+<div class="row-fluid form-horizontal well" style="padding: 0">
+    <div class="span3">
+	<div class="control-group span12" style="margin-bottom: 5px">
+	    <label class="control-label required bold" style="padding-top: 14px">Data</label>
+	    <div class="controls">
+		<span class="text bold" style="padding-top: 9px">
+		    <?php echo $this->date_ini; ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span3">
+	<div class="control-group span12" style="margin-bottom: 0 !important">
+	    <label class="control-label required bold" style="padding-top: 14px">Submete:</label>
+	    <div class="controls">
+		<?php if ( $this->businessPlan && $this->businessPlan->submitted ) : ?>
+		    <a class="btn green big disabled pull-right">
+			Loos ona
+		    </a>
+		<?php else : ?>
+		    <a class="btn red disabled big pull-right">
+			Seidauk
+		    </a>
+		<?php endif; ?>
+	    </div>
+	</div>
+    </div>
+    <div class="span4">
+	<div class="control-group span12" style="margin-bottom: 0 !important">
+	    <div class="controls">
+		<span class="text bold" style="padding-top: 9px">
+		    <?php 
+			if ( $this->businessPlan ) :
+			    if ( $this->contract ) :
+				echo Fefop_Model_Mapper_Contract::buildNumRow( $this->contract );
+			    else : 
+				echo External_Model_Mapper_Pce::buildNumRow( $this->businessPlan );
+			    endif; 
+			endif; 
+		    ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span2 text-right">
+	<?php if ( $this->contract ) : ?>
+	    <?php echo $this->fefopContract()->setContract( $this->contract )->getStatusLabel( 'big' ); ?>
+	<?php else : ?>
+	    <a class="btn <?php echo !empty( $this->revision ) ? 'blue' : 'green' ?> big disabled pull-right">
+		<?php if ( !empty( $this->revision ) ) : ?>
+		    Inicial
+		<?php else : ?>
+		    Revisto
+		<?php endif; ?>
+	    </a>
+	<?php endif; ?>
+    </div>
+</div>
+
+<div class="form-wizard" id="business-wizard">
+    <div class="navbar steps">
+	<div class="navbar-inner">
+	    <ul class="row-fluid">
+		<li class="span4">
+		    <a href="#general-data" data-toggle="tab" class="step">
+			<span class="number">1</span>
+			<span class="desc"><i class="icon-ok"></i> Dadus Jerais</span>   
+		    </a>
+		</li>
+		<li class="span4 <?php echo $this->businessPlan ? '' : 'disabled'; ?>">
+		    <a href="#business-plan" data-toggle="tab" class="step">
+			<span class="number">2</span>
+			<span class="desc"><i class="icon-ok"></i> Plano Negosiu</span>   
+		    </a>
+		</li>
+		<li class="span4 <?php echo $this->hasBudgetCategory ? '' : 'disabled'; ?>">
+		    <a href="#finish-plan" data-toggle="tab" class="step">
+			<span class="number">3</span>
+			<span class="desc"><i class="icon-ok"></i> Remata</span>   
+		    </a>
+		</li>
+	    </ul>
+	</div>
+    </div>
+    <div id="bar" class="progress progress-success progress-striped">
+	<div class="bar"></div>
+    </div>
+    <?php if ( $this->businessPlan && $this->businessPlan->submitted ) : ?>
+	<div class="row-fluid">
+	    <div class="span12">
+		<div class="alert alert-error">
+		    <strong>Atensaun!</strong> Planu negoisu ne'e submete tiha ona. Keta altera informasaun!
+		</div>
+	    </div>
+	</div>
+    <?php endif; ?>
+    <div class="tab-content">
+	<div class="tab-pane active" id="general-data">
+	    <?php echo $this->action( 'information', 'pce', 'external', array( 'module' => $this->module ) ); ?>
+	</div>
+	<div class="tab-pane" id="business-plan">
+	    <?php 
+		if ( $this->businessPlan )
+		    echo $this->action( 'business-plan', 'pce', 'external', array( 'id' => $this->businessPlan->id_businessplan ) );
+	    ?>
+	</div>
+	<div class="tab-pane" id="finish-plan">
+	    <?php if ( $this->hasBudgetCategory )
+		    echo $this->action( 'finish-plan', 'pce', 'external', array( 'id' => $this->businessPlan->id_businessplan ) );
+	    ?>
+	</div>
+    </div>
+</div>

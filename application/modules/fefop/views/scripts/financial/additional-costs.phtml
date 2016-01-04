@@ -1,0 +1,70 @@
+<?php
+    $attribsValue = array(
+	'class'	    => 'text-right span12 pull-right required money-mask',
+	'disabled'  => true,
+	'style'	    => 'width: 120px'
+    );
+?>
+<table class="table table-striped table-bordered table-hover table-full-width">
+    <thead>
+	<tr>
+	    <th>Rúbrica</th>
+	    <th>Total</th>
+	    <th>Devolução</th>
+	    <?php foreach ( $this->costs['funds'] as $fund ) : ?>
+		<th><?php echo $fund; ?></th>
+	    <?php endforeach; ?>
+	</tr>
+    </thead>
+    <tbody>
+	<?php
+	    $cont = 'A';
+	    foreach ( $this->costs['expenses'] as $idExpense => $expense ) :
+	?>
+    	<tr>
+    	    <td><?php echo $expense['data']['expense']; ?></td>
+    	    <td>
+		<?php $totalExpense = number_format( $expense['data']['total'], 2, '.', ',' ); ?>
+    		<div class="control-group">
+    		    <div class="controls">
+			<?php echo $this->formText( 'total_expense_add', $totalExpense, $attribsValue ); ?>
+    		    </div>
+    		</div>
+    	    </td>
+    	    <td>
+		<?php $totalReimbursement = number_format( $expense['reimbursement'], 2, '.', ',' ); ?>
+    		<div class="control-group">
+    		    <div class="controls">
+			<?php echo $this->formText( 'total_reimbursement_add', $totalReimbursement, $attribsValue ); ?>
+    		    </div>
+    		</div>
+    	    </td>
+	    <?php 
+		$attribsValueFund = $attribsValue;
+		unset( $attribsValueFund['disabled'] );
+		$attribsValueFund['class'] .= ' additional-cost';
+		
+		foreach ( $this->costs['funds'] as $idFund => $fund ) : 
+		    
+		    $totalFund = 0;
+		    if ( !empty( $expense['funds'][$idFund] ) ) {
+
+			$fundExpense = $expense['funds'][$idFund];
+			$totalFund = number_format( $fundExpense['amount'], 2, '.', ',' );
+		    }
+		    
+		    $attribsValueFund['data-fund'] = $idFund;
+		    $attribsValueFund['data-expense'] = $idExpense;
+	    ?>
+		<td>
+		    <div class="control-group">
+			<div class="controls">
+				<?php echo $this->formText( 'total_add_fund', $totalFund, $attribsValueFund ); ?>
+			</div>
+		    </div>
+		</td>
+	    <?php endforeach; ?>
+    	</tr>
+	<?php endforeach; ?>
+    </tbody>
+</table>

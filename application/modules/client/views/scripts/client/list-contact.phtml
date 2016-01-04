@@ -1,0 +1,22 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->contact_name; ?></td>
+	<td><?php echo $row->cell_fone; ?></td>
+	<td><?php echo $row->job_fone; ?></td>
+	<td><?php echo $row->house_fone; ?></td>
+	<td><?php echo $row->email; ?></td>
+	<td><?php echo $row->website; ?></td>
+	<td>
+	    <?php if ( $this->access( Client_Form_ClientContact::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn red" data-contact='<?php echo $row->id_percontact; ?>' onclick="Client.Client.removeContact( this );">
+		    <i class="icon-remove-sign"></i>            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

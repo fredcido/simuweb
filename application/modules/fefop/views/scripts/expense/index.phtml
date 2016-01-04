@@ -1,0 +1,46 @@
+<?php $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/plugins/jquery.dataTables.rowReordering.js' ) );  ?>
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'expense/form.phtml' ),
+				'label'	    => 'Rúbrica Rejistu',
+				'released'  => true,
+				'id'	    => Fefop_Form_Expense::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'list',
+				'label'	    => 'Rúbrica Sira',
+				'released'  => true,
+				'content'   => $this->render( 'expense/rows.phtml' ),
+				'id'	    => Fefop_Form_Expense::ID
+			    )
+			  )
+//			  ->addTab(
+//			    array(
+//				'ref'	    => 'module',
+//				'label'	    => 'Rúbrica x Modulu',
+//				'released'  => true,
+//				'url'	    => $this->path( 'module' ),
+//				'id'	    => Fefop_Form_ExpenseModule::ID
+//			    )
+//			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'configuration',
+				'label'	    => 'Konfigurasaun',
+				'released'  => true,
+				'url'	    => $this->path( 'configuration' ),
+				'id'	    => Fefop_Form_ExpenseModule::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

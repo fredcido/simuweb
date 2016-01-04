@@ -1,0 +1,30 @@
+<?php foreach ( $this->rows as $key => $row ) : ?>
+    <tr data-position="<?php echo ++$key; ?>" id="<?php echo $row->id_budget_category; ?>">
+	<td><?php echo $key; ?></td>
+	<td>
+	    <input type="checkbox" value="<?php echo $row->id_budget_category; ?>" />
+	</td>
+	<td><?php echo $row->description; ?></td>
+	<td><?php echo $row->type_expense; ?></td>
+	<?php if ( $this->expense_amount ) : ?>
+	    <td>
+		<?php 
+		    $attribsTotal = array( 
+			'class'		=> 'text-right span10 pull-right money-mask',
+			'id'		=> 'total_expense_' . $row->id_budget_category,
+			'data-expense'	=> $row->id_budget_category
+		    );
+
+		    $totalExpense = 0;
+		    if ( !empty( $row->amount ) )
+			$totalExpense = number_format( $row->amount, 2, '.', ',' );
+		?>
+		<div class="control-group">
+		    <div class="controls">
+			<?php echo $this->formText( 'total_expense[' . $key . ']', $totalExpense, $attribsTotal ); ?>
+		    </div>
+		</div>
+	    </td>
+	<?php endif; ?>
+    </tr>
+<?php endforeach;

@@ -1,0 +1,9 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $this->nomenclature()->scholarityCategory( $row->category );?></td>
+	<td><?php echo ( empty( $row->external_code ) ? '' : $row->external_code . ' - ' ) . $row->scholarity; ?></td>
+	<td><?php echo $row->institution; ?></td>
+	<td style="width: 12%" class="hidden-tablet hidden-phone"><?php echo $row->start_date_formated; ?></td>
+	<td style="width: 12%" class="hidden-tablet hidden-phone"><?php echo $row->finish_date_formated; ?></td>
+    </tr>
+<?php endforeach; ?>

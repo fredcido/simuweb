@@ -1,0 +1,21 @@
+<div class="tabbable tabbable-custom boxless">
+    <?php
+	echo $this->tab()
+		  ->addTab(
+			array(
+			    'ref'	    => 'list-to-user',
+			    'label'	    => 'Avizu simu ona',
+			    'released'	    => true,
+			    'content'	    => $this->render( 'note/list-to-user.phtml' )
+			)
+		    )
+		    ->addTab(
+			array(
+			    'ref'	    => 'list-by-user',
+			    'label'	    => 'Avizu haruka ona',
+			    'released'	    => true,
+			    'content'	    => $this->render( 'note/list-by-user.phtml' )
+			)
+		    );
+    ?>
+</div>

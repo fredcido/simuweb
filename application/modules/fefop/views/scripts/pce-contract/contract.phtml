@@ -1,0 +1,130 @@
+<?php 
+    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/plugins/jquery-file-upload/css/jquery.fileupload-ui.css' ) );
+    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/plugins/bootstrap-tree/bootstrap-tree/css/bootstrap-tree.css' ) );
+
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/vendor/tmpl.min.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload-fp.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload-ui.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/bootstrap-tree/bootstrap-tree/js/bootstrap-tree.js' ) );
+    $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/controller/fefop/contract.js' ) ); 
+?>
+<?php if ( $this->id_contract ) : ?>
+    <div id="container-contract">
+	<?php echo $this->action( 'contract', 'index', 'fefop', array( 'id' => $this->id_contract ) ); ?>
+    </div>
+<?php endif; ?>
+<hr />
+<div class="row-fluid form-horizontal well" style="padding: 0">
+    <div class="span4">
+	<div class="control-group span12" style="margin-bottom: 5px">
+	    <label class="control-label required bold" style="padding-top: 14px">Data</label>
+	    <div class="controls">
+		<span class="text bold" style="padding-top: 9px">
+		    <?php echo $this->date( $this->contract->date_inserted ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span4">
+	<div class="control-group span12" style="margin-bottom: 0 !important">
+	    <div class="controls">
+		<span class="text bold" style="padding-top: 9px">
+		    <?php 
+			echo External_Model_Mapper_Pce::buildNumRow( $this->contract );
+		    ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span4">
+	<div class="control-group span12" style="margin-bottom: 0 !important">
+	    <label class="control-label required bold" style="padding-top: 14px">Submete:</label>
+	    <div class="controls">
+		<?php if ( $this->contract && $this->contract->submitted ) : ?>
+		    <a class="btn green big disabled pull-right">
+			Loos ona
+		    </a>
+		<?php else : ?>
+		    <a class="btn red disabled big pull-right">
+			Seidauk
+		    </a>
+		<?php endif; ?>
+	    </div>
+	</div>
+    </div>
+</div>
+<hr />
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->action( 'information', 'pce-contract', 'fefop', array( 'id' => $this->id ) ),
+				'label'	    => 'Dadus Planu Negosiu nian',
+				'released'  => true,
+				'id'	    => Fefop_Form_PCEContract::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'financial-analysis',
+				'label'	    => 'Análize Finanseira',
+				'released'  => true,
+				'url'	    => $this->path( 'fetch-financial-analysis', 'pce-contract', 'fefop', array( 'id' => $this->id ) ),
+				'id'	    => Fefop_Form_PCEContract::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'revision',
+				'label'	    => 'Revizaun',
+				'released'  => $this->contract->submitted,
+				'url'	    => $this->path( 'revision', 'pce-contract', 'fefop', array( 'id' => $this->id ) ),
+				'id'	    => Fefop_Form_PCEContract::ID
+			    )
+			 )
+			 ->addTab(
+			    array(
+				'ref'	    => 'technical-feedback',
+				'label'	    => 'Rekomendasaun téknika',
+				'released'  => $this->contract->submitted,
+				'url'	    => $this->path( 'technical-feedback', 'pce-contract', 'fefop', array( 'id' => $this->id ) ),
+				'id'	    => Fefop_Form_PCEContract::ID
+			    )
+			 )
+			 ->addTab(
+			    array(
+				'ref'	    => 'council-decision',
+				'label'	    => 'Pareser Husi Kosellu Administrasaun',
+				'released'  => $this->contract->submitted,
+				'url'	    => $this->path( 'council-decision', 'pce-contract', 'fefop', array( 'id' => $this->id ) ),
+				'id'	    => Fefop_Form_PCEContract::ID
+			    )
+			 )
+			 ->addTab(
+			    array(
+				'ref'	    => 'followup',
+				'label'	    => 'Follow-up',
+				'released'  => $this->contract->fk_id_fefop_contract,
+				'url'	    => $this->path( 'index', 'followup', 'fefop', array( 'id' => $this->id_contract ) ),
+				'id'	    => Fefop_Form_Followup::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'document',
+				'label'	    => 'Dokumentu',
+				'released'  => $this->contract->fk_id_fefop_contract,
+				'id'	    => Fefop_Form_Document::ID,
+				'url'	    => $this->path( 'index', 'document', 'fefop', array( 'id' => $this->id_contract ) ),
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

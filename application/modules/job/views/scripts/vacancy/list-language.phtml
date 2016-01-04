@@ -1,0 +1,19 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->language; ?></td>
+	<td><?php echo $row->name_level . ' - ' . $row->level; ?></td>
+	<td><?php echo $row->usage; ?></td>
+	<td>
+	    <?php if ( $this->jobActive()->hasAccessEdit() && $this->access( Job_Form_VacancyLanguage::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn red" data-language='<?php echo $row->id_relationship; ?>' onclick="Job.Vacancy.removeLanguage( this );">
+		    <i class="icon-remove-sign"></i>            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

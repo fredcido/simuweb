@@ -1,0 +1,40 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td>
+	    <input type="hidden" name="client_handicapped[<?php echo $row->id_perdata ?>]" class="submit-field" value="<?php echo (int)!empty( $row->id_handicapped )?>" />
+	    <?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?>
+	</td>
+	<td>
+	    <?php if ( $this->access( Client_Form_ClientInformation::ID) ) : ?>
+		<a href="<?php echo $this->baseUrl( '/client/client/print/id/' . $row->id_perdata ); ?>" target="_blank">
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+		</a>
+	    <?php else : ?>
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+	    <?php endif; ?>
+	</td>
+	<td><?php echo $row->gender; ?></td>
+	<td><?php echo $row->electoral; ?></td>
+	<td><?php echo !empty( $row->id_handicapped ) ? 'Sin' : 'Lae'; ?></td>
+	<td>
+	    <?php
+		$attribsText = array(
+		    'class'	=> 'm-wrap span12 focused cost-client submit-field money-mask',
+		    'id'	=> $row->id_perdata,
+		    'readonly'	=> true
+		);
+		
+		$amount = 0;
+		if ( !empty( $row->amount ) )
+		    $amount = $row->amount;
+		
+		$amount = number_format( $amount, 2, '.', '.' );
+	    ?>
+	    <div class="control-group">
+		<div class="controls">
+		    <?php echo $this->formText( 'cost_client[' . $row->id_perdata . ']', $amount, $attribsText );  ?>
+		</div>
+	    </div>
+	</td>
+    </tr>
+<?php endforeach; ?>

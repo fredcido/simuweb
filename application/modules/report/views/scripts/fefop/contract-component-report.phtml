@@ -1,0 +1,92 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<?php if (!empty($this->data['item'])): ?>
+    <table class="relatorio">
+        <thead>
+        	<tr>
+        	    <!-- <th rowspan="3"> --> <th>Kontratu</th>
+    		    <!-- <th rowspan="3"> --> <th>Benefisiariu</th>
+    		    <!-- <th rowspan="3"> --> <th>Status</th>
+    		    <!-- <th rowspan="3"> --> <th>Program</th>
+    		    <!-- <th rowspan="3"> --> <th>Module</th>
+    		    <th colspan="<?php echo ((count($this->data['item']['category']) * 4)); ?>">Componentes de Financiamento</th>
+    		    <!-- <th rowspan="3"> --> <th>Total</th>
+        	</tr>
+        	
+        	<?php if (count($this->data['item']['category']) > 0): ?>
+            	<tr>
+            	   <th></th>
+            	   <th></th>
+            	   <th></th>
+            	   <th></th>
+            	   <th></th>
+            	   <?php foreach ($this->data['item']['category'] as $category): ?>
+            	       <th colspan="4"><?php echo $category; ?></th>
+            	   <?php endforeach; ?>
+            	   <th></th>
+            	</tr>
+            	<tr>
+            	   <th></th>
+            	   <th></th>
+            	   <th></th>
+            	   <th></th>
+            	   <th></th>
+            	   <?php for ($i = 0; $i < count($this->data['item']['category']); $i++): ?>
+                	   <th>%</th>
+                	   <th>Valor</th>
+                	   <th>Devoluções</th>
+                	   <th>Total</th>
+            	   <?php endfor; ?>
+            	   <th></th>
+            	</tr>
+        	<?php endif; ?>
+        </thead>
+        <tbody>
+        	<?php foreach ($this->data['item']['contract'] as $key => $contract): ?>
+        	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+            		<td><?php echo $contract['contract']; ?></td>
+            		<td><?php echo $contract['beneficiary']; ?></td>
+            		<td><?php echo $contract['status']; ?></td>
+            		<td><?php echo $contract['program']; ?></td>
+            		<td><?php echo $contract['module']; ?></td>
+            		
+            		<?php foreach ($this->data['item']['category'] as $key => $category): ?>
+                        <?php if (!empty($contract['category'][$key])): ?>
+                            <td><?php echo !empty($contract['total']) ? (round(($contract['category'][$key]['total'] * 100 / $contract['total']), 2) . '%') : ''; ?></td>
+                            <td><?php echo $this->currency($contract['category'][$key]['payments']); ?></td>
+                            <td><?php echo $this->currency($contract['category'][$key]['repayments']); ?></td>
+                            <td><?php echo $this->currency($contract['category'][$key]['total']); ?></td>
+                        <?php else: ?>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    
+                    <td><?php echo $this->currency($contract['total']); ?></td>
+        	    </tr>
+        	<?php endforeach; ?>
+        </tbody>
+        <tfoot>
+            <tr>
+        	    <th colspan="5"></th>
+        	    
+        	    <?php foreach ($this->data['item']['total'] as $total): ?>
+        	    	<th></th>
+        	    	<th><?php echo $this->currency($total['payments']); ?></th>
+        	    	<th><?php echo $this->currency($total['repayments']); ?></th>
+        	    	<th><?php echo $this->currency($total['total']); ?></th>
+        	    <?php endforeach; ?>
+        	    
+        	    <th><?php echo $this->currency(array_sum(array_map(function($item){return $item['total'];}, $this->data['item']['contract']))); ?></th>
+        	</tr>
+        	<tr>
+        	    <th colspan="<?php echo ((count($this->data['item']['category']) * 4) + 5); ?>">Total</th>
+        	    <th><?php echo count($this->data['item']['contract']); ?></th>
+        	</tr>
+        </tfoot>
+    </table>
+<?php endif; ?>

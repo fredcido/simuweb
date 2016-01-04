@@ -1,0 +1,647 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <tbody>
+	<tr><th colspan="5">I - Buka Serbisu</th></tr>
+    </tbody>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Nivel Eskola</th>
+	</tr>
+	<tr>
+	    <th>Nivel Edukasaun</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['school']['rows'] as $schoolLevel => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $schoolLevel; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+    <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['school']['MANE']; ?></th>
+	    <th><?php echo $this->data['school']['FETO']; ?></th>
+	    <th><?php echo $this->data['school']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Distrito</th>
+	</tr>
+	<tr>
+	    <th>Distrito</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['district']['rows'] as $district => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $district; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['district']['MANE']; ?></th>
+	    <th><?php echo $this->data['district']['FETO']; ?></th>
+	    <th><?php echo $this->data['district']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <tbody>
+	<tr><th colspan="5">II - Hetan Serbisu</th></tr>
+    </tbody>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Nivel Eskola</th>
+	</tr>
+	<tr>
+	    <th>Nivel Edukasaun</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['school_job']['rows'] as $schoolLevel => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $schoolLevel; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+    <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['school_job']['MANE']; ?></th>
+	    <th><?php echo $this->data['school_job']['FETO']; ?></th>
+	    <th><?php echo $this->data['school_job']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Distrito</th>
+	</tr>
+	<tr>
+	    <th>Distrito</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['district_job']['rows'] as $district => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $district; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['district_job']['MANE']; ?></th>
+	    <th><?php echo $this->data['district_job']['FETO']; ?></th>
+	    <th><?php echo $this->data['district_job']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Okupasaun</th>
+	</tr>
+	<tr>
+	    <th>Okupasaun</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['occupation']['rows'] as $occupation => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $occupation; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['occupation']['MANE']; ?></th>
+	    <th><?php echo $this->data['occupation']['FETO']; ?></th>
+	    <th><?php echo $this->data['occupation']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Sektor Industria</th>
+	</tr>
+	<tr>
+	    <th>Sector</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['sector']['rows'] as $sector => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $sector; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['sector']['MANE']; ?></th>
+	    <th><?php echo $this->data['sector']['FETO']; ?></th>
+	    <th><?php echo $this->data['sector']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <tbody>
+	<tr><th colspan="5">III - Hetan Formasaun</th></tr>
+    </tbody>
+</table>
+
+<table class="relatorio">
+    <tbody>
+	<tr><th colspan="5">    Formasaun Teknika Profisional</th></tr>
+    </tbody>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Area Kursu</th>
+	</tr>
+	<tr>
+	    <th>Area</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['national_certificate']['area_course']['rows'] as $area => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $area; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['national_certificate']['area_course']['MANE']; ?></th>
+	    <th><?php echo $this->data['national_certificate']['area_course']['FETO']; ?></th>
+	    <th><?php echo $this->data['national_certificate']['area_course']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Kursu</th>
+	</tr>
+	<tr>
+	    <th>Kursu</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['national_certificate']['course']['rows'] as $course => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $course; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['national_certificate']['course']['MANE']; ?></th>
+	    <th><?php echo $this->data['national_certificate']['course']['FETO']; ?></th>
+	    <th><?php echo $this->data['national_certificate']['course']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Instituisaun Ensinu</th>
+	</tr>
+	<tr>
+	    <th>Instituisaun Ensinu</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['national_certificate']['training_provider']['rows'] as $training => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $training; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['national_certificate']['training_provider']['MANE']; ?></th>
+	    <th><?php echo $this->data['national_certificate']['training_provider']['FETO']; ?></th>
+	    <th><?php echo $this->data['national_certificate']['training_provider']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <tbody>
+	<tr><th colspan="5">    Formasaun Profisional</th></tr>
+    </tbody>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Area Kursu</th>
+	</tr>
+	<tr>
+	    <th>Area</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['vocational_training']['area_course']['rows'] as $area => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $area; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['vocational_training']['area_course']['MANE']; ?></th>
+	    <th><?php echo $this->data['vocational_training']['area_course']['FETO']; ?></th>
+	    <th><?php echo $this->data['vocational_training']['area_course']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Kursu</th>
+	</tr>
+	<tr>
+	    <th>Kursu</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['vocational_training']['course']['rows'] as $course => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $course; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['vocational_training']['course']['MANE']; ?></th>
+	    <th><?php echo $this->data['vocational_training']['course']['FETO']; ?></th>
+	    <th><?php echo $this->data['vocational_training']['course']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Instituisaun Ensinu</th>
+	</tr>
+	<tr>
+	    <th>Instituisaun Ensinu</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['vocational_training']['training_provider']['rows'] as $training => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $training; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['vocational_training']['training_provider']['MANE']; ?></th>
+	    <th><?php echo $this->data['vocational_training']['training_provider']['FETO']; ?></th>
+	    <th><?php echo $this->data['vocational_training']['training_provider']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <tbody>
+	<tr><th colspan="5">    Formasaun Komunitaria</th></tr>
+    </tbody>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Area Kursu</th>
+	</tr>
+	<tr>
+	    <th>Area</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['community_training']['area_course']['rows'] as $area => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $area; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['community_training']['area_course']['MANE']; ?></th>
+	    <th><?php echo $this->data['community_training']['area_course']['FETO']; ?></th>
+	    <th><?php echo $this->data['community_training']['area_course']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Kursu</th>
+	</tr>
+	<tr>
+	    <th>Kursu</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['community_training']['course']['rows'] as $course => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $course; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['community_training']['course']['MANE']; ?></th>
+	    <th><?php echo $this->data['community_training']['course']['FETO']; ?></th>
+	    <th><?php echo $this->data['community_training']['course']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th colspan="5">Instituisaun Ensinu</th>
+	</tr>
+	<tr>
+	    <th>Instituisaun Ensinu</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	    <th>Porcentagem</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['community_training']['training_provider']['rows'] as $training => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $training; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+		<td><?php echo $row['porcent']; ?>%</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>Total Rejistu</th>
+	    <th><?php echo $this->data['community_training']['training_provider']['MANE']; ?></th>
+	    <th><?php echo $this->data['community_training']['training_provider']['FETO']; ?></th>
+	    <th><?php echo $this->data['community_training']['training_provider']['total']; ?></th>
+	    <th>100%</th>
+	</tr>
+    </tfoot>
+</table>
+
+<div class="graphs">
+    <?php foreach ( $this->data['graph'] as $id => $graph ) : ?>
+	<div>
+	    <img src="<?php echo $this->serverUrl( $this->baseUrl( 'report/general/image/id/' . $id ) ); ?>/image.png" />
+	</div>
+    <?php endforeach; ?>
+</div>

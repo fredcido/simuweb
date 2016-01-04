@@ -1,0 +1,58 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th>Total Geral:</th>
+	    <th colspan="3">
+		<?php echo $this->data['total']; ?>
+	    </th>
+	</tr>
+	<tr>
+	    <th>CEOP</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	</tr>
+    </thead>
+
+    <tbody>
+	<?php foreach ( $this->data['rows'] as $row ) : ?>
+
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $row['ceop']; ?></td>
+		<td><?php echo $row['total_man']; ?></td>
+		<td><?php echo $row['total_woman']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+    <tfoot>
+	<tr>
+	    <th>Total</th>
+	    <th><?php echo $this->data['total_man']; ?></th>
+	    <th><?php echo $this->data['total_woman']; ?></th>
+	    <th><?php echo $this->data['total']; ?></th>
+	</tr>
+	<tr>
+	    <th>Porcentagem (%)</th>
+	    <th><?php echo $this->data['total_man_porcent']; ?> %</th>
+	    <th><?php echo $this->data['total_woman_porcent']; ?> %</th>
+	    <th>100 %</th>
+	</tr>
+    </tfoot>
+    
+</table>
+
+<div class="graphs">
+    <?php foreach ( $this->data['graph'] as $id => $graph ) : ?>
+	<div>
+	    <img src="<?php echo $this->serverUrl( $this->baseUrl( 'report/general/image/id/' . $id ) ); ?>/image.png" />
+	</div>
+    <?php endforeach; ?>
+</div>

@@ -1,0 +1,60 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th>Kodigu</th>
+	    <th>Titulu</th>
+	    <th>Empreza</th>
+	    <th>Okupasaun</th>
+	    <th>Loke</th>
+	    <th>Taka</th>
+	    <th>Status</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['rows'] as $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $row->id_jobvacancy; ?></td>
+		<td><?php echo $row->vacancy_titule; ?></td>
+		<td><?php echo $row->enterprise_name; ?></td>
+		<td><?php echo $row->ocupation_name_timor; ?></td>
+		<td><?php echo $row->open_date_formated; ?></td>
+		<td><?php echo $row->close_date_formated; ?></td>
+		<td>
+		    <?php 
+			if ( $row->active == 1 ) {
+
+			    if ( $row->expired ) {
+
+				$status = 'Expirado';
+
+			    } else {
+
+				$status = 'Loke';
+			    }
+
+			} else {
+
+			    $status = ( $row->active == 2 ) ? 'Kansela' : 'Taka';	
+			}
+		    ?>
+		    <?php echo $status; ?>
+		</td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th colspan="6">Total</th>
+	    <th><?php echo count( $this->data['rows'] ); ?></th>
+	</tr>
+    </tfoot>
+</table>

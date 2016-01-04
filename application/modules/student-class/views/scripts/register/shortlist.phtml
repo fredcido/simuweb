@@ -1,0 +1,43 @@
+<div class="box-content">
+    <div class="row-fluid hide" id="info-class-shortlist">
+	<div class="alert alert-info">
+	    <strong>
+		Atensaun!
+	    </strong> 
+	    Turma iha ne'e seidauk iha Shortlist.
+	</div>
+    </div>
+     <div class="row-fluid margin-bottom-25">
+	<div class="span12 text-center">
+	    <button class="btn red" type="button" <?php echo $this->studentClassActive()->hasAccessEdit() ? '' : 'disabled'; ?>
+		    onclick="StudentClass.Register.saveClass();">
+		<i class="icon-list-alt m-icon-white"></i>
+		Hatama Aluno Sira
+	    </button>
+            <button class="btn green" type="button"
+		    onclick="StudentClass.Register.printShortList();">
+		<i class="icon-print m-icon-white"></i>
+		Print Lista Badak
+	    </button>
+	</div>
+    </div>
+    <div class="row-fluid">
+	<table class="table table-striped table-bordered table-hover table-full-width" id="shortlist-list">
+	    <thead>
+		<tr>
+		    <th style="width: 4%" class="no-sort">
+			<input type="checkbox" onClick="StudentClass.Register.checkAll( this );" />
+		    </th>
+		    <th style="width: 17%">Numeru</th>
+		    <th style="width: 40%">Kliente</th>
+		    <th class="hidden-phone hidden-tablet">Data Moris</th>
+		    <th class="hidden-phone hidden-tablet">Idade</th>
+		    <th>Seksu</th>
+		    <th class="hidden-phone hidden-tablet">CEOP</th>
+		    <th>Action</th>
+		</tr>
+	    </thead>
+	    <tbody></tbody>
+	</table>
+    </div>
+</div>

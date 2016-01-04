@@ -1,0 +1,16 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <?php if ( $row->expired ) continue; ?>
+    <tr>
+	<td><?php echo str_pad( $row->id_fefpstudentclass, 5, '0', STR_PAD_LEFT ); ?></td>
+	<td><?php echo $row->class_name; ?></td>
+	<td><?php echo $row->institution; ?></td>
+	<td><?php echo $this->date( $row->start_date ); ?></td>
+	<td><?php echo $this->date( $row->schedule_finish_date ); ?></td>
+	<td style="width: 12%">
+	    <a class="btn blue" target="_blank" href="<?php echo $this->baseUrl( 'auth/print-class/id/' . $row->id_fefpstudentclass ); ?>">
+		<i class="icon-print"></i>  
+		Print                                            
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

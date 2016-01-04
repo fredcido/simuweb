@@ -1,0 +1,51 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->beneficiary; ?></td>
+	<td><?php echo $row->contact; ?></td>
+	<td><?php echo $row->program_acronym; ?></td>
+	<td><?php echo $row->module_acronym; ?></td>
+	<td>
+	    <?php
+		switch (true) {
+
+		    case !empty($row['id_staff']):
+			echo 'Staff';
+			break;
+
+		    case !empty($row['id_fefpenterprise']):
+			echo 'Empreza';
+			break;
+
+		    case !empty($row['id_fefpeduinstitution']):
+			echo 'Inst Ensinu';
+			break;
+
+		    case !empty($row['id_perdata']):
+			    echo 'Kliente';
+			    break;
+
+			default:
+			    null;
+
+		}
+	    ?>
+	</td>
+	<td class="center hidden-480">
+	    <span class="label label-<?php echo $row->active ? 'success' : 'warning'; ?>">
+		<?php echo $row->active ? 'Sim' : 'Lae'; ?>
+	    </span>
+	</td>
+	<td>
+	    <a class="btn green" title="Haree Rejistu" href="javascript:;" 
+	       onclick="Fefop.BeneficiaryBlacklist.detail(<?php echo $row->id_beneficiary_blacklist; ?>)">
+		<i class="icon-eye-open"></i>  
+	    </a>
+	    <?php if ( !empty( $row->active ) && $this->access( Fefop_Form_RemoveBeneficiaryBlacklist::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn red" title="Remove Rejistu" href="javascript:;" 
+		    onclick="Fefop.BeneficiaryBlacklist.removeBlacklist(<?php echo $row->id_beneficiary_blacklist; ?>)">
+		     <i class="icon-remove-sign"></i>  
+		 </a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

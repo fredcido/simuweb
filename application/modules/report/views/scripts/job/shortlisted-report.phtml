@@ -1,0 +1,51 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th>ID</th>
+	    <th>Naran Vaga</th>
+	    <th>Empreza</th>
+	    <th>Okupasaun</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['rows'] as $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $row['id_jobvacancy']; ?></td>
+		<td><?php echo $row['vacancy_titule']; ?></td>
+		<td><?php echo $row['enterprise_name']; ?></td>
+		<td><?php echo $row['ocupation_name_timor']; ?></td>
+		<td><?php echo $row['MANE']; ?></td>
+		<td><?php echo $row['FETO']; ?></td>
+		<td><?php echo $row['total']; ?></td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th colspan="4">Total</th>
+	    <th><?php echo $this->data['MANE']; ?></th>
+	    <th><?php echo $this->data['FETO']; ?></th>
+	    <th><?php echo $this->data['total']; ?></th>
+	</tr>
+    </tfoot>
+</table>
+
+<div class="graphs">
+    <?php foreach ( $this->data['graph'] as $id => $graph ) : ?>
+	<div>
+	    <img src="<?php echo $this->serverUrl( $this->baseUrl( 'report/general/image/id/' . $id ) ); ?>/image.png" />
+	</div>
+    <?php endforeach; ?>
+</div>

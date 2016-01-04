@@ -1,0 +1,42 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td class="hidden-tablet hidden-phone"><?php echo $row->id_jobvacancy; ?></td>
+	<td><?php echo $row->vacancy_titule; ?></td>
+	<td><?php echo $row->enterprise_name; ?></td>
+	<td><?php echo $row->ocupation_name_timor; ?></td>
+	<td>
+	    <?php 
+		if ( $row->active == 1 ) {
+		    
+		    if ( $row->expired ) {
+			
+			$label = 'warning';
+			$status = 'Expirado';
+		    
+		    } else {
+			
+			$label = 'success';
+			$status = 'Loke';
+		    }
+		    
+		} else {
+		    
+		    $label = 'important';
+		    $status = ( $row->active == 2 ) ? 'Kansela' : 'Taka';	
+		}
+	    ?>
+	    
+	    <span class="label label-<?php echo $label; ?>">
+		<?php echo $status; ?>
+	    </span>
+	</td>
+	<td>
+	    <a class="btn red-stripe" target="_blank" href="<?php echo $this->baseUrl( 'job/vacancy/print/id/' . $row->id_jobvacancy ); ?>">
+		<i class="icon-eye-open"></i>                                              
+	    </a>
+	    <a class="btn green" href="javascript:;" onclick="Client.CaseGroup.vacancyClients(<?php echo $row->id_jobvacancy; ?>);">
+		<i class="icon-group"></i>                                              
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

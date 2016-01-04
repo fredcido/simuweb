@@ -1,0 +1,21 @@
+<div class="form-actions no-print">
+    <button type="button" class="btn blue" onClick="self.print();"><i class="icon-print"></i> Print</button>
+    <button type="button" class="btn red" onClick="self.close();"><i class="icon-remove-sign"></i> Taka</button>
+</div>
+
+<?php echo $this->action( 'header-report', 'index', 'default', array( 'id' => $this->user->fk_id_dec ) ); ?>
+
+<h2 class="bold text-center">
+    <?php echo $this->contract->module ; ?> - <?php echo $this->contract->num_module; ?>
+</h2>
+<h3 class="bold text-center">
+    Programa ba Insentivu ba Kriasaun Empreza - PCE
+</h3>
+<h4 class="bold text-right"><?php echo External_Model_Mapper_Pce::buildNumRow( $this->contract ); ?></h4>
+
+<div class="form-view">
+    <?php 
+	echo $this->action( 'information', 'pce-contract', 'fefop', array( 'id' => $this->id ) ); 
+	echo $this->financial_analysis;
+    ?>
+</div>

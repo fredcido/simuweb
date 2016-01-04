@@ -1,0 +1,44 @@
+<div class="row-fluid">
+    <div class="span6">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Configuração FEFOP' )
+			->setColor( 'red' )
+			->addItem(
+			    array(
+				'label'	=> 'Komponente',
+				'url'	=> 'fefop/expense-type',
+				'id'	=>  Fefop_Form_ExpenseType::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Rúbrica',
+				'url'	=> 'fefop/expense',
+				'id'	=>  Fefop_Form_Expense::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Fundu',
+				'url'	=> 'fefop/fund',
+				'id'	=>  Fefop_Form_Fund::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Kustu Unitariu',
+				'url'	=> 'fefop/unit-cost',
+				'id'	=> Fefop_Form_UnitCost::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Benefisiariu Lista Metan',
+				'url'	=> 'fefop/beneficary-blacklist',
+				'id'	=>  Fefop_Form_BeneficiaryBlacklist::ID
+			    )
+			);
+	?>
+    </div>
+</div>

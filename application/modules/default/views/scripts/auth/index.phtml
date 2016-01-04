@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<?php
+	$this->headMeta()
+		->appendHttpEquiv( 'Content-Language', 'en-US' )
+		->appendHttpEquiv( 'expires', 'Wed, 26 Feb 2012 08:21:57 GMT' )
+		->appendHttpEquiv( 'pragma', 'no-cache' )
+		->appendHttpEquiv( 'Cache-Control', 'no-cache' )
+		->appendHttpEquiv( 'imagetoolbar', 'no' )
+		->appendHttpEquiv( 'Content-Encoding', 'gzip' )
+		->appendName( 'viewport', 'width=device-width, initial-scale=1.0' );
+
+
+	$this->headScript()->appendFile( $this->baseUrl( 'public/template/scripts/login.js' ) );
+	$this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/css/pages/login.css' ) );
+
+	echo $this->headTitle( 'Login SIMU-Web', 'SET' );
+	echo $this->headMeta() . "\n";
+	echo $this->headLink() . "\n";
+	echo $this->headScript() . "\n";
+	?>
+
+        <script type="text/javascript">
+            var BASE_URL = '<?php echo $this->baseUrl(); ?>';
+        </script>
+    </head>
+
+    <body class="login">
+
+	<div class="logo">
+
+	</div>
+
+	<div id="no-access" class="modal hide fade" tabindex="-1" style="width: 70%; margin-left: -35%">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 class="glyphicons no-js circle_exclamation_mark">
+		    ATENSAUN
+		    <i></i>
+		</h3>
+	    </div>
+	    <div class="modal-body">
+		<div class="row-fluid">
+		    <h5>Se karik ita boot la iha <strong>Login</strong> no <strong>Password</strong> ba tama sistema, então ita tenki:</h5>
+		    <ol>
+			<li>
+			    <strong>Hakat 1</strong>:
+			    Halo Download <strong>Formulariu ba Acessu Sistema</strong> ba ita nia departamentu.
+			</li>
+			<li>
+			    <strong>Hakat 2</strong>:
+			    Depois prense formulario, kualia Xefe departamento no diretor ba asina.
+			</li>
+			<li>
+			    <strong>Hakat 3</strong>:
+			    Depois entrega ba departamento Informasaun Mercado Trabalho.
+			</li>
+		    </ol>
+		</div>
+		<div class="row-fluid">
+		    <div class="portlet box blue">
+			<div class="portlet-title">
+			    <div class="caption">
+				<i class="icon-reorder"></i>
+				Download Formulario sira ba Solicitasaun Acessu sistema
+			    </div>
+			</div>
+			<div class="portlet-body">
+			    <div class="row-fluid">
+				<div class="span6">
+				    <strong>Modulo Rejistu Jeral</strong><br />
+				    <a target="_blank" href="<?php echo $this->baseUrl( 'public/forms/Matan Dalan/FORMULARIO_ACESSU_REJISTU_JERAL.pdf' ); ?>">
+					<i class="icon-file-text"></i>
+					Formulariu ba Acessu Modulo Rejistu Jeral
+				    </a>
+				</div>
+				<div class="span6">
+				    <strong>Modulo Kliente no Empregu (CEOP)</strong><br />
+				    <a target="_blank" href="<?php echo $this->baseUrl( 'public/forms/Matan Dalan/FORMULARIO_EMA_IHA_CEOP.pdf' ); ?>">
+					<i class="icon-file-text"></i>
+					Formulariu ba Acessu Modulo Kliente no Emprego
+				    </a>
+				</div>
+			    </div>
+			    <div class="row-fluid">
+				<div class="span6">
+				    <strong>Modulo FEFOP</strong><br />
+				    <a target="_blank" href="<?php echo $this->baseUrl( 'public/forms/Matan Dalan/FORMULARIO_EMA_IHA_FEFOP.pdf' ); ?>">
+					<i class="icon-file-text"></i>
+					Formulariu ba Acessu Modulo FEFOP
+				    </a>
+				</div>
+				<div class="span6">
+				    <strong>Modulo FORMASAUN (DENAFOP)</strong><br />
+				    <a target="_blank" href="<?php echo $this->baseUrl( 'public/forms/Matan Dalan/FORMULARIO_EMA_IHA_DENAFOP.pdf' ); ?>">
+					<i class="icon-file-text"></i>
+					Formulariu ba Acessu Modulo Formasaun
+				    </a>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    <div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn">Taka</button>
+	    </div>
+	</div>
+
+	<!-- BEGIN LOGIN -->
+	<div class="content">
+	    <div class="row-fluid">
+		<div id="logo-login"></div>
+	    </div>
+	    <!-- BEGIN LOGIN FORM -->
+	    <form class="form-vertical login-form" action="<?php echo $this->baseUrl( 'auth/login' ); ?>">
+		<h3 class="form-title">
+		    Sistema SIMU-WEB
+		</h3>
+		<div class="control-group">
+		    <label class="control-label visible-ie8 visible-ie9">Login</label>
+		    <div class="controls">
+			<div class="input-icon left">
+			    <i class="icon-user"></i>
+			    <input class="m-wrap placeholder-no-fix focused" type="text" placeholder="Login" id="username" name="username"/>
+			</div>
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label visible-ie8 visible-ie9">Password</label>
+		    <div class="controls">
+			<div class="input-icon left">
+			    <i class="icon-lock"></i>
+			    <input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password"/>
+			</div>
+		    </div>
+		</div>
+		<div class="form-actions">
+		    <div class="row-fluid">
+			<button type="submit" class="btn green pull-right">
+			    Tama <i class="m-icon-swapright m-icon-white"></i>
+			</button>  
+			<a class="btn red pull-left hidden-phone" type="button" href="#no-access" data-toggle="modal">
+			    La Iha Asesu
+			    <i class="icon-question-sign"></i>
+			</a>
+		    </div>
+		</div>
+		<div class="forget-password hidden-phone">
+		    <div class="row-fluid">
+			<div class="span6">
+			    <h4>Asesu Kliente</h4>
+			    <p>
+				<a class="btn blue hidden-phone" id="btn-client" type="button" href="javascript:;">
+				    Kliente
+				    <i class="icon-group"></i>
+				</a>
+			    </p>
+			</div>
+			<div class="span6">
+			    <h4 class="text-right">Vaga Servisu</h4>
+			    <p>
+				<a class="btn red hidden-phone pull-right" id="btn-dashboard" href="<?php echo $this->baseUrl( 'auth/dashboard' );?>">
+				    Haree
+				    <i class="icon-eye-open"></i>
+				</a>
+			    </p>
+			</div>
+		    </div>
+		</div>
+	    </form>
+
+	    <!-- BEGIN FORGOT PASSWORD FORM -->
+	    <form class="form-vertical hide" id="external-form" action="<?php echo $this->baseUrl( 'auth/login-external' ); ?>" method="post">
+		<h3>Asesu Kliente</h3>
+		<p>Ketik ita-nia kartaun evidensia no mos data moris.</p>
+		<div class="control-group">
+		    <div class="controls">
+			<div class="input-icon left">
+			    <i class="icon-credit-card"></i>
+			    <input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="Kartaun Evidensia" id="evidence_card" name="evidence_card" />
+			</div>
+		    </div>
+		</div>
+		<div class="control-group">
+		    <div class="controls">
+			<div class="input-icon left">
+			    <i class="icon-calendar"></i>
+			    <input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="Data Moris" id="birth_date" name="birth_date" />
+			</div>
+		    </div>
+		</div>
+		<div class="form-actions">
+		    <button type="button" id="back-btn" class="btn pull-left">
+			<i class="m-icon-swapleft"></i> Fila
+		    </button>
+		    <button type="submit" class="btn green pull-right">
+			Tama <i class="m-icon-swapright m-icon-white"></i>
+		    </button>            
+		</div>
+	    </form>
+	    <!-- END FORGOT PASSWORD FORM -->
+
+
+	</div>
+	<!-- END LOGIN -->
+
+	<div class="copyright">
+	    Copyright 2013 &copy; Secretaria de Estado para Política da Formação Profissional e Emprego - SEPFOPE. <br />
+	    Departamento da Informação sobre o Mercado de Trabalho - DMIT.
+	</div>
+
+
+	<script type="text/javascript">
+	    jQuery(document).ready(function() {     
+		App.init();
+		Login.init();
+	    });
+	</script>
+
+    </body>
+</html>

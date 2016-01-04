@@ -1,0 +1,130 @@
+<div class="form-actions no-print">
+    <button type="button" class="btn blue" onClick="self.print();"><i class="icon-print"></i> Print</button>
+    <button type="button" class="btn red" onClick="self.close();"><i class="icon-remove-sign"></i> Taka</button>
+</div>
+
+<h3 class="text-center">
+    Kartaun Audiensia
+</h3>
+
+<div class="form-view">
+    <div class="span12 text-right margin-bottom-10">
+	<strong><em>Ba Uzu ECGC nian Deit</em></strong>
+    </div>
+    <div class="row-fluid margin-bottom-10">
+	<div class="span8">
+	    <strong>Halo favor lori kartaun ida ne'e mai ho ita-boot no fo ba <br/></strong>
+	    <strong>resepsionista wainhira ita-boot mai vizita tuir mai.</strong>
+	</div>
+	<div class="span4">
+	    Ema nebee simu: <br />
+	    Data: ____/____/_______
+	</div>
+    </div>
+
+    <div class="row-fluid">
+	<div class="span6">
+	    <div class="control-group">
+		<label class="control-label bold">Naran Kliente:</label>
+		<div class="controls">
+		    <span class="text">
+			<?php echo Client_Model_Mapper_Client::buildName( $this->client ); ?>
+		    </span>
+		</div>
+	    </div>
+	</div>
+	<div class="span6">
+	    <div class="control-group">
+		<label class="control-label bold">Kartaun Evidensia:</label>
+		<div class="controls">
+		    <span class="text">
+			<?php echo Client_Model_Mapper_Client::buildNumRow( $this->client ); ?>
+		    </span>
+		</div>
+	    </div>
+	</div>
+    </div>
+    
+    <div class="row-fluid">
+	<div class="span6">
+	    <div class="control-group">
+		<label class="control-label bold">Data ba Audiensia:</label>
+		<div class="controls">
+		    <span class="text">
+			<?php echo $this->appointment->date_appointment_formated; ?>
+		    </span>
+		</div>
+	    </div>
+	</div>
+	<div class="span6">
+	    <div class="control-group">
+		<label class="control-label bold">Konselleru:</label>
+		<div class="controls">
+		    <span class="text">
+			<?php echo $this->appointment->name_counselor; ?>
+		    </span>
+		</div>
+	    </div>
+	</div>
+    </div>
+    <div class="row-fluid">
+	<div class="span6">
+	    <div class="control-group">
+		<label class="control-label bold">Distritu:</label>
+		<div class="controls">
+		    <span class="text">
+			<?php echo $this->appointment->name_dec; ?>
+		    </span>
+		</div>
+	    </div>
+	</div>
+	<div class="span6">
+	    <div class="control-group">
+		<label class="control-label bold">Ema neebe halo:</label>
+		<div class="controls">
+		    <span class="text">
+			<?php echo $this->appointment->responsible; ?>
+		    </span>
+		</div>
+	    </div>
+	</div>
+    </div>
+    
+    <?php if ( !empty( $this->appointment->appointment_desc ) ) : ?>
+	<div class="row-fluid">
+	    <div class="span12">
+		<div class="control-group">
+		    <label class="control-label bold">Observasaun:</label>
+		    <div class="controls">
+			<span class="text">
+			    <?php echo $this->appointment->appointment_desc; ?>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    <?php endif; ?>
+
+    <h4 class="form-section bold margin-bottom-15">
+	Intensaun ba audiensia
+    </h4>
+    
+	<div class="row-fluid">
+	    <?php foreach ( $this->objectives as $key => $objective ) : ?>
+		<div class="span6">&bull;&nbsp;&nbsp; <?php echo $objective->objective_desc; ?></div>
+		
+		<?php if ( ++$key % 2 == 0 ) : ?>
+		    </div>
+		    <div class="row-fluid">
+		<?php endif;?>
+		
+	    <?php endforeach; ?>
+	</div>
+</div>
+
+<div class="row-fluid margin-bottom-25"></div>
+<div class="row-fluid">
+    <div class="span12 text-right">
+	<small><em>SECRETARIA DE ESTADO PARA POLÍTICA DA FORMAÇÃOO PROFISSIONAL E EMPREGO</em></small>
+    </div>
+</div>

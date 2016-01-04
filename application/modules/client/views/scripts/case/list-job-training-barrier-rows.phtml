@@ -1,0 +1,36 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo str_pad( $row->id_jobtraining, 5, '0', STR_PAD_LEFT ); ?></td>
+	<td><?php echo $row->title; ?></td>
+	<td><?php echo $row->enterprise_name; ?></td>
+	<td><?php echo $row->scholarity_area; ?></td>
+	<td><?php echo $row->total_participants; ?></td>
+	<td style="width: 10%" class="hidden-phone hidden-tablet">
+	    <?php 
+		if ( $row->status == 1 ) {
+		    $label = 'success';
+		    $status = 'Loke';
+		} else {
+		    
+		    $label = 'important';
+		    $status = ( $row->status == 2 ) ? 'Kansela' : 'Taka';	
+		}
+	    ?>
+	    
+	    <span class="label label-<?php echo $label; ?>">
+		<?php echo $status; ?>
+	    </span>
+	</td>
+	<td>
+	    <span class="label label-<?php echo empty( $row->trainee ) ? 'important' : 'success'; ?>">
+		<?php echo empty( $row->trainee ) ? 'LAE' : 'SIM'; ?>
+	    </span>
+	</td>
+	<td>
+	    <a class="btn red-stripe" target="_blank" href="<?php echo $this->baseUrl( 'student-class/job-training/print/id/' . $row->id_jobtraining ); ?>">
+		<i class="icon-eye-open"></i>  
+		Haree                                            
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

@@ -1,0 +1,87 @@
+<div class="row-fluid" id="container-register">
+    
+    <?php echo $this->studentClassActive()->getMessage(); ?>
+    
+    <div class="row-fluid text-center <?php echo empty( $this->id ) ? 'hide' : ''; ?> margin-bottom-15" id="container-print">
+	<button class="btn green" type="button" onclick="StudentClass.Register.printStudentClass();">
+	    <i class="icon-print m-icon-white"></i>
+	    Imprimir Formasaun
+	</button>
+    </div> 
+    
+    <div class="row-fluid">
+	<div class="span12">
+	    <?php
+		$this->accordion()
+			    ->setDefaultColor( 'grey' )
+			    ->addStep(
+				array(
+				    'ref'	=> 'information',
+				    'content'   => $this->action( 'information', 'register', 'student-class', array( 'id' => $this->id ) ),
+				    'url'	=> $this->path( 'information/id/' . $this->id ),
+				    'label'	=> 'Dadus Principais',
+				    'callback'  => 'StudentClass.Register.configInformation',
+				    'released'  => true,
+				    'id'	=> StudentClass_Form_RegisterInformation::ID
+				)
+			    );
+			    /*
+			    ->addStep(
+				array(
+				    'ref'	    => 'course',
+				    'label'	    => 'Kursu',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'course/id/' . $this->id ),
+				    'callback'	    => 'StudentClass.Register.configCourse',
+				    'id'	    => StudentClass_Form_RegisterCourse::ID
+				)
+			    )
+			    */
+		
+			$this->accordion()
+				->addStep(
+				    array(
+					'ref'	    => 'candidate',
+					'label'	    => 'Lista Kandidatu',
+					'released'	    => !empty( $this->id ),
+					'url'	    => $this->path( 'candidate/id/' . $this->id ),
+					'callback'	    => 'StudentClass.Register.configCandidate',
+					'id'	    => StudentClass_Form_RegisterCandidate::ID
+				    )
+				)
+				->addStep(
+				    array(
+					'ref'	    => 'shortlist',
+					'label'	    => 'Lista Badak',
+					'released'	    => !empty( $this->id ),
+					'url'	    => $this->path( 'shortlist/id/' . $this->id ),
+					'callback'	    => 'StudentClass.Register.configShortlist',
+					'id'	    => StudentClass_Form_RegisterShortlist::ID
+				    )
+				)
+				->addStep(
+				    array(
+					'ref'	    => 'client',
+					'label'	    => 'Partisipante',
+					'released'	    => !empty( $this->id ),
+					'url'	    => $this->path( 'client/id/' . $this->id ),
+					'callback'	    => 'StudentClass.Register.configClient',
+					'id'	    => StudentClass_Form_RegisterClient::ID
+				    )
+				)
+				->addStep(
+				    array(
+					'ref'	    => 'finish',
+					'label'	    => 'Remata Klase',
+					'released'	    => !empty( $this->id ),
+					'url'	    => $this->path( 'finish/id/' . $this->id ),
+					'callback'	    => 'StudentClass.Register.reloadFinish',
+					'id'	    => StudentClass_Form_RegisterFinish::ID
+				    )
+				);
+		    
+		    echo $this->accordion();
+		?>
+	</div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td style="width: 20%"><?php echo $this->nomenclature()->scholarityCategory( $row->category );?></td>
+	<td><?php echo ( empty( $row->external_code ) ? '' : $row->external_code . ' - ' ) . $row->scholarity; ?></td>
+	<td><?php echo $row->Title; ?></td>
+	<td style="width: 10%">
+	    <?php if ( $this->jobActive()->hasAccessEdit() && $this->access( Job_Form_VacancyScholarity::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn red" data-scholarity='<?php echo $row->id_relationship; ?>' onclick="Job.Vacancy.removeScholarity( this );">
+		    <i class="icon-remove-sign"></i>            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

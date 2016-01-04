@@ -1,0 +1,16 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td>
+	    <input type="checkbox" class="clients"
+		   onChange="Job.Vacancy.setClientList( this );" 
+		   value="<?php echo $row->id_perdata; ?>" />
+	</td>
+	<td><?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?></td>
+	<td><?php echo Client_Model_Mapper_Client::buildName( $row ); ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->date_registration_format; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->birth_date_format; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->age; ?></td>
+	<td><?php echo $row->gender; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->name_dec; ?></td>
+    </tr>
+<?php endforeach; ?>

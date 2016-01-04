@@ -1,0 +1,23 @@
+<div class="tabbable tabbable-custom boxless">
+    <?php
+	echo $this->tab()
+		  ->addTab(
+			array(
+			    'ref'	    => 'match',
+			    'label'	    => 'Mediasaun',
+			    'released'	    => true,
+			    'url'	    => $this->path( 'match/id/' . $this->id ),
+			    'id'	    => StudentClass_Form_JobTrainingInformation::ID
+			)
+		    )
+		    ->addTab(
+			array(
+			    'ref'	    => 'candidates',
+			    'label'	    => 'Lista',
+			    'released'	    => true,
+			    'url'	    => $this->path( 'candidates/id/' . $this->id ),
+			    'id'	    => StudentClass_Form_JobTrainingInformation::ID
+			)
+		    );
+    ?>
+</div>

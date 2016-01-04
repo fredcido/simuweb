@@ -1,0 +1,44 @@
+<div class="box-content">
+
+    <?php $this->placeholder( 'form' )->captureStart(); ?>
+
+	<?php 
+	    echo $this->form->getElement( 'path' ); 
+	    echo $this->form->getElement( 'title' ); 
+	    echo $this->form->getElement( 'orientation' ); 
+	?>
+
+	<div class="row-fluid">
+	    <div class="control-group span4">
+		<?php echo $this->form->getElement( 'date_start' ); ?>
+	    </div>
+	    <div class="control-group span4">
+		<?php echo $this->form->getElement( 'date_finish' ); ?>
+	    </div>
+	    <div class="control-group span4">
+		<?php echo $this->form->getElement( 'fk_id_dec' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="control-group span4">
+		<?php echo $this->form->getElement( 'active' ); ?>
+	    </div>
+	    <div class="control-group span4">
+		<?php echo $this->form->getElement( 'fk_id_profocupation' ); ?>
+	    </div>
+	    <div class="control-group span4">
+		<?php echo $this->form->getElement( 'fk_id_fefpenterprise' ); ?>
+	    </div>
+	</div>
+
+	<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+
+    <?php
+	$this->placeholder( 'form' )->captureEnd();
+	echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+    ?>
+
+</div>
+
+<div class="row-fluid" id="report-iframe">
+</div>

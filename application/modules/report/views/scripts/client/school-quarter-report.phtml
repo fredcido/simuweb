@@ -1,0 +1,70 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th></th>
+	    <th colspan="2">QTR1</th>
+	    <th colspan="2">QTR2</th>
+	    <th colspan="2">QTR3</th>
+	    <th colspan="2">QTR4</th>
+	    <th></th>
+	</tr>
+	<tr>
+	    <th>Nivel Eskola</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Mane</th>
+	    <th>Feto</th>
+	    <th>Total</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['rows'] as $level => $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $level; ?></td>
+		
+		<?php foreach ( $row['quarters'] as  $quarter ) : ?>
+
+		    <td><?php echo $quarter['mane']; ?></td>
+		    <td><?php echo $quarter['feto']; ?></td>
+		
+		<?php endforeach; ?>
+		    
+		<td><?php echo $row['total']; ?></td>
+
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th>SubTotal</th>
+	    <?php foreach ( $this->data['totals'] as  $row ) : ?>
+
+		<th><?php echo $row['mane']; ?></th>
+		<th><?php echo $row['feto']; ?></th>
+
+	    <?php endforeach; ?>
+	    <th><?php echo $this->data['total']; ?></th>
+	</tr>
+    </tfoot>
+</table>
+
+<div class="graphs">
+    <?php foreach ( $this->data['graph'] as $id => $graph ) : ?>
+	<div>
+	    <img src="<?php echo $this->serverUrl( $this->baseUrl( 'report/general/image/id/' . $id ) ); ?>/image.png" />
+	</div>
+    <?php endforeach; ?>
+</div>

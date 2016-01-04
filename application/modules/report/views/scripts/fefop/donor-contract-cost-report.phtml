@@ -1,0 +1,187 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<?php if (!empty($this->data['item'])): ?>
+    
+    <?php if (!empty($this->data['item']['donor'])): ?>
+    	<table class="relatorio">
+    		<thead>
+    			<tr>
+			    <th colspan="9" style="text-align:center;">Donors</th>
+    			</tr>
+    			<tr>
+			    <th colspan="2"></th>
+			    <th>Planejado</th>
+			    <th>Contrato</th>
+			    <th>Financeiro</th>
+			    <th>Acrescidos</th>
+			    <th>Acrescidos Planejados</th>
+			    <th>Bankariu</th>
+			    <th>Saldo</th>
+    			</tr>
+    		</thead>
+    		
+    		<tfoot>
+    			<tr>
+			    <th colspan="2"></th>
+			    <th><?php echo $this->currency($this->data['item']['total']['planning']); ?></th>
+			    <th><?php echo $this->currency($this->data['item']['total']['contract']); ?></th>
+			    <th><?php echo $this->currency($this->data['item']['total']['financial']); ?></th>
+			    <th><?php echo $this->currency($this->data['item']['total']['addcosts']); ?></th>
+			    <th><?php echo $this->currency($this->data['item']['total']['addcostsplanning']); ?></th>
+			    <th><?php echo $this->currency($this->data['item']['total']['bankstmt']); ?></th>
+			    <th><?php echo $this->currency($this->data['item']['total']['balance']); ?></th>
+    			</tr>	
+    			<tr>
+    				<th colspan="8">Total</th>
+    				<th><?php echo array_sum(array_map(function($fund){ return count($fund); }, $this->data['item']['donor'])); ?></th>
+    			</tr>
+    		</tfoot>
+    		
+    		<tbody>
+    			<?php foreach (array_keys($this->data['item']['donor']) as $type): ?>
+    				
+    				<?php $flag = 0; ?>
+    				
+    				<?php foreach ($this->data['item']['donor'][$type] as $key => $fund): ?>
+    					
+    					<?php if (empty($flag)): ?>
+					    <tr>
+						<th rowspan="<?php echo count($this->data['item']['donor'][$type]); ?>">
+						    <?php
+							switch ($type) {
+							    case 'D':
+								echo 'Donor';
+								break;
+
+							    case 'G': 
+								echo 'Government';
+								break;
+
+							    default:
+								echo 'N/A';
+							}
+						    ?>
+						</th>
+						<th><?php echo $fund['name']; ?></th>
+						<td><?php echo $this->currency($fund['planning']); ?></td>
+						<td><?php echo $this->currency($fund['contract']); ?></td>
+						<td><?php echo $this->currency($fund['financial']); ?></td>
+						<td><?php echo $this->currency($fund['addcosts']); ?></td>
+						<td><?php echo $this->currency($fund['addcostsplanning']); ?></td>
+						<td><?php echo $this->currency($fund['bankstmt']); ?></td>
+						<td><?php echo $this->currency($fund['balance']); ?></td>
+					    </tr>
+		    			<?php else: ?>
+					    <tr>
+						<th><?php echo $fund['name']; ?></th>
+						<td><?php echo $this->currency($fund['planning']); ?></td>
+						<td><?php echo $this->currency($fund['contract']); ?></td>
+						<td><?php echo $this->currency($fund['financial']); ?></td>
+						<td><?php echo $this->currency($fund['addcosts']); ?></td>
+						<td><?php echo $this->currency($fund['addcostsplanning']); ?></td>
+						<td><?php echo $this->currency($fund['bankstmt']); ?></td>
+						<td><?php echo $this->currency($fund['balance']); ?></td>
+					    </tr>
+		    			<?php endif; ?>
+		    			
+		    			<?php $flag++; ?>
+		    			
+		    		<?php endforeach; ?>
+    			<?php endforeach; ?>
+    		</tbody>
+		</table>
+    <?php endif; ?>
+    
+    <?php if (!empty($this->data['item']['contract'])): ?>
+    	<table class="relatorio">
+    		<thead>
+    			<tr>
+			    <th colspan="5" style="text-align:center;">Kontratu</th>
+    			</tr>
+    			<tr>
+			    <th colspan="2"></th>
+			    <th>Planejado</th>
+			    <th>Transfêrencias</th>
+			    <th>Valor Atual</th>
+    			</tr>
+    		</thead>
+    		
+    		<tfoot>
+    			<tr>
+			    <th colspan="2"></th>
+			    <th><?php echo $this->currency(array_sum(array_map(function($program){ return $program['planning']; }, $this->data['item']['contract']))); ?></th>
+			    <th><?php echo $this->currency(array_sum(array_map(function($program){ return $program['transfer']; }, $this->data['item']['contract']))); ?></th>
+			    <th><?php echo $this->currency(array_sum(array_map(function($program){ return $program['total']; }, $this->data['item']['contract']))); ?></th>
+    			</tr>
+    			<tr>
+			    <th colspan="4">Total</th>
+			    <th><?php echo array_sum(array_map(function($program){ return count($program['module']); }, $this->data['item']['contract'])); ?></th>
+    			</tr>
+    		</tfoot>
+    		
+    		<tbody>
+    			<?php foreach ($this->data['item']['contract'] as $program): ?>
+    				
+    				<?php $flag = 0; ?>
+    				
+    				<?php foreach ($program['module'] as $key => $module): ?>
+    					
+    					<?php if (empty($flag)): ?>
+	    					<tr>
+						    <th rowspan="<?php echo count($program['module']); ?>"><?php echo $program['acronym']; ?></th>
+						    <th><?php echo $module['acronym']; ?></th>
+						    <td><?php echo $this->currency($module['planning']); ?></td>
+						    <td><?php echo $this->currency($module['transfer']); ?></td>
+						    <td><?php echo $this->currency($module['total']); ?></td>
+			    			</tr>
+		    			<?php else: ?>
+		    				<tr>
+						    <th><?php echo $module['acronym']; ?></th>
+						    <td><?php echo $this->currency($module['planning']); ?></td>
+						    <td><?php echo $this->currency($module['transfer']); ?></td>
+						    <td><?php echo $this->currency($module['total']); ?></td>
+			    			</tr>
+		    			<?php endif; ?>
+		    			
+		    			<?php $flag++; ?>
+		    			
+		    		<?php endforeach; ?>
+    			<?php endforeach; ?>
+    		</tbody>
+		</table>
+    <?php endif; ?>
+    
+    <?php if (!empty($this->data['item']['cost'])): ?>
+	    <table class="relatorio">
+	    	<thead>
+		    <tr>
+		    <th>Tipo de Financiamento</th>
+		    <th>Valor</th>
+		    </tr>
+	    	</thead>
+	    	
+	    	<tfoot>
+	    		<tr>
+			    <th></th>
+			    <th><?php echo $this->currency(array_sum(array_map(function($item){return App_General_String::toFloat($item['amount']);}, $this->data['item']['cost']))); ?></th>
+	    		</tr>
+	    		<tr>
+			    <th>Total</th>
+			    <th><?php echo count($this->data['item']['cost']); ?></th>
+	    		</tr>
+	    	</tfoot>
+	        
+	        <tbody>
+	        	<?php foreach ($this->data['item']['cost'] as $cost): ?>
+		    	    <tr>
+		                <td><?php echo $cost['description']; ?></td>
+		                <td><?php echo $this->currency($cost['amount']); ?></td>
+		    	    </tr>
+	    	    <?php endforeach; ?>
+	        </tbody>
+	    </table>
+    <?php endif; ?>
+    
+<?php endif; ?>

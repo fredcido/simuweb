@@ -1,0 +1,18 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->name_counselor; ?></td>
+	<td><?php echo $row->name_dec; ?></td>
+	<td><?php echo $row->date_appointment_formated; ?></td>
+	<td><?php echo $row->objective; ?></td>
+	<td>
+	    <a class="btn blue" href="javascript:;" onclick="Client.Case.printAppointment( <?php echo $row->id_appointment; ?> )">
+		<i class="icon-print"></i>                                       
+	    </a>
+	    <?php if ( $this->caseActive()->hasAccessEdit() ) : ?>
+		<a class="btn green" onclick="Client.Case.editAppointment( <?php echo $row->id_appointment; ?> );">
+		    <i class="icon-edit"></i>                       
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

@@ -1,0 +1,38 @@
+<div class="box-content">
+    <?php $this->placeholder('form')->captureStart(); ?>
+    
+        <?php foreach($this->form->getElements() as $element): ?>
+            <?php if ($element instanceof Zend_Form_Element_Hidden): ?>
+                <?php echo $element; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        
+        <div class="row-fluid">
+            <div class="control-group span6">
+                <?php echo $this->form->getElement('year_start'); ?>
+            </div>
+            <div class="control-group span6">
+                <?php echo $this->form->getElement('year_finish'); ?>
+            </div>
+        </div>
+        
+        <div class="row-fluid">   
+    		<div class="control-group span4">
+                <?php echo $this->form->getElement('id_fefop_programs'); ?>
+            </div>
+            <div class="control-group span4">
+                <?php echo $this->form->getElement('id_fefop_modules'); ?>
+            </div>
+            <div class="control-group span4">
+                <?php echo $this->form->getElement('id_adddistrict'); ?>
+            </div>
+        </div>
+    	
+        <?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    
+    <?php $this->placeholder('form')->captureEnd(); ?>
+        
+    <?php echo $this->form($this->form->getId(), $this->form->getAttribs(), $this->placeholder('form')); ?>
+</div>
+
+<div class="row-fluid" id="report-iframe"></div>

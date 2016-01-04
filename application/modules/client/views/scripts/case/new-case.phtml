@@ -1,0 +1,26 @@
+<?php echo $this->render( 'client/detail.phtml' ); ?>
+
+<div class="row-fluid">
+    <table class="table table-striped table-bordered table-hover table-full-width">
+	<thead>
+	    <tr>
+		<th style="width: 13%"># Hakat</th>
+		<th>Hakat Naran Sira</th>
+		<th style="width: 10%">Status</th>
+	    </tr>
+	</thead>
+	<tbody>
+	    <?php foreach ( $this->data['itens'] as $key => $item ): ?>
+		<tr>
+		    <td>Hakat - <?php echo ++$key; ?></td>
+		    <td><?php echo $item['msg']; ?></td>
+		    <td>
+			<a class="btn icn-only <?php echo $item['valid'] ? 'green' : 'red'; ?>" href="javascript:;" title="<?php echo $item['msg']; ?>">
+			    <i class="m-icon-white icon-<?php echo $item['valid'] ? 'ok' : 'warning-sign'; ?>"></i>
+			</a>
+		    </td>
+		</tr>
+	    <?php endforeach; ?>
+	</tbody>
+    </table>
+</div>

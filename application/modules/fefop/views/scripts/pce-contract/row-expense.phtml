@@ -1,0 +1,24 @@
+<tr>
+    <td><?php echo $this->count; ?>.</td>
+    <td><?php echo $this->expense->description; ?></td>
+    <td>
+	<?php
+	    $attribsText = array(
+		'class'	    => 'm-wrap span12 expense-field money-mask ' . $this->name,
+		'id'	    => $this->name . '_' . $this->expense->id_budget_category,
+		'disabled'  => true
+	    );
+	    
+	    if ( $this->readonly )
+		$attribsText['readonly'] = true;
+
+	    $amount = 0;
+	    if ( !empty( $this->expense->amount ) )
+		$amount = $this->expense->amount;
+
+	    $amount = $this->currency( $amount );
+
+	    echo $amount;//$this->formText( 'expense[' . $this->name . '][' . $this->expense->id_budget_category . ']', $amount, $attribsText );  
+	 ?>
+    </td>
+</tr>

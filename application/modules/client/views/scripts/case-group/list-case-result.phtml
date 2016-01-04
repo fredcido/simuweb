@@ -1,0 +1,41 @@
+<?php 
+    
+    $optionsSelect = array(
+	'class'	    => 'm-wrap span12 chosen',
+	'multiple'  => false
+    );
+    
+    if ( !$this->caseActiveGroup()->hasAccessEdit() )
+	$optionsSelect['disabled'] = true;
+
+    foreach ( $this->rows as $row ) : 
+?>
+    <tr>
+	<td><?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?></td>
+	<td>
+	    <?php if ( $this->access( Client_Form_ClientInformation::ID) ) : ?>
+		<a href="<?php echo $this->baseUrl( '/client/client/print/id/' . $row->id_perdata ); ?>" target="_blank">
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+		</a>
+	    <?php else : ?>
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+	    <?php endif; ?>
+	</td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->birth_date_format; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->age; ?></td>
+	<td><?php echo $row->gender; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->name_dec; ?></td>
+	<td>
+	     <?php 
+		$optionsCurrentCombo = $optionsSelect;	
+	    
+		if ( $row->status == Client_Model_Mapper_Case::BARRIER_COMPLETED )
+		    $optionsCurrentCombo['disabled'] = true;
+		
+		$optionsCurrentCombo['id'] = $row->id_action_plan;
+	    
+		echo $this->formSelect( 'status_result[' . $row->id_action_plan . ']', $row->status, $optionsCurrentCombo, $this->optStatus );  
+	    ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

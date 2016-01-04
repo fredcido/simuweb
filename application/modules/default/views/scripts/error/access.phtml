@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<?php
+	    $this->headMeta()
+		    ->appendHttpEquiv( 'Content-Language', 'en-US' )
+		    ->appendHttpEquiv( 'expires', 'Wed, 26 Feb 2012 08:21:57 GMT' )
+		    ->appendHttpEquiv( 'pragma', 'no-cache' )
+		    ->appendHttpEquiv( 'Cache-Control', 'no-cache' )
+		    ->appendHttpEquiv( 'imagetoolbar', 'no' )
+		    ->appendHttpEquiv( 'Content-Encoding', 'gzip' )
+		    ->appendName( 'viewport', 'width=device-width, initial-scale=1.0' );
+	    
+	    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/css/pages/error.css' ) );
+
+	    echo $this->headTitle();
+	    echo $this->headMeta() . "\n";
+	    echo $this->headLink() . "\n";
+	    echo $this->headScript() . "\n";
+	?>
+    </head>
+    
+    <body class="page-500-full-page">
+	<div class="row-fluid">
+	    <div class="span12 page-500">
+		<div class=" number">403</div>
+		<div class=" details">
+		    <h3>Oops, Ita la bele asesu.</h3>
+		    <p>
+			    Ita koko asesu pagina ida ita la bele!<br />
+			    Favor ida, bá fila fali ba home.<br /><br />
+		    </p>
+		     <p>
+			<a href="<?php echo $this->baseUrl( '/' ); ?>">
+			    Ba Home
+			</a>
+			<br>
+		    </p>
+		</div>
+	    </div>
+	</div>
+    </body>
+
+</html>

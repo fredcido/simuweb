@@ -1,0 +1,124 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_fefpstudentclass' );
+    echo $this->form->getElement( 'step' );
+ ?>
+    <div class="box-content">
+	<div class="row-fluid">
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_fefpeduinstitution' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_perscholarity' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'class_name' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'minimal_age' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'maximal_age' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_minimal_scholarity' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'start_date' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'schedule_finish_date' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'real_finish_date' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'time_start' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'time_finish' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_dec' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'formation_time' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'formation_time_class' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'formation_time_outclass' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'num_women_student' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'num_men_student' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'num_total_student' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'student_payment' ); ?>
+		</div>
+		<div class="span8">
+		    <?php echo $this->form->getElement( 'description_payment' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'subsidy' ); ?>
+		</div>
+		<div class="span8">
+		    <?php echo $this->form->getElement( 'description_subsity' ); ?>
+		</div>
+	    </div>
+	     <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_sectorindustry' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'transport' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'snack' ); ?>
+		</div>
+	    </div>
+	     <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'lunch' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'dinner' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'accommodation' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span12">
+		    <?php echo $this->form->getElement( 'description' ); ?>
+		</div>
+	    </div>
+	</div>
+
+	<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

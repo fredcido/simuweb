@@ -1,0 +1,23 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->group_name; ?></td>
+	<td><?php echo $row->sub_group; ?></td>
+	<td><?php echo $row->mini_group; ?></td>
+	<td>
+	    <?php echo $row->acronym; ?>
+	</td>
+	<td>
+	    <?php if ( $this->access( Register_Form_MiniGroup::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn green" href="<?php echo $this->baseUrl( 'register/mini-group/edit/id/' . $row->id_profminigroup ); ?>">
+		    <i class="icon-edit"></i>  
+		    Troka                                            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

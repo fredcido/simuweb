@@ -1,0 +1,27 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">	    
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'campaign-type/form.phtml' ),
+				'label'	    => 'Tipu Kampanha Rejistu',
+				'released'  => true,
+				'id'	    => Sms_Form_CampaignType::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'list',
+				'content'   => $this->render( 'campaign-type/rows.phtml' ),
+				'label'	    => 'Tipu Kampanha Sira',
+				'released'  => true,
+				'id'	    => Sms_Form_CampaignType::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

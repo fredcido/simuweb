@@ -1,0 +1,286 @@
+<div class="form-actions no-print">
+    <button type="button" class="btn blue" onClick="self.print();"><i class="icon-print"></i> Print</button>
+    <button type="button" class="btn red" onClick="self.close();"><i class="icon-remove-sign"></i> Taka</button>
+</div>
+
+<?php echo $this->action( 'header-report', 'index', 'default', array( 'id' => $this->vacancy->fk_id_dec ) ); ?>
+
+<div class="form-view">
+    
+    <h4 class="form-section bold">
+	Codigu Vaga: <?php echo str_pad( $this->vacancy->id_jobvacancy, 5, '0', STR_PAD_LEFT ); ?>
+    </h4>
+    
+    <?php 
+	
+	$this->vacancy->start_salary = (float)$this->vacancy->start_salary;
+	$this->vacancy->additional_salary = (float)$this->vacancy->additional_salary;
+	$this->vacancy->finish_salary = (float)$this->vacancy->finish_salary;
+    
+	$dataVacancy = array(
+	    'Titulu Vaga'	=> $this->vacancy->vacancy_titule,
+	    'Data Rejistru'	=> $this->vacancy->registration_date_formated,
+	    'Posisaun Hira'	=> $this->vacancy->num_position,
+	    'Salariu Iniciu'	=> empty( $this->vacancy->start_salary ) ? null : number_format( $this->vacancy->start_salary, 2, '.', '' ),
+	    'Empreza'		=> $this->vacancy->enterprise_name,
+	    'Abertura Vaga'	=> $this->vacancy->open_date_formated,
+	    'Salariu Adicional' => empty( $this->vacancy->additional_salary ) ? null : number_format( $this->vacancy->additional_salary, 2, '.', '' ),
+	    'Fechamentu Vaga'	=> $this->vacancy->close_date_formated,
+	    'Salariu Fim'	=> empty( $this->vacancy->finish_salary ) ? null : number_format( $this->vacancy->finish_salary, 2, '.', '' ),
+	    'Okupasaun'		=> $this->vacancy->ocupation_name_timor,
+	    'Inisiu Serbisu'	=> $this->vacancy->start_job_date_formated,
+	    'Remata Serbisu'	=> $this->vacancy->finish_job_date_formated,
+	    'Overseas'		=> $this->vacancy->overseas,
+	    'Esperiensia Minima'=> $this->vacancy->minimum_experience,
+	    'Carga Horaria'	=> $this->vacancy->weekly_workload,
+	    'Lisensa Kondusaun' => empty( $this->vacancy->drive_licence ) ? null : 'SIN',
+	    'Idade Minima'	=> $this->vacancy->minimum_age,
+	    'Hora Iniciu'	=> $this->vacancy->start_time_job,
+	    'Presiza Veiculo'	=> empty( $this->vacancy->use_vehicle ) ? null : 'SIN',
+	    'Idade Masima'	=> $this->vacancy->maximum_age,
+	    'Hora Fim'		=> $this->vacancy->finish_time_job,
+	    'Veiculo'		=> $this->vacancy->vehicle
+	);
+    ?>
+    
+    <div class="row-fluid">
+	<?php 
+	    $columns = 0;
+	    foreach ( $dataVacancy as $title => $value ) : 
+		
+		if ( empty( $value ) )
+		    continue;
+		
+		$columns++;
+	?>
+	
+	    <div class="span4">
+		<div class="control-group">
+		    <label class="control-label bold"><?php echo $title; ?>:</label>
+		    <div class="controls">
+			<span class="text">
+			    <?php echo $value; ?>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	
+	    <?php if ( $columns % 3 == 0 ) : ?>
+		</div>
+		<div class="row-fluid">
+	    <?php endif; ?>
+	
+	<?php endforeach; ?>
+    </div>
+    
+    <?php if ( !empty( $this->vacancy->description_job ) ) : ?>
+    
+	<div class="row-fluid">
+	    <div class="span12">
+		<div class="control-group">
+		    <label class="control-label bold">Observasaun:</label>
+		    <div class="controls">
+			<span class="text">
+			    <?php echo $this->vacancy->description_job; ?>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    
+    <?php endif; ?>
+    
+    <?php if ( !empty( $this->vacancy->description_vacancy ) ) : ?>
+    
+	<div class="row-fluid bold">
+	    <div class="span12">
+		<div class="control-group">
+		    <label class="control-label bold">Descrisaun Vaga:</label>
+		    <div class="controls">
+			<span class="text">
+			    <?php echo $this->vacancy->description_vacancy; ?>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    
+    <?php endif; ?>
+    
+    <?php if ( $this->address->count() > 0 ) : ?>
+    
+	<h4 class="form-section bold">
+	    Fatin Vaga Empregu
+	</h4>
+
+	<div class="row-fluid">
+	    <div class="span4">
+	    <label class="control-label bold">Nasaun</label>
+	    </div>
+	    <div class="span4">
+	    <label class="control-label bold">Distritu</label>
+	    </div>
+	    <div class="span4">
+	    <label class="control-label bold">SubDistritu</label>
+	    </div>
+	</div>
+
+	<?php foreach ( $this->address as $address ) : ?>
+	    <div class="row-fluid">
+
+		<div class="span4">
+		    <?php echo $address->country; ?>
+		</div>
+
+		<?php if ( !empty( $address->District ) ) : ?>
+		    <div class="span4">
+			<?php echo $address->District; ?>
+		    </div>
+		<?php endif; ?>
+		
+		<?php if ( !empty( $address->sub_district ) ) : ?>
+		    <div class="span4">
+			<?php echo $address->sub_district; ?>
+		    </div>
+		<?php endif; ?>
+	    </div>
+	<?php endforeach; ?>
+    
+    <?php endif; ?>
+    
+    <?php if ( $this->scholarity->count() > 0 ) : ?>
+    
+	<h4 class="form-section bold">
+	    Escolaridade
+	</h4>
+
+	<?php foreach ( $this->scholarity as $scholarity ) : ?>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->nomenclature()->scholarityCategory( $scholarity->category ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $scholarity->scholarity; ?>
+		</div>
+	    </div>
+	<?php endforeach; ?>
+
+	<hr />
+	    
+    <?php endif; ?>
+    
+    <?php if ( $this->training->count() > 0 ) : ?>
+	    
+	<h4 class="form-section bold">
+	    Formasaun Profisional
+	</h4>
+
+	<?php foreach ( $this->training as $training ) : ?>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $training->scholarity; ?>
+		</div>
+		<div class="span6">
+		    <?php echo $training->Title; ?>
+		</div>
+	    </div>
+	<?php endforeach; ?>
+
+	<hr />
+    
+    <?php endif; ?>
+    
+	    
+    <?php if ( !empty( $this->language ) ) : ?>
+	    
+	<h4 class="form-section bold">
+	    Lian Fuan
+	</h4>
+
+	<?php foreach ( $this->language as $language => $descriptions ) : ?>
+	    <div class="row-fluid">
+		<div class="span12">
+		    <strong><?php echo $language; ?></strong>
+		</div>
+	    </div>
+
+	    <?php foreach ( $descriptions as $description ) : ?>
+		<div class="row-fluid">
+		    <div class="span6">
+			<?php echo $description->name_level . ' - ' . $description->level; ?>
+		    </div>
+		    <div class="span6">
+			<?php echo $description->usage; ?>
+		    </div>
+		</div>
+	    <?php endforeach; ?>
+    
+	    <hr />
+	<?php endforeach; ?>
+    
+    <?php endif; ?>
+    
+    <?php if ( $this->handicapped->count() > 0 ) : ?>
+	    
+	<h4 class="form-section bold">
+	    Defisiensia Fisica
+	</h4>
+    	
+	<?php foreach ( $this->handicapped as $handicapped ) : ?>
+    
+	    <div class="row-fluid">
+		<div class="span2">
+		    Tipu Defisiensia:
+		</div>
+		<div class="span4">
+		    <?php echo $handicapped->type_handicapped; ?>
+		</div>
+		<div class="span2">
+		    Necessidade Espesiais:
+		</div>
+		<div class="span4">
+		    <?php echo $handicapped->needs; ?>
+		</div>
+	    </div>
+    
+	    <div class="row-fluid">
+		<div class="span2">
+		    Defisiensia:
+		</div>
+		<div class="span4">
+		    <?php echo $handicapped->handicapped; ?>
+		</div>
+		<div class="span2">
+		    Komentariu:
+		</div>
+		<div class="span4">
+		    <?php echo $handicapped->details; ?>
+		</div>
+	    </div>
+    
+	    <hr />
+    
+	<?php endforeach; ?>
+    
+    <?php endif; ?>
+</div>
+
+<?php if ( Zend_Auth::getInstance()->hasIdentity() ) : ?>
+    <div class="row-fluid">
+       <div class="span4 offset8 text-center">
+	   <div class="row-fluid">
+	       <?php
+		   $auth = Zend_Auth::getInstance()->getIdentity();
+		   echo $auth->name_dec . ' - ' . Zend_Date::now()->toString( 'dd/MM/yyyy' );
+	       ?>
+	   </div>
+	   <div class="row-fluid">Tekniknu Profisional Empregu</div>
+	   <div class="row-fluid">
+	       <br />
+	   </div>
+	   <div class="row-fluid">
+	       <?php echo $auth->name; ?>
+	   </div>
+       </div>
+   </div>
+<?php endif; ?>

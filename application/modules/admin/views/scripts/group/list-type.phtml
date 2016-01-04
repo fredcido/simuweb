@@ -1,0 +1,8 @@
+<?php foreach ( $this->rows as $row ) : ?>
+<tr>
+    <td>
+        <input type="checkbox" value="<?php echo $row->id_notetype; ?>" />
+    </td>
+    <td><?php echo $row->name; ?></td>
+</tr>
+<?php endforeach; ?>

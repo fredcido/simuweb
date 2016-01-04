@@ -1,0 +1,23 @@
+<?php
+    $optionsSelect = array(
+	'class'	    => 'm-wrap span12 chosen objective',
+	'multiple'  => false
+    );
+    
+    $optionsObjective = $optionsSelect + array(
+	'id'	   => App_General_String::randomHash()
+    );
+?>
+
+<tr>
+    <td>
+	<div class="control-group">
+	    <?php echo $this->formSelect( 'objective[]', $this->fk_id_appointment_objective, $optionsObjective, $this->optObjective );  ?>
+	</div>
+    </td>
+    <td>
+	<a class="btn red" onclick="Client.Case.removeAppointmentObjective( this );">
+	    <i class="icon-remove-sign"></i>            
+	</a>
+    </td>
+</tr>

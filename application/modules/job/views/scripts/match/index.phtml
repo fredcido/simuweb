@@ -1,0 +1,135 @@
+<div class="portlet">
+	<div class="portlet-title">
+	    <div class="caption"><i class="icon-info"></i>Deskrisaun Vaga</div>
+	</div>
+	<div class="portlet-body well" style="padding: 5px">
+	    <div class="row-fluid">
+		<div class="span6">
+		    <div class="control-group">
+			<label class="control-label">Titulu Vaga Empregu:</label>
+			<div class="controls">
+			    <span class="text bold">
+				<?php echo $this->vacancy->vacancy_titule; ?>
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span4">
+		    <div class="control-group">
+			<label class="control-label">Empreza:</label>
+			<div class="controls">
+			    <span class="text bold">
+				<?php echo $this->vacancy->enterprise_name; ?>
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span2">
+		    <div class="control-group">
+			<label class="control-label">Kodigu:</label>
+			<div class="controls">
+			    <span class="text bold">
+				<?php echo str_pad( $this->vacancy->id_jobvacancy, 5, 0, STR_PAD_LEFT ); ?>
+			    </span>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span3">
+		    <div class="control-group">
+			<label class="control-label">Okupasaun:</label>
+			<div class="controls">
+			    <span class="text bold">
+				<?php echo $this->vacancy->ocupation_name_timor; ?>
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span3">
+		    <div class="control-group">
+			<label class="control-label">CEOP:</label>
+			<div class="controls">
+			    <span class="text bold">
+				<?php echo $this->vacancy->name_dec; ?>
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span4">
+		    <div class="control-group">
+			<label class="control-label">Data Loke:</label>
+			<div class="controls">
+			    <span class="text bold">
+				<?php echo $this->vacancy->open_date_formated; ?>
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span2">
+		    <div class="control-group">
+			<label class="control-label">Data Taka:</label>
+			<div class="controls">
+			    <span class="text bold">
+				<?php echo $this->vacancy->close_date_formated; ?>
+			    </span>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+</div>
+
+<div class="row-fluid margin-bottom-25">
+    <div class="span12 text-center">
+	<a class="btn red" href="<?php echo $this->baseUrl( '/job/vacancy/view/id/' . $this->id ); ?>">
+	    <i class="m-icon-swapleft m-icon-white"></i>
+	    Fila ba Vaga
+	</a>
+	<button class="btn green" type="button" onclick="Job.Match.printShortlist( <?php echo $this->id; ?> );">
+	    <i class="icon-print m-icon-white"></i>
+	    Imprimir Shortlist
+	</button>
+    </div>
+</div>
+
+<?php echo $this->jobActive()->getMessage(); ?>
+
+<div class="row-fluid">
+    <div class="span12">
+	
+	<div class="portlet box blue">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-group"></i>1 - Mediasaun</div>
+		<div class="tools"><a href="javascript:;" class="expand"></a></div>
+	    </div>
+	    <div class="portlet-body form hide">
+		<?php echo $this->render( 'match/match.phtml' ); ?>
+	    </div>
+	</div>
+	<div class="portlet box blue">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-reorder"></i>2 - Lista Kandidatu</div>
+		<div class="tools">
+		    <a href="javascript:;" class="reload" onClick="Job.Match.loadList();"></a>
+		    <a href="javascript:;" class="expand"></a>
+		</div>
+	    </div>
+	    <div class="portlet-body form hide" id="list">
+		<?php echo $this->action( 'list', 'match', 'job', array( 'id' => $this->id ) ); ?>
+	    </div>
+	</div>
+	<div class="portlet box blue">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-list"></i>3 - Shortlist</div>
+		<div class="tools">
+		    <a href="javascript:;" class="reload" onClick="Job.Match.loadShortlist();"></a>
+		    <a href="javascript:;" class="expand"></a>
+		</div>
+	    </div>
+	    <div class="portlet-body form hide" id="shortlist">
+		<?php echo $this->action( 'shortlist', 'match', 'job', array( 'id' => $this->id ) ); ?>
+	    </div>
+	</div>
+    </div>
+</div>

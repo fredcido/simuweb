@@ -1,0 +1,38 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td style="width: 4%">
+	     <?php if ( empty( $row->selected ) ) : ?>
+		<input type="checkbox" class="clients" value="<?php echo $row->id_perdata; ?>" />
+	    <?php else : ?>
+		<a href="javascript:;" class="btn red disabled">
+		    <i class="icon-ban-circle"></i>
+		</a>
+	    <?php endif; ?>
+	</td>
+	<td style="width: 17%"><?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?></td>
+	<td style="width: 40%">
+	    <?php if ( $this->access( Client_Form_ClientInformation::ID) ) : ?>
+		<a href="<?php echo $this->baseUrl( '/client/client/print/id/' . $row->id_perdata ); ?>" target="_blank">
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+		</a>
+	    <?php else : ?>
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+	    <?php endif; ?>
+	</td>
+	<td class="hidden-phone hidden-tablet" style="width: 11%"><?php echo $row->birth_date_format; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->age; ?></td>
+	<td><?php echo $row->gender; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->name_dec; ?></td>
+	<td>
+	    <?php if ( $this->studentClassActive()->hasAccessEdit() && empty( $row->selected ) && $this->access( StudentClass_Form_RegisterShortlist::ID, Admin_Model_Mapper_SysUserHasForm::HAMOS ) ) : ?>
+		<a class="btn red" data-client='<?php echo $row->id_perdata; ?>' onclick="StudentClass.Register.removeShortlist( this );">
+		    <i class="icon-remove-sign"></i>                                         
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>                                   
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

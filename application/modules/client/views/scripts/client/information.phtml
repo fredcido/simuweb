@@ -1,0 +1,94 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_perdata' );
+    echo $this->form->getElement( 'step' );
+    echo $this->form->getElement( 'by_pass_name' );
+ ?>
+    <div class="box-content">
+	<div class="row-fluid">
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'first_name' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'medium_name' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'last_name' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'date_registration' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'marital_status' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'father_name' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'birth_date' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'age' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'mother_name' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'gender' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_country_birth' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_dec' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_adddistrict' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'num_subdistrict' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'client_fone' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'website' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'email' ); ?>
+		</div>
+		<div class="span4">
+		    <div class="row-fluid">
+			<div class="span6">
+			    <?php echo $this->form->getElement( 'active' ); ?>
+			</div>
+			<div class="span6">
+			    <?php echo $this->form->getElement( 'hired' ); ?>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    
+	    <div class="row-fluid" id="document-container">
+		
+	    </div>
+	    
+	</div>
+
+	<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

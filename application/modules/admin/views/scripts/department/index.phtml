@@ -1,0 +1,27 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">	    
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'department/form.phtml' ),
+				'label'	    => 'Departamentu Rejistu',
+				'released'  => true,
+				'id'	    => Admin_Form_Department::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'list',
+				'content'   => $this->render( 'department/rows.phtml' ),
+				'label'	    => 'Departamentu Sira',
+				'released'  => true,
+				'id'	    => Admin_Form_Department::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

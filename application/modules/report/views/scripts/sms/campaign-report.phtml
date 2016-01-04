@@ -1,0 +1,39 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th>Kampanha</th>
+	    <th>Departamentu</th>
+	    <th>Tipu</th>
+	    <th>Enviu</th>
+	    <th>Haruka</th>
+	    <th>Hein</th>
+	    <th>Status</th>
+	</tr>
+    </thead>
+    <tbody>
+	<?php 
+	    $optStatuses = $this->campaign()->getStatuses();
+	    foreach ( $this->data['rows'] as $row ) : 
+	?>
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $row->campaign_title; ?></td>
+		<td><?php echo $row->department; ?></td>
+		<td><?php echo $row->campaign_type; ?></td>
+		<td><?php echo $row->to_send; ?></td>
+		<td><?php echo $row->sent; ?></td>
+		<td><?php echo $row->not_sent; ?></td>
+		<td><?php echo $optStatuses[$row->status]; ?></td>
+	    </tr>
+	<?php endforeach; ?>
+    </tbody>
+    <tfoot>
+	<tr>
+	    <th colspan="6">Total</th>
+	    <th><?php echo count( $this->data['rows'] ); ?></th>
+	</tr>
+    </tfoot>
+</table>

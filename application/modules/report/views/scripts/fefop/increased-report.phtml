@@ -1,0 +1,67 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<?php if (!empty($this->data['item'])): ?>
+    <table class="relatorio">
+        <thead>
+        	<tr>
+        	    <!-- <th rowspan="2"> --> <th>Kontratu</th>
+    		    <!-- <th rowspan="2"> --> <th>Benefisiariu</th>
+    		    <!-- <th rowspan="2"> --> <th>Status</th>
+    		    <!-- <th rowspan="2"> --> <th>Program</th>
+    		    <!-- <th rowspan="2"> --> <th>Module</th>
+    		    <th colspan="<?php echo count($this->data['item']['category']) + 1; ?>">Custos Acrescidos</th>
+        	</tr>
+        	
+        	<tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+	        	<?php foreach ($this->data['item']['category'] as $category): ?>
+	        		<th><?php echo $category; ?></th>
+	        	<?php endforeach; ?>
+	        	
+	        	<th>Total</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<?php foreach ($this->data['item']['contract'] as $contract): ?>
+        	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+            		<td><?php echo $contract['contract']; ?></td>
+            		<td><?php echo $contract['beneficiary']; ?></td>
+            		<td><?php echo $contract['status']; ?></td>
+            		<td><?php echo $contract['program']; ?></td>
+            		<td><?php echo $contract['module']; ?></td>
+
+            		<?php foreach (array_keys($this->data['item']['category']) as $category): ?>
+            			<?php if (array_key_exists($category, $contract['amount'])): ?>
+	        				<td><?php echo $this->currency($contract['amount'][$category]); ?></td>
+	        			<?php else: ?>
+	        				<td></td>
+	        			<?php endif; ?>
+	        		<?php endforeach; ?>
+	        		
+            		<td><?php echo $this->currency(array_sum($contract['amount'])); ?></td>
+        	    </tr>
+        	<?php endforeach; ?>
+        </tbody>
+        <tfoot>
+        	<tr>
+        		<th colspan="5"></th>
+        		
+        		<?php foreach ($this->data['item']['total'] as $total): ?>
+        			<th><?php echo $this->currency($total); ?></th>
+        		<?php endforeach; ?>
+        		
+        		<th><?php echo $this->currency(array_sum($this->data['item']['total'])); ?></th>
+        	</tr>
+        	<tr>
+        	    <th colspan="<?php echo count($this->data['item']['category']) + 5; ?>">Total</th>
+        	    <th><?php echo count($this->data['item']['contract']); ?></th>
+        	</tr>
+        </tfoot>
+    </table>
+<?php endif; ?>

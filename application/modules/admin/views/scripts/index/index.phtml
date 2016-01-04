@@ -1,0 +1,53 @@
+<div class="row-fluid">
+    <div class="span6">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Usuário Sistema' )
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Usuário',
+				'url'	=> 'admin/user',
+				'id'	=>  Admin_Form_User::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Grupu',
+				'url'	=> 'admin/group',
+				'id'	=> Admin_Form_Group::ID
+			    )
+			)->addItem(
+			    array(
+				'label'	=> 'Controle Permissões Usuário',
+				'url'	=> 'admin/access',
+				'id'	=> Admin_Form_UserForm::ID
+			    )
+			)->addItem(
+			    array(
+				'label'	=> 'Atividades dos Usuários ',
+				'url'	=> 'admin/audit'
+			    )
+			);
+	?>
+    </div>
+    <div class="span6">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Formulariu Sistema' )
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Formulário',
+				'url'	=> 'admin/form',
+				'id'	=>  Admin_Form_Form::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Modulo',
+				'url'	=> 'admin/module',
+				'id'	=>  Admin_Form_Module::ID
+			    )
+			);
+	?>
+    </div>
+</div>

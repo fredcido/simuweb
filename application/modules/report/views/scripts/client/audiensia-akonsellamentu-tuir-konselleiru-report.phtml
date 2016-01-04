@@ -1,0 +1,44 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<?php if(!empty($this->data['item'])): ?>
+    <?php foreach($this->data['item']['ceop'] as $id_dec => $name_dec): ?>
+        <table class="relatorio">
+            <thead>
+                <tr>
+                    <th colspan="5"><?php echo $name_dec; ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->data['item']['konselleiru'][$id_dec] as $id_counselor => $konselleiru): ?>
+                    <tr>
+                        <td colspan="5"><?php echo $konselleiru; ?></td>
+                    </tr>
+                    <tr>
+                        <th>Data</th>
+                        <th>Oras</th>
+                        <th>Naran Kliente</th>
+                        <th>Kartaun Evidensia</th>
+                        <th>Kliente Mai?</th>
+                    </tr>
+                    <?php foreach($this->data['item']['data'][$id_dec][$id_counselor] as $data): ?>
+                        <tr>
+                            <td><?php echo $data['data']; ?></td>
+                            <td><?php echo $data['oras']; ?></td>
+                            <td><?php echo $data['naran_kliente']; ?></td>
+                            <td><?php echo $data['kartaun_evidensia']; ?></td>
+                            <td><?php echo $data['kliente_mai']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">Total</th>
+                    <th><?php echo array_sum(array_map(function($item){return count($item);}, $this->data['item']['data'][$id_dec])); ?></th>
+                </tr>
+            </tfoot>
+        </table>
+    <?php endforeach; ?>
+<?php endif; ?>

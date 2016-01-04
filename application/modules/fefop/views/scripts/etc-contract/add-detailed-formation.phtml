@@ -1,0 +1,74 @@
+<?php $id = App_General_String::randomHash(); ?>
+<tr data-expense="<?php echo $this->expense; ?>" class="formation">
+    <td>
+	<?php $atribbsItem = array( 'class' => 'span12 required text-numeric beneficiaries' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'formation_expense[' . $this->expense . '][beneficiaries]['. $id . ']', $this->defaultValues['beneficiaries'], $atribbsItem ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $atribbsItem = array( 'class' => 'span12 required chosen scholarity', 'style' => 'width: 250px' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php 
+		    if ( !empty( $this->defaultValues['fk_id_perscholarity'] ) )
+			$this->defaultValues['fk_id_perscholarity'] = $this->defaultValues['fk_id_perscholarity'];
+			
+		    echo $this->formSelect( 'formation_expense[' . $this->expense . '][fk_id_perscholarity]['. $id . ']', $this->defaultValues['fk_id_perscholarity'], $atribbsItem, $this->scholarityOptions ); 
+		?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $atribbsItem = array( 'class' => 'span12 required level', 'readOnly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php 
+		    if ( !empty( $this->defaultValues['level'] ) )
+			$this->defaultValues['level'] = $this->defaultValues['level'];
+
+		    echo $this->formText( 'formation_expense[' . $this->expense . '][level]['. $id . ']', $this->defaultValues['level'], $atribbsItem ); 
+		?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsQuantity = array( 'class' => 'span12 required expense-quantity', 'readOnly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'formation_expense[' . $this->expense . '][quantity]['. $id . ']', $this->defaultValues['quantity'], $attribsQuantity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsPriceUnity = array( 'class' => 'span12 expense-amount required money-mask' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'formation_expense[' . $this->expense . '][amount_unit]['. $id . ']', $this->defaultValues['amount_unit'], $attribsPriceUnity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsPriceTotal = array( 'class' => 'span12 required expense-total money-mask', 'readOnly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'formation_expense[' . $this->expense . '][amount_total]['. $id . ']', $this->defaultValues['amount_total'], $attribsPriceTotal ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsComments = array( 'class' => 'span12' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'formation_expense[' . $this->expense . '][comments]['. $id . ']', $this->defaultValues['comments'], $attribsComments ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<a class="btn red" onclick="Fefop.ETCContract.removeItem( this );">
+	    <i class="icon-remove-sign"></i>            
+	</a>
+    </td>
+</tr>

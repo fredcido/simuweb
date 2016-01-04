@@ -1,0 +1,23 @@
+<div class="tabbable tabbable-custom boxless">
+    <?php
+	echo $this->tab()
+		  ->addTab(
+			array(
+			    'ref'	    => 'formal',
+			    'label'	    => 'Edukasaun Formal',
+			    'released'	    => true,
+			    'url'	    => $this->path( 'formal-scholarity/id/' . $this->id ),
+			    'id'	    => Client_Form_ClientScholarity::ID
+			)
+		    )
+		    ->addTab(
+			array(
+			    'ref'	    => 'non-formal',
+			    'label'	    => 'Edukasaun Laos Formal',
+			    'released'	    => true,
+			    'url'	    => $this->path( 'non-formal-scholarity/id/' . $this->id ),
+			    'id'	    => Client_Form_ClientScholarity::ID
+			)
+		    );
+    ?>
+</div>

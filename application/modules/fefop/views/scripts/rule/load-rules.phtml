@@ -1,0 +1,4 @@
+<?php 
+    foreach ( $this->rules as $rule ) :
+	echo $this->action( 'add-rule', 'rule', 'fefop', array( 'row' => $rule ) );
+    endforeach;

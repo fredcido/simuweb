@@ -1,0 +1,17 @@
+<?php foreach ( $this->class as $division ) : ?>
+    
+    <strong class="text-info isic-class-<?php echo $division['division']['id_isicdivision']; ?>">
+	<?php echo $division['division']['division_acronym'] . ' - ' . $division['division']['name_disivion']; ?>
+    </strong>
+    
+    <?php foreach ( $division['classes'] as $class ) : ?>
+
+	<label for="isic_class-<?php echo $class['id_isicclasstimor']; ?>">
+	    <input type="checkbox" name="isic_class[]" id="isic_class-<?php echo $class['id_isicclasstimor']; ?>" 
+		   class="isic-class-<?php echo $division['division']['id_isicdivision']; ?>" 
+		   value="<?php echo $class['id_isicclasstimor']; ?>" />
+		<?php echo $class['acronym']; ?> - <?php echo $class['name_classtimor']; ?>
+	</label>
+    
+    <?php endforeach; ?>    
+<?php endforeach; ?>

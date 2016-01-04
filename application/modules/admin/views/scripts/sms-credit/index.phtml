@@ -1,0 +1,36 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">	    
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'sms-credit/form.phtml' ),
+				'label'	    => 'Sms Pulsa Rejistu',
+				'released'  => true,
+				'id'	    => Admin_Form_SmsCredit::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'list',
+				'content'   => $this->render( 'sms-credit/rows.phtml' ),
+				'label'	    => 'Sms Pula Sira',
+				'released'  => true,
+				'id'	    => Admin_Form_SmsCredit::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'balance',
+				'content'   => $this->render( 'sms-credit/balance.phtml' ),
+				'label'	    => 'Pulsa Departamentu',
+				'released'  => true,
+				'id'	    => Admin_Form_SmsCredit::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

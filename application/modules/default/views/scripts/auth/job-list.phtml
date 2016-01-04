@@ -1,0 +1,15 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <?php if ( $row->expired ) continue; ?>
+    <tr>
+	<td><?php echo $row->id_jobvacancy . ' - '. $row->vacancy_titule; ?></td>
+	<td><?php echo $row->enterprise_name; ?></td>
+	<td><?php echo $row->num_position; ?></td>
+	<td><?php echo $row->close_date_formated; ?></td>
+	<td style="width: 12%">
+	    <a class="btn blue" target="_blank" href="<?php echo $this->baseUrl( 'auth/print-job/id/' . $row->id_jobvacancy ); ?>">
+		<i class="icon-print"></i>  
+		Print                                            
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

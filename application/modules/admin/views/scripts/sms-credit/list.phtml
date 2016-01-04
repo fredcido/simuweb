@@ -1,0 +1,9 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->department; ?></td>
+	<td><?php echo $row->user; ?></td>
+	<td><?php echo $this->currency( $row->value , 'en_US' ); ?></td>
+	<td><?php echo $row->amount; ?></td>
+	<td><?php echo $this->date( $row->date_insert, 'dd/MM/yyyy HH:mm'); ?></td>
+    </tr>
+<?php endforeach; ?>

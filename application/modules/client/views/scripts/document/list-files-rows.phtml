@@ -1,0 +1,86 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box blue">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-file-text"></i> Kliente nia dokumentu sira</div>
+		<div class="tools"><a class="expand" href="javascript:;"></a></div>
+	    </div>
+	    <div class="portlet-body form hide">
+		 <table role="presentation" class="table table-striped">
+		    <tbody class="files">
+			<?php foreach ( $this->files['files'] as $file ) : ?>
+			    <tr>
+				<th class="span8">
+				    <strong><?php echo $file['name']; ?></strong>
+				</th>
+				<td class="span4">
+				    <button class="btn green" type="button" onClick="File.download('<?php echo $this->baseUrl( $file['path'] ); ?>');">
+					<i class="icon-download icon-white"></i> <span>Download</span>
+				    </button>
+				    <button class="btn red" onClick="File.deleteFile('<?php echo $this->baseUrl( $file['path'] ); ?>', this );">
+					<i class="icon-trash icon-white"></i> <span>Hamoos</span>
+				    </button>
+				</td>
+			    </tr>
+			<?php endforeach; ?>
+		    </tbody>
+		</table>
+	    </div>
+	</div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box blue">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-file-text"></i> Kazu nia dokumentu sira</div>
+		<div class="tools"><a class="expand" href="javascript:;"></a></div>
+	    </div>
+	    <div class="portlet-body form hide">
+		<ul class="tree">
+		    <?php foreach ( $this->files['cases'] as $ceop ) : ?>
+			<li>
+			    <a href="#" data-role="branch" class="tree-toggle closed" data-toggle="branch">
+				<?php echo $ceop['name']; ?>
+			    </a>
+			    <ul class="branch">
+				<?php foreach ( $ceop['cases'] as $case ) : ?>
+				    <li>
+					<a href="#" class="tree-toggle closed margin-bottom-10" data-toggle="branch">
+					    <?php echo $case['name']; ?>
+					</a>
+					<ul class="branch">
+					    <li>
+						<table role="presentation" class="table table-striped">
+						    <tbody class="files">
+							<?php foreach ( $case['files'] as $file ) : ?>
+							    <tr>
+								<th class="span8">
+								    <strong><?php echo $file['name']; ?></strong>
+								</th>
+								<td class="span4">
+								    <button class="btn green" type="button" onClick="File.download('<?php echo $this->baseUrl( $file['path'] ); ?>');">
+									<i class="icon-download icon-white"></i> <span>Download</span>
+								    </button>
+								    <?php if ( $file['editable'] ) : ?>
+									<button class="btn red" onClick="File.deleteFile('<?php echo $this->baseUrl( $file['path'] ); ?>', this );">
+									    <i class="icon-trash icon-white"></i> <span>Hamoos</span>
+									</button>
+								    <?php endif ; ?>
+								</td>
+							    </tr>
+							<?php endforeach; ?>
+						    </tbody>
+						</table>
+					    </li>
+					</ul>
+				    </li>
+				<?php endforeach; ?>
+			    </ul>
+			</li>
+		    <?php endforeach; ?>
+		</ul>
+	    </div>
+	</div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<?php $id = App_General_String::randomHash(); ?>
+<tr data-expense="<?php echo $this->expense; ?>">
+    <td>
+	<?php $atribbsItem = array( 'class' => 'm-wrap span12 focused required' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'item_expense[' . $this->expense . '][description]['. $id . ']', $this->defaultValues['description'], $atribbsItem ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsQuantity = array( 'class' => 'm-wrap span12 required expense-quantity' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'item_expense[' . $this->expense . '][quantity]['. $id . ']', $this->defaultValues['quantity'], $attribsQuantity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsPriceUnity = array( 'class' => 'm-wrap span12 expense-amount required money-mask' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'item_expense[' . $this->expense . '][amount_unit]['. $id . ']', $this->defaultValues['amount_unit'], $attribsPriceUnity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsPriceTotal = array( 'class' => 'm-wrap span12 required expense-total money-mask', 'readOnly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'item_expense[' . $this->expense . '][amount_total]['. $id . ']', $this->defaultValues['amount_total'], $attribsPriceTotal ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsComments = array( 'class' => 'm-wrap span12 ' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'item_expense[' . $this->expense . '][comments]['. $id . ']', $this->defaultValues['comments'], $attribsComments ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<a class="btn red" onclick="Fefop.EDCContract.removeItem( this );">
+	    <i class="icon-remove-sign"></i>            
+	</a>
+    </td>
+</tr>

@@ -1,0 +1,20 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->num_bankaccount; ?></td>
+	<td><?php echo $row->name_bank; ?></td>
+<!--	<td><?php //echo $row->type_bankaccount; ?></td>-->
+	<td><?php echo $row->District; ?></td>
+	<td>
+	    <?php if ( $this->access( Client_Form_ClientBank::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn red" data-bank='<?php echo $row->id_bankaccount; ?>' onclick="Client.Client.removeBank( this );">
+		    <i class="icon-remove-sign"></i>            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

@@ -1,0 +1,32 @@
+<div class="row-fluid">
+    <div class="span4">
+	<div class="control-group">
+	    <label class="control-label">Kontraktu</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo empty( $this->contract ) ? '-' : Fefop_Model_Mapper_Contract::buildNumRow( $this->contract ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span4">
+	<div class="control-group">
+	    <label class="control-label">Status</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo empty( $this->contract ) ? '-' : $this->fefopContract()->setContract( $this->contract )->getStatusLabel(); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span4">
+	<div class="control-group">
+	    <label class="control-label">Data Rejistu</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo empty( $this->contract ) ? '-' : $this->date( $this->contract->date_inserted ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+</div>

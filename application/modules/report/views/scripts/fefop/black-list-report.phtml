@@ -1,0 +1,65 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+    	<tr>
+    	    <th rowspan="2">Benefisiariu</th>
+		    <th rowspan="2">Programa</th>
+		    <th rowspan="2">Modulu</th>
+		    <th rowspan="2">Tipu</th>
+		    <th colspan="2">Data</th>
+		    <th rowspan="2">Ativu</th>
+    	</tr>
+    	
+    	<tr>
+    		<th>Insert</th>
+    		<th>Removed</th>
+    	</tr>
+    </thead>
+    <tbody>
+    	<?php foreach ($this->data['rows'] as $row) : ?>
+    	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+        		<td><?php echo $row['beneficiary']; ?></td>
+        		<td><?php echo $row['program_acronym']; ?></td>
+        		<td><?php echo $row['module_acronym']; ?></td>
+        		<td>
+                    <?php
+                        switch (true) {
+
+                            case !empty($row['id_staff']):
+                                echo 'Staff';
+                                break;
+                                
+                            case !empty($row['id_fefpenterprise']):
+                                echo 'Empreza';
+                                break;
+                                
+                            case !empty($row['id_fefpeduinstitution']):
+                            	echo 'Inst Ensinu';
+                            	break;
+                            	
+			    			case !empty($row['id_perdata']):
+				    			echo 'Kliente';
+				    			break;
+                        		 
+                        	default:
+                        	    echo 'N/A';
+                        	    
+                        }
+                    ?>
+        		</td>
+        		<td><?php empty($row['date_insert']) or print $this->date($row['date_insert'], 'dd/MM/yyyy HH:mm:ss'); ?></td>
+        		<td><?php empty($row['date_removed']) or print $this->date($row['date_removed'], 'dd/MM/yyyy HH:mm:ss'); ?></td>
+        		<td><?php echo $row['active'] ? 'Ativu' : 'Inativu'; ?></td>
+    	    </tr>
+    	<?php endforeach; ?>
+    </tbody>
+    <tfoot>
+    	<tr>
+    	    <th colspan="6">Total</th>
+    	    <th><?php echo count($this->data['rows']); ?></th>
+    	</tr>
+    </tfoot>
+</table>

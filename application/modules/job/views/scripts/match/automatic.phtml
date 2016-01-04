@@ -1,0 +1,58 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'fk_id_jobvacancy' );
+    echo $this->form->getElement( 'source' );
+ ?>
+    <div class="box-content">
+	    <div class="row-fluid">
+		<div class="portlet box green ">
+		    <div class="portlet-title">
+			<div class="caption"><i class="icon-info"></i>Informasaun</div>
+			<div class="tools"><a href="javascript:;" class="collapse"></a></div>
+		    </div>
+		    <div class="portlet-body">
+			<p class="bold">Kriterio sira ne'ebe uza ba buka kandidatu automatiko.</p>
+			<div class="row-fluid">
+			    <div class="span6">
+				<ul>
+				    <li>Tinan minimu</li>
+				    <li>Tinan masimu</li>
+				    <li>Esperiensia serbisu</li>
+				    <li>Hela Hatin</li>
+				</ul>
+			    </div>
+			    <div class="span6">
+				<ul>
+				    <li>Nivel Eskola</li>
+				    <li>Formasaun Profisional</li>
+				    <li>Lian Fuan</li>
+				    <li>Seksu</li>
+				</ul>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    <div class="row-fluid margin-bottom-25">
+		<div class="span12 text-center">
+		    <button class="btn red" type="button" onclick="Job.Match.listAutomatic();">
+			<i class="icon-list-alt m-icon-white"></i>
+			Lista Automatiku
+		    </button>
+		    <button type="button" class="btn blue" <?php echo !$this->jobActive()->hasAccessEdit( false ) ? 'disabled' : ''; ?> onclick="Job.Match.addList( $( this ).closest( 'form' ) );">
+			<i class="icon-list m-icon-white"></i>
+			Hili Kandidatu
+		    </button>
+		</div>
+	    </div>
+	
+	    <div class="row-fluid">
+		<div class="span12">
+		    <?php echo $this->render( 'match/search.phtml' ); ?>
+		</div>
+	    </div>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

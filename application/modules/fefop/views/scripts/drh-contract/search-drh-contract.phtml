@@ -1,0 +1,30 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo Fefop_Model_Mapper_Contract::buildNumRow( $row ); ?></td>
+	<td><?php echo $row->staff_name; ?></td>
+	<td><?php echo $row->entity; ?></td>
+	<td><?php echo $row->scholarity_area; ?></td>
+	<td><?php echo $row->ocupation_name_timor; ?></td>
+	<td><?php echo $this->nomenclature()->drhModality( $row->modality ); ?></td>
+	<td><?php echo $this->fefopContract()->renderStatusLabel( $row->id_fefop_status ); ?></td>
+	<td>
+	    <?php if ( empty( $this->listAjax ) ) : ?>
+		<?php if ( $this->access( Fefop_Form_DRHContract::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		    <a class="btn green" href="<?php echo $this->baseUrl( 'fefop/drh-contract/edit/id/' . $row->id_drh_contract ); ?>">
+			<i class="icon-edit"></i>  
+			Troka                                            
+		    </a>
+		<?php else : ?>
+		    <a class="btn red" href="javascript:;">
+			<i class="icon-alert icon-lock"></i>  
+			La bele acessu                                            
+		    </a>
+		<?php endif; ?>
+	    <?php else : ?>
+		<a class="btn red action-ajax" href="javascript:;" data-id="<?php echo $row->id_drh_contract; ?>">
+		    <i class="icon-ok"></i>                                     
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

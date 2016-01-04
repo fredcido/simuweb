@@ -1,0 +1,19 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'fk_id_action_plan' );
+    echo $this->form->getElement( 'step' );
+?>
+
+<div class="row-fluid">
+    <div class="span12">
+	<div class="alert alert-info">
+	    <strong><i class="icon-info-sign"></i></strong> Prenxi justifikasaun atu kansela kazu.
+	</div>
+	<?php echo $this->form->getElement( 'cancel_justification' ); ?>
+    </div>
+</div>
+
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

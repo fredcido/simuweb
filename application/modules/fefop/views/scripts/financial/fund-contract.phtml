@@ -1,0 +1,224 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'fk_id_fefop_contract' );
+?>
+    <table class="table table-striped table-bordered table-hover table-full-width">
+	<thead>
+	    <tr>
+		<th rowspan="2">FUNDU</th>
+		<th colspan="<?php echo $this->components->count() * 2; ?>" class="text-center">KOMPONENTE</th>
+		<th rowspan="2" colspan="2" class="text-center">TOTAL PROJETO</th>
+	    </tr>
+	    <tr>
+		<?php foreach ( $this->components as $component ) : ?>
+		    <th colspan="2"><?php echo ucwords( strtolower( $component->description ) ); ?></th>
+		<?php endforeach; ?>
+	    </tr>
+	</thead>
+	<tbody>
+	    <?php 
+		foreach ( $this->funds as $fund ) : 
+		    $balance = 0;
+		    if ( !empty( $this->donor_totals[$fund->id_fefopfund] ) )
+			$balance = $this->donor_totals[$fund->id_fefopfund];
+		    
+		    if ( $balance <= 0 && empty( $this->funds_contract['funds'][$fund->id_fefopfund] ) )
+			continue;
+	    ?>
+		<tr class="<?php echo $balance <= 0 ? 'text-error' : ''; ?>">
+		    <td rowspan="2">
+			<?php echo $fund->name_fund; ?>
+			<p>
+			    <strong><?php echo $this->currency( $balance ); ?></strong>
+			</p>
+		    </td>
+		    
+		    <?php foreach ( $this->components as $component ) : ?>
+			<th>Contrato</th>
+			<th>Real</th>
+		    <?php endforeach; ?>
+		    <th>Contrato</th>
+		    <th>Real</th>
+		</tr>
+		<tr>
+		    <?php foreach ( $this->components as $component ) : ?>
+			<td>
+			    <?php 
+				$attribsValue = array( 
+				    'class'		=> 'text-right span12 pull-right required money-mask fund-amount',
+				    'id'		=> 'fund_contract' . $fund->id_fefopfund . '_' . $component->id_budget_category_type
+				);
+				
+				if ( $balance <= 0 )
+				    $attribsValue['readonly'] = true;
+				
+				$nameField = 'fund[' . $fund->id_fefopfund . '][' . $component->id_budget_category_type . ']';
+
+				$totalFund = null;
+				if ( !empty( $this->funds_contract['funds'][$fund->id_fefopfund][$component->id_budget_category_type]['contract_amount'] ) )
+				    $totalFund = number_format( $this->funds_contract['funds'][$fund->id_fefopfund][$component->id_budget_category_type]['contract_amount'], 2, '.', ',' );
+			    ?>
+			    <div class="control-group <?php echo $balance <= 0 ? 'error' : ''; ?>">
+				<div class="controls">
+				    <?php echo $this->formText( $nameField, $totalFund, $attribsValue ); ?>
+				</div>
+			    </div>
+			</td>
+			<td>
+			    <?php
+				$totalFund = 0;
+				if ( !empty( $this->funds_contract['funds'][$fund->id_fefopfund][$component->id_budget_category_type]['real_amount'] ) )
+				    $totalFund = number_format( $this->funds_contract['funds'][$fund->id_fefopfund][$component->id_budget_category_type]['real_amount'], 2, '.', ',' );
+			    ?>
+			     <div class="control-group <?php echo $balance <= 0 ? 'error' : ''; ?>">
+				<div class="controls">
+				    <?php echo $this->formText( $nameField . '[real]', $totalFund, $attribsValue + array( 'disabled' => true ) ); ?>
+				</div>
+			    </div>
+			</td>
+		    <?php endforeach; ?>
+		    <th>
+			<?php 
+			    $attribsTotal = array( 
+				'class'	    => 'text-right span12 pull-right required',
+				'disabled'  => true
+			    );
+			    
+			   $totalFund = 0;
+			   if ( !empty( $this->funds_contract['totals'][$fund->id_fefopfund]['contract_amount'] ) )
+				$totalFund = number_format( $this->funds_contract['totals'][$fund->id_fefopfund]['contract_amount'], 2, '.', ',' );
+			?>
+			<div class="control-group <?php echo $balance <= 0 ? 'error' : ''; ?>">
+			    <div class="controls">
+				<?php echo $this->formText( 'fund_total', $totalFund, $attribsTotal ); ?>
+			    </div>
+			</div>
+		    </th>
+		    <th>
+			<?php
+			    $totalFund = 0;
+			   if ( !empty( $this->funds_contract['totals'][$fund->id_fefopfund]['real_amount'] ) )
+				$totalFund = number_format( $this->funds_contract['totals'][$fund->id_fefopfund]['real_amount'], 2, '.', ',' );
+			?>
+			<div class="control-group <?php echo $balance <= 0 ? 'error' : ''; ?>">
+			    <div class="controls">
+				<?php echo $this->formText( 'fund_total', $totalFund, $attribsTotal ); ?>
+			    </div>
+			</div>
+		    </th>
+		</tr>
+	    <?php endforeach; ?>
+	</tbody>
+	<tfoot>
+	    <tr>
+		<th rowspan="2">Total</th>
+		<?php foreach ( $this->components as $component ) : ?>
+		    <th>Contrato</th>
+		    <th>Real</th>
+		<?php endforeach; ?>
+		<th>Contrato</th>
+		<th>Real</th>
+	    </tr>
+	    <tr>
+		<?php foreach ( $this->components as $component ) : ?>
+		    <td>
+			<?php 
+			    $attribsValue = array( 
+				'class'		=> 'text-right span12 pull-right',
+				'disabled'	=> true
+			    );
+
+			    $nameField = 'total_component[' . $component->id_budget_category_type . ']';
+
+			    $totalFund = null;
+			    if ( !empty( $this->funds_contract['totals']['components'][$component->id_budget_category_type]['contract_amount'] ) )
+				$totalFund = number_format( $this->funds_contract['totals']['components'][$component->id_budget_category_type]['contract_amount'], 2, '.', ',' );
+			?>
+			<div class="control-group">
+			    <div class="controls">
+				<?php echo $this->formText( $nameField, $totalFund, $attribsValue ); ?>
+			    </div>
+			</div>
+		    </td>
+		    <td>
+			<?php
+			    $totalFund = 0;
+			    if ( !empty( $this->funds_contract['totals']['components'][$component->id_budget_category_type]['real_amount'] ) )
+				$totalFund = number_format( $this->funds_contract['totals']['components'][$component->id_budget_category_type]['real_amount'], 2, '.', ',' );
+			?>
+			 <div class="control-group">
+			    <div class="controls">
+				<?php echo $this->formText( $nameField, $totalFund, $attribsValue ); ?>
+			    </div>
+			</div>
+		    </td>
+		<?php endforeach; ?>
+		<td>
+		    <?php 
+			$attribsValue = array( 
+			    'class'	=> 'text-right span12 pull-right',
+			    'disabled'	=> true
+			);
+
+			$totalFund = null;
+			if ( !empty( $this->funds_contract['totals']['totals']['contract_amount'] ) )
+			    $totalFund = number_format( $this->funds_contract['totals']['totals']['contract_amount'], 2, '.', ',' );
+		    ?>
+		    <div class="control-group">
+			<div class="controls">
+			    <?php echo $this->formText( 'totals', $totalFund, $attribsValue ); ?>
+			</div>
+		    </div>
+		</td>
+		<td>
+		    <?php
+			$totalFund = 0;
+			if ( !empty( $this->funds_contract['totals']['totals']['real_amount'] ) )
+			    $totalFund = number_format( $this->funds_contract['totals']['totals']['real_amount'], 2, '.', ',' );
+		    ?>
+		     <div class="control-group">
+			<div class="controls">
+			    <?php echo $this->formText( 'totals', $totalFund, $attribsValue ); ?>
+			</div>
+		    </div>
+		</td>
+	    </tr>
+	    <tr>
+		<th>Devolução</th>
+		<?php 
+		    $totalReimbursement = 0;
+		    foreach ( $this->components as $component ) : 
+			$reimbursement = 0;
+			if ( !empty( $this->reimbursement[$component->id_budget_category_type] ) ) {
+			    
+			    $totalReimbursement += $this->reimbursement[$component->id_budget_category_type];
+			    $reimbursement = number_format( $this->reimbursement[$component->id_budget_category_type], 2, '.', ',' );
+			}
+			    
+		?>
+		    <td colspan="2">
+			<div class="control-group">
+			    <div class="controls">
+				<?php echo $this->formText( 'reimbursement', $reimbursement, $attribsValue ); ?>
+			    </div>
+			</div>
+		    </td>
+		<?php endforeach; ?>
+		<td colspan="2">
+		     <div class="control-group">
+			<div class="controls">
+			    <?php 
+				$totalReimbursement = number_format( $totalReimbursement, 2, '.', ',' );
+				echo $this->formText( 'reimbursement_total', $totalReimbursement, $attribsValue ); 
+			    ?>
+			</div>
+		    </div>
+		</td> 
+	    </tr>
+	</tfoot>
+    </table>
+
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

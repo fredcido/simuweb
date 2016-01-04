@@ -1,0 +1,55 @@
+<div class="row-fluid">
+    <div class="span8">
+	<div class="control-group">
+	    <label class="control-label">Naran Kliente:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo Client_Model_Mapper_Client::buildName( $this->session->client ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span4">
+	<div class="control-group">
+	    <label class="control-label">E-mail:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo $this->session->client->email; ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span4">
+	<div class="control-group">
+	    <label class="control-label">Kartaun Evidensia:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <strong><?php echo Client_Model_Mapper_Client::buildNumRow( $this->session->client ); ?></strong>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span4">
+	<div class="control-group">
+	    <label class="control-label">Kartaun Eleitoral:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo $this->session->client->electoral; ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span4">
+	<div class="control-group">
+	    <label class="control-label">Telefone:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo $this->session->client->client_fone; ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+</div>
+<hr />

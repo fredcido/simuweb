@@ -1,0 +1,21 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->original_proof ? 'SIM' : 'LAE'; ?></td>
+	<td><?php echo $row->type_document; ?></td>
+	<td><?php echo $row->country; ?></td>
+	<td><?php echo $row->number; ?></td>
+	<td><?php echo $row->issue_date_formated; ?></td>
+	<td>
+	    <?php if ( $this->access( Client_Form_ClientDocument::ID, Admin_Model_Mapper_SysUserHasForm::HAMOS ) ) : ?>
+		<a class="btn red" data-document='<?php echo $row->id_perdocument; ?>' onclick="Client.Client.removeDocument( this );">
+		    <i class="icon-remove-sign"></i>        
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

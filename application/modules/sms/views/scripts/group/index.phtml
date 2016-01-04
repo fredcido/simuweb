@@ -1,0 +1,63 @@
+<div class="row-fluid">
+    <?php if ( $this->groupSms()->hasMessage() ) : ?>
+    
+	<div class="span12">
+	    <?php echo $this->groupSms()->getMessages(); ?>
+	</div>
+    
+    <?php endif; ?>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">	    
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'group/form.phtml' ),
+				'label'	    => 'Grupu Rejistu',
+				'released'  => true,
+				'id'	    => Sms_Form_Group::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'list',
+				'content'   => $this->render( 'group/rows.phtml' ),
+				'label'	    => 'Grupu Sira',
+				'released'  => true,
+				'id'	    => Sms_Form_Group::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'client',
+				'label'	    => 'Kliente',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'client/id/' . $this->id ),
+				'id'	    => Sms_Form_Group::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'enterprise',
+				'label'	    => 'Empreza',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'enterprise/id/' . $this->id ),
+				'id'	    => Sms_Form_Group::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'institute',
+				'label'	    => 'Inst. Ensinu',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'institute/id/' . $this->id ),
+				'id'	    => Sms_Form_Group::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

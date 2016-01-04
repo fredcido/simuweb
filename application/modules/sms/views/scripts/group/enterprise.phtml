@@ -1,0 +1,34 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box blue">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-reorder"></i> Empreza iha Grupu</div>
+		<div class="actions">
+		    <?php if ( $this->groupSms()->isEnabled() ) : ?>
+			<a href="javascript:;" class="btn red" onclick="Sms.Group.addEnterprise();"> 
+			    <i class="icon-plus-sign"></i>
+			</a>
+		    <?php else : ?>
+			<a class="btn red" href="javascript:;">
+			    <i class="icon-alert icon-lock"></i>                                  
+			</a>
+		    <?php endif; ?>
+		</div>
+	    </div>
+	    <div class="portlet-body form" style="overflow: auto">
+		<table class="table table-striped table-bordered table-hover table-full-width" id="enterprise-group-list">
+		    <thead>
+			<tr>
+			    <th>Empreza</th>
+			    <th>Telemóvel</th>
+			    <th>Tipu Empreza</th>
+			    <th>CEOP</th>
+			    <th>Action</th>
+			</tr>
+		    </thead>
+		    <tbody></tbody>
+		</table>
+	    </div>
+	</div>
+    </div>
+</div>

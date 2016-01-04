@@ -1,0 +1,240 @@
+<div class="row-fluid">
+    <div class="span6">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Okupasaun ISCO-08' )
+			->setColor( 'green' )
+			->addItem(
+			    array(
+				'label' =>  'Rejistu Grupo Okupasaun',
+				'url'   =>  'register/group',
+				'id'    =>  Register_Form_Group::ID
+			    )
+			)->addItem(
+			    array(
+				'label' =>  'Rejistu Sub-Grupo Okupasaun',
+				'url'   =>  'register/sub-group',
+				'id'    =>  Register_Form_SubGroup::ID
+			    )
+			)->addItem(
+			    array(
+				'label' =>  'Rejistu Mini-Grupo Okupasaun',
+				'url'   =>  'register/mini-group',
+				'id'    =>  Register_Form_MiniGroup::ID
+			    )
+			)->addItem(
+			    array(
+				'label' =>  'Rejistu Index Okupasaun Internasional',
+				'url'   =>  'register/international-occupation',
+				'id'    =>  Register_Form_InternationalOccupation::ID
+			    )
+			)->addItem(
+			    array(
+				'label'	=> 'Rejistu Index Okupasaun Timor',
+				'url'	=> 'register/occupation-timor',
+				'id'    =>  Register_Form_OccupationTimor::ID
+			    )
+			);
+	?>
+    </div>
+    <div class="span6">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Setor Industria' )
+			->setColor( 'green' )
+			->addItem(
+			    array(
+				'label' =>  'Rejistu Sesaun ISIC',
+				'url'   =>  'register/isic-section',
+				'id'    =>  Register_Form_IsicSection::ID
+			    )
+			)->addItem(
+			    array(
+				'label' =>  'Rejistu Divizaun ISIC',
+				'url'   =>  'register/isic-division',
+				'id'    =>  Register_Form_IsicDivision::ID
+			    )
+			)->addItem(
+			    array(
+				'label' =>  'Rejistu Grupu ISIC',
+				'url'   =>  'register/isic-group',
+				'id'    =>  Register_Form_IsicGroup::ID
+			    )
+			)->addItem(
+			    array(
+				'label' =>  'Rejistu Klase ISIC',
+				'url'   =>  'register/isic-class',
+				'id'    =>  Register_Form_IsicClass::ID
+			    )
+			)->addItem(
+			    array(
+				'label'	=> 'Rejistu Index Timor',
+				'url'	=> 'register/isic-timor',
+				'id'	=> Register_Form_IsicTimor::ID
+			    )
+			);
+	?>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span6">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Rejistu Hela Fatin' )
+			->setColor( 'green' )
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Nasaun',
+				'url'	=> 'register/nation',
+				'id'    =>  Register_Form_Nation::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Distritu',
+				'url'	=> 'register/district',
+				'id'    =>  Register_Form_District::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Sub-Distritu',
+				'url'	=> 'register/sub-district',
+				'id'    =>  Register_Form_SubDistrict::ID
+			    )
+			)->addItem(
+			    array(
+				'label'	=> 'Rejistu Suku',
+				'url'	=> 'register/suku',
+				'id'    =>  Register_Form_Suku::ID
+			    )
+			);
+	?>
+    </div>
+    <div class="span6">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Rejistu Kursu' )
+			->setColor( 'green' )
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Tipu Kursu',
+				'url'	=> 'register/type-scholarity',
+				'id'    =>  Register_Form_TypeScholarity::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Area Kursu',
+				'url'	=> 'register/area-scholarity',
+				'id'    =>  Register_Form_AreaScholarity::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label'	=> 'Rejistu Kursu',
+				'url'	=> 'register/scholarity',
+				'id'    =>  Register_Form_Scholarity::ID
+			    )
+			);
+	?>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span6">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Empreza' )
+			->setColor( 'green' )
+			->addItem(
+			    array(
+				'label' => 'Rejistu Empreza',
+				'url'   => 'register/enterprise',
+				'id'    => Register_Form_EnterpriseInformation::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label' => 'Buka - Atualiza',
+				'url'   => 'register/enterprise/list',
+				'id'    =>  Register_Form_EnterpriseSearch::ID
+			    )
+			);
+	?>
+    </div>
+    <div class="span6">
+	<?php 
+		echo $this->portlet()
+			    ->setTitle( 'Fornesedor Formasaun' )
+			    ->setColor( 'green' )
+			    ->addItem(
+				array(
+				    'label' => 'Rejistu Forn. Formasaun',
+				    'url'   => 'register/education-institution',
+				    'id'    => Register_Form_EducationInstitutionInformation::ID
+				)
+			    )
+			    ->addItem(
+				array(
+				    'label' => 'Buka - Atualiza',
+				    'url'   => 'register/education-institution/list',
+				    'id'    =>  Register_Form_EducationInstitutionSearch::ID
+				)
+			    );
+	    ?>
+    </div>
+</div>
+<div class="row-fluid">
+     <div class="span6">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Rejistu CEOP' )
+			->setColor( 'green' )
+			->addItem(
+			    array(
+				'label' => 'Rejistu CEOP',
+				'url'   => 'register/ceop',
+				'id'    =>  Register_Form_Ceop::ID
+			    )
+			);
+	    echo $this->portlet()
+			->setTitle( 'Rejistu Intensaun ba Audiensia' )
+			->setColor( 'green' )
+			->addItem(
+			    array(
+				'label' => 'Rejistu Intensaun ba Audiensia',
+				'url'   => 'register/appointment-objective',
+				'id'    => Register_Form_AppointmentObjective::ID
+			    )
+			);
+	?>
+    </div>
+    <div class="span6">
+	<?php 
+		echo $this->portlet()
+			    ->setTitle( 'Rejistu Barreira' )
+			    ->setColor( 'green' )
+			    ->addItem(
+				array(
+				    'label' => 'Rejistu Tipu Barreira',
+				    'url'   => 'register/barrier-type',
+				    'id'    =>  Register_Form_BarrierType::ID
+				)
+			    )
+			    ->addItem(
+				array(
+				    'label' => 'Rejistu Barreira',
+				    'url'   => 'register/barrier',
+				    'id'    =>  Register_Form_Barrier::ID
+				)
+			    )
+			    ->addItem(
+				array(
+				    'label' => 'Rejistu Intervensaun',
+				    'url'   => 'register/barrier-intervention',
+				    'id'    => Register_Form_BarrierIntervention::ID
+				)
+			    );
+	    ?>
+    </div>
+</div>

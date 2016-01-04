@@ -1,0 +1,100 @@
+<div class="row-fluid">
+    <div class="span4">
+	<fieldset>
+	    <legend>Halo lansamentu</legend>
+	    <button type="button" title="Halo lansamentu foun" onclick="Fefop.Financial.newTransaction()" class="btn yellow">
+		<i class="icon-file"></i>
+		Foun
+	    </button>
+	    <button type="button" title="Halo lansamentu foun husi Kontratu" onclick="Fefop.Financial.transactionContract()" class="btn red">
+		<i class="icon-file-text"></i>
+		Husi Kontratu
+	    </button>
+	</fieldset>
+    </div>
+    <div class="span8">
+	<fieldset>
+	    <legend>Total</legend>
+	    <div class="row-fluid">
+		<div class="span3">
+		    <div class="control-group">
+			<label class="control-label">Total Previsto</label>
+			<div class="controls">
+			    <span class="text bold totals total_contract">
+				0.00
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span3">
+		    <div class="control-group">
+			<label class="control-label">Total Pagamentos</label>
+			<div class="controls">
+			    <span class="text bold totals total_payments">
+				0.00
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span3">
+		    <div class="control-group">
+			<label class="control-label">Total Devolução</label>
+			<div class="controls">
+			    <span class="text bold totals total_reimbursement">
+				0.00
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span3">
+		    <div class="control-group">
+			<label class="control-label">Total Real</label>
+			<div class="controls">
+			    <span class="text bold totals total_real">
+				0.00
+			    </span>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</fieldset>
+    </div>
+</div>
+
+<hr />
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'financial/list.phtml' ),
+				'label'	    => 'Lansamemtu hotu-hotu',
+				'released'  => true,
+				'id'	    => Fefop_Form_Financial::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'transaction',
+				'label'	    => 'Lansamentu',
+				'url'	    => $this->path( 'new-transaction' ),
+				'released'  => true,
+				'id'	    => Fefop_Form_Financial::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'contract',
+				'label'	    => 'Lansamentu Kontratu',
+				'url'	    => '#',
+				'released'  => false,
+				'id'	    => Fefop_Form_Financial::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

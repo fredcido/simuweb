@@ -1,0 +1,54 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->action( 'information', 'campaign', 'sms', array( 'id' => $this->id ) ),
+				'label'	    => 'Dadus Kampanha',
+				'released'  => true,
+				'id'	    => Sms_Form_Campaign::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'sent',
+				'label'	    => 'Enviu SMS',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'sent/id/' . $this->id ),
+				'id'	    => Sms_Form_Campaign::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'incoming',
+				'label'	    => 'Simu SMS',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'incoming/id/' . $this->id ),
+				'id'	    => Sms_Form_Campaign::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'statistics',
+				'label'	    => 'Estatistika',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'statistics/id/' . $this->id ),
+				'id'	    => Sms_Form_Campaign::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'log',
+				'label'	    => 'Logs',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'log/id/' . $this->id ),
+				'id'	    => Sms_Form_Campaign::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

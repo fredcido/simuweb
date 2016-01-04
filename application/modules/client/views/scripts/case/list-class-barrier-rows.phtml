@@ -1,0 +1,45 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td style="width: 8%" class="hidden-phone hidden-tablet"><?php echo str_pad( $row->id_fefpstudentclass, 5, '0', STR_PAD_LEFT ); ?></td>
+	<td style="width: 10%" class="hidden-phone hidden-tablet">
+	    <?php 
+		if ( $row->active == 1 ) {
+		    
+		    if ( $row->expired ) {
+			
+			$label = 'warning';
+			$status = 'Expirado';
+		    
+		    } else {
+			
+			$label = 'success';
+			$status = 'Loke';
+		    }
+		    
+		} else {
+		    
+		    $label = 'important';
+		    $status = ( $row->active == 2 ) ? 'Kansela' : 'Taka';	
+		}
+	    ?>
+	    
+	    <span class="label label-<?php echo $label; ?>">
+		<?php echo $status; ?>
+	    </span>
+	</td>
+	<td><?php echo $row->class_name; ?></td>
+	<td><?php echo $row->institution; ?></td>
+	<td><?php echo ( empty( $row->external_code ) ? '' : $row->external_code . ' - ' ) . $row->scholarity; ?></td>
+	<td style="width: 13%">
+	    <span class="label label-<?php echo $row->in_class ? 'success' : 'important'; ?>">
+		<?php echo $row->in_class ? 'SIM' : 'LAE'; ?>
+	    </span>
+	</td>
+	<td>
+	    <a class="btn red-stripe" target="_blank" href="<?php echo $this->baseUrl( 'student-class/register/print/id/' . $row->id_fefpstudentclass ); ?>">
+		<i class="icon-eye-open"></i>  
+		Haree                                            
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

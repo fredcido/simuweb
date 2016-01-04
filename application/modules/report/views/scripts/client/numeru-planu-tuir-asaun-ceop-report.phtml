@@ -1,0 +1,36 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<?php if(!empty($this->data['item'])): ?>
+    <?php foreach($this->data['item']['ceop'] as $id_dec => $name_dec): ?>
+        <table class="relatorio">
+            <thead>
+                <tr>
+                    <th colspan="3"><?php echo $name_dec; ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Konselleiru</th>
+                    <th>Numeru Planu Asaun Rejistu</th>
+                    <th>Numeru Planu Asaun Remata</th>
+                </tr>
+                <?php foreach($this->data['item']['data'][$id_dec] as $data): ?>
+                    <tr>
+                        <td><?php echo $data['konselleiru']; ?></td>
+                        <td><?php echo $data['rejistu']; ?></td>
+                        <td><?php echo $data['remata']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th><?php echo $this->data['item']['count'][$id_dec]['rejistu']; ?></th>
+                    <th><?php echo $this->data['item']['count'][$id_dec]['remata']; ?></th>
+                </tr>
+            </tfoot>
+        </table>
+    <?php endforeach; ?>
+<?php endif; ?>

@@ -1,0 +1,26 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->description; ?></td>
+	<td><?php echo $row->acronym; ?></td>
+	<td><?php echo $row->type == 'B' ? 'Bankariu' : 'Finanseiru'; ?></td>
+	<td>
+	    <?php if ( $this->access( Fefop_Form_TypeTransaction::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn green" href="<?php echo $this->baseUrl( 'fefop/type-transaction/edit/id/' . $row->id_fefop_type_transaction ); ?>">
+		    <i class="icon-edit"></i>  
+		    Troka                                            
+		</a>
+		<?php if ( empty( $row->can_delete ) ) : ?>
+		    <a class="btn red" href="javascript:;" onclick="Fefop.TypeTransaction.removeType(<?php echo $row->id_fefop_type_transaction; ?>);">
+			<i class="icon-remove-circle"></i>  
+			Hamoos
+		    </a>
+		<?php endif; ?>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

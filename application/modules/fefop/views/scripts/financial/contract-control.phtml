@@ -1,0 +1,62 @@
+<div id="container-contract">
+    <?php echo $this->action( 'contract', 'index', 'fefop', array( 'id' => $this->contract->id_fefop_contract ) ); ?>
+</div>
+<hr />
+<input type="hidden" name="id-contract" id="id-contract" value="<?php echo $this->contract->id_fefop_contract; ?>" />
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box green ">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-dollar"></i>Finanseiru Kontratu tuir Fundu</div>
+		<div class="tools"><a href="javascript:;" class="expand"></a></div>
+	    </div>
+	    <div class="portlet-body form hide" id="contract-fund">
+	    </div>
+	</div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box red ">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-dollar"></i>Rúbrica husi Kontratu</div>
+		<div class="tools"><a href="javascript:;" class="expand"></a></div>
+	    </div>
+	    <div class="portlet-body form hide" id="expense-contract">
+	    </div>
+	</div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box grey ">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-dollar"></i>Kustus Extra</div>
+		<div class="tools"><a href="javascript:;" class="expand"></a></div>
+	    </div>
+	    <div class="portlet-body form hide" id="additional-contract" style="overflow-x: auto;">
+	    </div>
+	</div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box blue ">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-dollar"></i>Lansamentu Kontratu</div>
+		<div class="tools"><a href="javascript:;" class="expand"></a></div>
+		 <div class="actions">
+		    <a href="javascript:;" class="btn yellow" onclick="Fefop.Financial.addTransactionContract( event );"> 
+			 <i class="icon-plus-sign"></i>
+			 Aumenta
+		     </a>
+		</div>
+	    </div>
+	    <div class="portlet-body form hide" id="transaction-contract">
+	    </div>
+	</div>
+    </div>
+</div>

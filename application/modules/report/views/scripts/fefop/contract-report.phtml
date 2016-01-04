@@ -1,0 +1,49 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+    	<tr>
+    	    <th>Program</th>
+    	    <th>Module</th>
+    	    <th>Kontratu</th>
+    	    <th>Status</th>
+    	    <th>Valor Contrato</th>
+    	    <th>Valor Pago</th>
+    	    <th>Valor Comprometido</th>
+    	    <th>Custos Acrescidos</th>
+    	    <th>Valor Real</th>
+    	</tr>
+    </thead>
+    <?php  ?>
+    <tbody>
+    	<?php foreach ($this->data['rows'] as $row) : ?>
+    	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+        		<td><?php echo $row['program']; ?></td>
+        		<td><?php echo $row['module']; ?></td>
+        		<td><?php echo $row['cod_contract']; ?></td>
+        		<td><?php echo $row['status_description']; ?></td>
+        		<td><?php echo $this->currency($row['amount_contracted']); ?></td>
+        		<td><?php echo $this->currency($row['amount_payment']); ?></td>
+        		<td><?php echo $this->currency(App_General_String::toFloat($row['amount_contracted']) - App_General_String::toFloat($row['amount_payment'])); ?></td>
+        		<td><?php echo $this->currency($row['amount_addcosts']); ?></td>
+        		<td><?php echo $this->currency($row['amount_real']); ?></td>
+    	    </tr>
+    	<?php endforeach; ?>
+    </tbody>
+    <tfoot>
+        <tr>
+    	    <th colspan="4"></th>
+    	    <th><?php echo $this->currency(array_sum(array_map(function($item){return $item['amount_contracted'];}, $this->data['rows']))); ?></th>
+    	    <th><?php echo $this->currency(array_sum(array_map(function($item){return $item['amount_payment'];}, $this->data['rows']))); ?></th>
+    	    <th><?php echo $this->currency(array_sum(array_map(function($item){return App_General_String::toFloat($item['amount_contracted']) - App_General_String::toFloat($item['amount_payment']);}, $this->data['rows']))); ?></th>
+    	    <th><?php echo $this->currency(array_sum(array_map(function($item){return $item['amount_addcosts'];}, $this->data['rows']))); ?></th>
+    	    <th><?php echo $this->currency(array_sum(array_map(function($item){return $item['amount_real'];}, $this->data['rows']))); ?></th>
+    	</tr>
+    	<tr>
+    	    <th colspan="8">Total</th>
+    	    <th><?php echo count($this->data['rows']); ?></th>
+    	</tr>
+    </tfoot>
+</table>

@@ -1,0 +1,18 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->sms_group_name; ?></td>
+	<td>
+	    <?php if ( $this->access( Sms_Form_Group::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn green" href="<?php echo $this->baseUrl( 'sms/group/edit/id/' . $row->id_sms_group ); ?>">
+		    <i class="icon-edit"></i>  
+		    Troka                                            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

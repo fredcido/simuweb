@@ -1,0 +1,87 @@
+<?php 
+    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/plugins/jquery-file-upload/css/jquery.fileupload-ui.css' ) );
+    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/plugins/bootstrap-tree/bootstrap-tree/css/bootstrap-tree.css' ) );
+
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/vendor/tmpl.min.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload-fp.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload-ui.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/bootstrap-tree/bootstrap-tree/js/bootstrap-tree.js' ) );
+    $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/app/file.js' ) ); 
+?>
+
+<div class="row-fluid">
+    <div class="span3">
+	<div class="control-group">
+	    <label class="control-label">Numeru Rejistu:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <strong><?php echo Client_Model_Mapper_Client::buildNumRow( $this->client ); ?></strong>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span6">
+	<div class="control-group">
+	    <label class="control-label">Naran Kliente:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo Client_Model_Mapper_Client::buildName( $this->client ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span3">
+	<div class="control-group">
+	    <label class="control-label">CEOP Kliente:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo $this->client->name_dec; ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+</div>
+
+<?php echo $this->caseActive()->getMessage(); ?>
+
+<div class="row-fluid" id="container-case">
+    <div class="span12">
+	<?php
+	    echo $this->accordion()
+			->setDefaultColor( 'blue' )
+			->addStep(
+			    array(
+				'ref'	    => 'information',
+				'content'   => $this->action( 'information', 'case', 'client', array( 'id' => $this->id, 'client' => $this->client->id_perdata ) ),
+				'url'	    => $this->path( 'information/id/' . $this->id ),
+				'label'	    => 'Levantamento Nesesidade',
+				'callback'  => 'Client.Case.configInformation',
+				'released'  => true,
+				'id'	    => Client_Form_ActionPlan::ID
+			    )
+			)
+			->addStep(
+			    array(
+				'ref'	    => 'development',
+				'label'	    => 'Dezenvolvimentu Planu Asaun',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'development/id/' . $this->id ),
+				'callback'  => 'Client.Case.configDevelopment',
+				'id'	    => Client_Form_ActionPlan::ID
+			    )
+			)
+			->addStep(
+			    array(
+				'ref'	    => 'finish',
+				'label'	    => 'Remata Kazu',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'finish/id/' . $this->id ),
+				'callback'  => 'Client.Case.reloadFinish',
+				'id'	    => Client_Form_ActionPlan::ID
+			    )
+			);
+	    ?>
+    </div>
+</div>

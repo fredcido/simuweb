@@ -1,0 +1,96 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_jobtraining' );
+    echo $this->form->getElement( 'fk_id_fefpeduinstitution' );
+    echo $this->form->getElement( 'fk_id_fefpenterprise' );
+    echo $this->form->getElement( 'step' );
+ ?>
+    <div class="box-content">
+	<div class="row-fluid">
+	    <div class="row-fluid">
+		<div class="span10">
+		    <?php echo $this->form->getElement( 'entity' ); ?>
+		</div>
+		<div class="span2">
+		    <div class="control-group">
+			<label class="control-label">&#160;</label>
+			<div class="controls">
+			    <div class="btn-group">
+				<a class="btn red <?php echo !empty( $this->editing ) ? 'disabled' : '';?>" 
+				   id="btn-search-entity" href="javascript:;" data-toggle="dropdown">
+				    <i class="icon-search"></i> Buka
+				    <i class="icon-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu">
+				    <li>
+					<a href="javascript:;" onClick="StudentClass.JobTraining.searchInstitute();">
+					    <i class="icon-book"></i> 
+					    Inst. Ensinu
+					</a>
+				    </li>
+				    <li>
+					<a href="javascript:;" onClick="StudentClass.JobTraining.searchEnterprise();">
+					    <i class="icon-group"></i> 
+					    Empreza
+					</a>
+				    </li>
+				</ul>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span8">
+		    <?php echo $this->form->getElement( 'title' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_dec' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_scholarity_area' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'salary' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'status' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'total_man' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'total_woman' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'total_participants' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'date_start' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'date_finish' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'duration' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span12">
+		    <?php echo $this->form->getElement( 'description' ); ?>
+		</div>
+	    </div>
+	</div>
+
+	<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

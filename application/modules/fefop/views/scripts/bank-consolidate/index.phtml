@@ -1,0 +1,68 @@
+<div class="row-fluid">
+    <div class="span12">
+	<fieldset>
+	    <legend>Total</legend>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <div class="control-group">
+			<label class="control-label">Saldo Atual</label>
+			<div class="controls">
+			    <span class="text bold totals total_current">
+				0.00
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span4">
+		    <div class="control-group">
+			<label class="control-label">Total Consolidado</label>
+			<div class="controls">
+			    <span class="text bold totals total_consolidated">
+				0.00
+			    </span>
+			</div>
+		    </div>
+		</div>
+		<div class="span4">
+		    <div class="control-group">
+			<label class="control-label">Total iha <?php echo $this->date( $this->lastMonth ); ?></label>
+			<div class="controls">
+			    <span class="text bold totals total_last_month">
+				0.00
+			    </span>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</fieldset>
+    </div>
+</div>
+
+<hr />
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'bank-consolidate/list.phtml' ),
+				'label'	    => 'Ba konsolida',
+				'released'  => true,
+				'id'	    => Fefop_Form_BankConsolidate::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'list-consolidate',
+				'label'	    => 'Lansamentu konsolidadu',
+				'url'	    => $this->path( 'list-consolidate' ),
+				'released'  => true,
+				'id'	    => Fefop_Form_BankConsolidate::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<?php $id = App_General_String::randomHash(); ?>
+<tr data-expense="<?php echo $this->expense; ?>" class="employment">
+    <td>
+	<?php $atribbsItem = array( 'class' => 'span12 required text-numeric beneficiaries' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'employment_expense[' . $this->expense . '][beneficiaries]['. $id . ']', $this->defaultValues['beneficiaries'], $atribbsItem ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $atribbsItem = array( 'class' => 'span12 required date-mask date-start' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php 
+		    if ( !empty( $this->defaultValues['date_start'] ) )
+			$this->defaultValues['date_start'] = $this->date( $this->defaultValues['date_start'] );
+			
+		    echo $this->formText( 'employment_expense[' . $this->expense . '][date_start]['. $id . ']', $this->defaultValues['date_start'], $atribbsItem ); 
+		?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $atribbsItem = array( 'class' => 'span12 required date-mask date-finish' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php 
+		    if ( !empty( $this->defaultValues['date_finish'] ) )
+			$this->defaultValues['date_finish'] = $this->date( $this->defaultValues['date_finish'] );
+
+		    echo $this->formText( 'employment_expense[' . $this->expense . '][date_finish]['. $id . ']', $this->defaultValues['date_finish'], $atribbsItem ); 
+		?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $atribbsItem = array( 'class' => 'span12 required text-numeric duration', 'readOnly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'employment_expense[' . $this->expense . '][duration_days]['. $id . ']', $this->defaultValues['duration_days'], $atribbsItem ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsQuantity = array( 'class' => 'span12 required expense-quantity', 'readOnly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'employment_expense[' . $this->expense . '][quantity]['. $id . ']', $this->defaultValues['quantity'], $attribsQuantity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsPriceUnity = array( 'class' => 'span12 expense-amount required money-mask' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'employment_expense[' . $this->expense . '][amount_unit]['. $id . ']', $this->defaultValues['amount_unit'], $attribsPriceUnity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsPriceTotal = array( 'class' => 'span12 required expense-total money-mask', 'readOnly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'employment_expense[' . $this->expense . '][amount_total]['. $id . ']', $this->defaultValues['amount_total'], $attribsPriceTotal ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsComments = array( 'class' => 'span12' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'employment_expense[' . $this->expense . '][comments]['. $id . ']', $this->defaultValues['comments'], $attribsComments ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<a class="btn red" onclick="Fefop.ETCContract.removeItem( this );">
+	    <i class="icon-remove-sign"></i>            
+	</a>
+    </td>
+</tr>

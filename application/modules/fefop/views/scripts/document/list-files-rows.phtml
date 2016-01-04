@@ -1,0 +1,16 @@
+<?php foreach ( $this->files as $file ) : ?>
+    <tr>
+	<td><?php echo $file['name']; ?></td>
+	<td><?php echo $file['size']; ?></td>
+	<td><?php echo $file['type']; ?></td>
+	<td><?php echo $file['date']; ?></td>
+	<td>
+	    <button class="btn green" type="button" title="Download" onClick="Fefop.Contract.download('<?php echo $this->baseUrl( $file['path'] ); ?>');">
+		<i class="icon-download icon-white"></i>
+	    </button>
+	    <button class="btn red" type="button" title="Hamoos arkivu" onClick="Fefop.Contract.deleteFile('<?php echo $this->baseUrl( $file['path'] ); ?>' );">
+		<i class="icon-trash icon-white"></i>                                   
+	    </button>
+	</td>
+    </tr>
+<?php endforeach; ?>

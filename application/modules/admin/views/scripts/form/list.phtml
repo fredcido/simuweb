@@ -1,0 +1,24 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->module; ?></td>
+	<td><?php echo $row->form; ?></td>
+	<td class="center hidden-480">
+	    <span class="label label-<?php echo $row->active ? 'success' : 'warning'; ?>">
+		<?php echo $row->active ? 'Sim' : 'Lae'; ?>
+	    </span>
+	</td>
+	<td>
+	    <?php if ( $this->access( Admin_Form_Form::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		<a class="btn green" href="<?php echo $this->baseUrl( 'admin/form/edit/id/' . $row->id_sysform ); ?>">
+		    <i class="icon-edit"></i>  
+		    Troka                                            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

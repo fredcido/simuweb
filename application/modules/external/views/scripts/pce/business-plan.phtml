@@ -1,0 +1,386 @@
+<?php
+    $this->placeholder( 'formBusiness' )->captureStart();
+    echo $this->formBusiness->getElement( 'id_businessplan' );
+?>
+
+<div class="portlet gren box blue">
+    <div class="portlet-title">
+	<div class="caption">
+	    <i class="icon-reorder"></i>Dadus Empreza nian
+	</div>
+	<div class="tools">
+	    <a href="javascript:;" class="collapse"></a>
+	</div>
+    </div>
+    <div class="portlet-body">
+	<div class="row-fluid">
+	    <div class="span12">
+		<?php echo $this->formBusiness->getElement( 'project_name' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span4">
+		<?php echo $this->formBusiness->getElement( 'district' ); ?>
+	    </div>
+	    <div class="span4">
+		<?php echo $this->formBusiness->getElement( 'fk_id_addsubdistrict' ); ?>
+	    </div>
+	    <div class="span4">
+		<?php echo $this->formBusiness->getElement( 'fk_id_addsucu' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span12">
+		<?php echo $this->formBusiness->getElement( 'location_description' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span6">
+		<?php echo $this->formBusiness->getElement( 'phone' ); ?>
+	    </div>
+	    <div class="span6">
+		<?php echo $this->formBusiness->getElement( 'email' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span6">
+		<?php echo $this->formBusiness->getElement( 'bussines_plan_developer' ); ?>
+	    </div>
+	    <div class="span3">
+		<?php echo $this->formBusiness->getElement( 'fk_id_fefptypeenterprise' ); ?>
+	    </div>
+	    <div class="span3">
+		<?php echo $this->formBusiness->getElement( 'year_activity' ); ?>
+	    </div>
+	</div>
+    </div>
+</div>
+
+<div class="portlet red box">
+    <div class="portlet-title">
+	<div class="caption">
+	    <i class="icon-reorder"></i>Planeamentu Estratéjiku Negósiu nian
+	</div>
+	<div class="tools">
+	    <a href="javascript:;" class="collapse"></a>
+	</div>
+    </div>
+    <div class="portlet-body">
+	<div class="row-fluid margin-bottom-25">
+	    <div class="span12 text-center">
+		<img src="<?php echo $this->baseUrl('public/images/Business_Plan.png'); ?>" alt="Planu Negosiu" title="Planu Negosiu" />
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span12">
+		<?php echo $this->formBusiness->getElement( 'visao' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span12">
+		<?php echo $this->formBusiness->getElement( 'missao' ); ?>
+	    </div>
+	</div>
+	
+	<h4 class="bold">Análize kona- ba Ambiente Esternu</h4>
+	<div class="row-fluid">
+	    <div class="span11 offset1">
+		<?php echo $this->formBusiness->getElement( 'ameacas' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span11 offset1">
+		<?php echo $this->formBusiness->getElement( 'oportunidades' ); ?>
+	    </div>
+	</div>
+	
+	<h4 class="bold">Análize kona-ba Ambiente Internu</h4>
+	<div class="row-fluid">
+	    <div class="span11 offset1">
+		<?php echo $this->formBusiness->getElement( 'forcas' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span11 offset1">
+		<?php echo $this->formBusiness->getElement( 'fraquezas' ); ?>
+	    </div>
+	</div>
+	
+	<h4 class="bold">Objetivu no Meta</h4>
+	<div class="row-fluid">
+	    <div class="span11 offset1">
+		<?php echo $this->formBusiness->getElement( 'objetivos_metas' ); ?>
+	    </div>
+	</div>
+	
+	<h4 class="bold">Estratéjia</h4>
+	<div class="row-fluid">
+	    <div class="span11 offset1">
+		<?php echo $this->formBusiness->getElement( 'estrategia' ); ?>
+	    </div>
+	</div>
+	
+	<h4 class="bold">Produtu no/ka Servisu sira</h4>
+	<div class="row-fluid">
+	    <div class="span11 offset1">
+		<?php echo $this->formBusiness->getElement( 'desc_produto' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span11 offset1">
+		<?php echo $this->formBusiness->getElement( 'why_produto' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span12">
+		<?php echo $this->formBusiness->getElement( 'analise_mercado' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span12">
+		<?php echo $this->formBusiness->getElement( 'canais_dist' ); ?>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span12">
+		<?php echo $this->formBusiness->getElement( 'plano_marketing' ); ?>
+	    </div>
+	</div>
+    </div>
+</div>
+
+<div class="portlet green box">
+    <div class="portlet-title">
+	<div class="caption">
+	    <i class="icon-reorder"></i>Planu Finanseiru
+	</div>
+	<div class="tools">
+	    <a href="javascript:;" class="collapse"></a>
+	</div>
+    </div>
+    <div class="portlet-body">
+	
+	<div class="row-fluid">
+	    <div class="span12">
+		<h4><strong>Rúbrika despeza</strong></h4>
+		<table class="table table-striped table-bordered table-hover table-full-width" id="expense-list">
+		    <thead>
+			<tr>
+			    <th style="width: 7%">#</th>
+			    <th>Rúbrika</th>			
+			    <th style="width: 15%">Folin Hira</th>
+			</tr>
+		    </thead>
+		    <tbody>
+			<?php 
+			    $count = 'A';
+			    foreach ( $this->expenses as $expense ) :
+				echo $this->partial( 'templates/row-expense.phtml', array( 'expense' => $expense, 'name' => 'cost_expense', 'count' => $count++, 'readonly' => true ) );
+			    endforeach; 
+			?>
+			<tr>
+			    <td><?php echo $count; ?>.</td>
+			    <td>Fundu Maneiu (600 USD + 10% rúbrika sira iha leten)</td>
+			    <td>
+				<?php 
+				    //$class = $this->formBusiness->getElement( 'reserve_fund' )->getAttrib( 'class' );
+				    //$class .= ' expense-field';
+				    //$this->formBusiness->getElement( 'reserve_fund' )->setAttrib( 'class', $class );
+				    echo $this->formBusiness->getElement( 'reserve_fund' ); 
+				?>
+			    </td>
+			</tr>
+		    </tbody>
+		    <tfoot>
+			 <tr>
+			    <td colspan="2">TOTAL</td>
+			    <td>
+				<?php echo $this->formBusiness->getElement( 'total_expense' ); ?>
+			    </td>
+			</tr>
+		    </tfoot>
+		</table>
+	    </div>
+	</div>
+	
+	<div class="row-fluid">
+	    <div class="span12">
+		<h4><strong>Rúbrika Detallada</strong></h4>
+		<?php 
+		    $count = 'A';
+		    foreach ( $this->expenses as $expense ) : 
+		?>
+		    <div class="row-fluid">
+			<div class="span12">
+			    <div class="portlet box light-grey expense-portlet" id="expense-portlet-<?php echo $expense->id_budget_category; ?>" >
+				<input type="hidden" name="expense-detailed" class="expense-id" value="<?php echo $expense->id_budget_category; ?>" />
+				<div class="portlet-title">
+				    <div class="caption" style="font-size: 11px">
+					<strong><?php echo ( $count++ ) . ' - ' . $expense->description; ?></strong>
+				    </div>
+				    <div class="tools"><a href="javascript:;" class="expand"></a></div>
+				    <div class="actions">
+					<?php if ( !$this->no_edit ) : ?>
+					    <button type="button" id="btn-add-expense-detailed" class="btn mini green" onclick="Pce.addDetailedExpense( event, this );"> 
+						 <i class="icon-plus-sign"></i>
+						 Aumenta
+					    </button>
+					<?php endif; ?>
+				    </div>
+				</div>
+				<div class="portlet-body form hide">
+				    <table class="table table-striped table-bordered table-hover table-full-width" id="expense-detailed-list-<?php echo $expense->id_budget_category; ?>">
+					<thead>
+					    <tr>
+						<th>Item</th>
+						<th style="width: 10%">Ktd.</th>
+						<th style="width: 12%">Kustu unitáriu</th>			
+						<th style="width: 10%">Totál</th>
+						<th style="width: 5%"></th>
+					    </tr>
+					</thead>
+					<tbody>
+					    <?php 
+						if ( !empty( $this->itemsExpense ) && !empty( $this->itemsExpense[$expense->id_budget_category] ) ) {
+
+						    foreach ( $this->itemsExpense[$expense->id_budget_category] as $itemExpense )
+							echo $this->action( 'add-detailed-expense', 'pce', 'external', array( 'expense' => $expense->id_budget_category, 'no_edit' => $this->no_edit, 'row' => $itemExpense ) );
+						}
+					    ?>
+					</tbody>
+				    </table>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		<?php endforeach; ?>
+	    </div>
+	</div>
+	
+	<hr />
+	<h3><strong>Retornu anuál Investimentu nian</strong></h3>
+	
+	<div class="row-fluid">
+	    <div class="span12">
+		<h4><strong>Investimentu Inisiál ne'ebé FEFOP la finansia - tinan dahuluk</strong></h4>
+		<table class="table table-striped table-bordered table-hover table-full-width" id="initial-expense-list">
+		    <thead>
+			<tr>
+			    <th style="width: 7%">#</th>
+			    <th>Rúbrika</th>			
+			    <th style="width: 15%">Folin Hira</th>
+			</tr>
+		    </thead>
+		    <tbody>
+			<?php 
+			    $count = 'A';
+			    foreach ( $this->initial_expense as $expense ) :
+				echo $this->partial( 'templates/row-expense.phtml', array( 'expense' => $expense, 'name' => 'initial_expense', 'count' => $count++ ) );
+			    endforeach; 
+			?>
+		    </tbody>
+		     <tfoot>
+			 <tr>
+			    <td colspan="2">TOTAL</td>
+			    <td>
+				<?php echo $this->formBusiness->getElement( 'investiment' ); ?>
+			    </td>
+			</tr>
+		    </tfoot>
+		</table>
+	    </div>
+	</div>
+	
+	<div class="row-fluid">
+	    <div class="span12">
+		<h4><strong>Kustus anuál - hahú iha tinan daruak</strong></h4>
+		<table class="table table-striped table-bordered table-hover table-full-width" id="annual-expense-list">
+		    <thead>
+			<tr>
+			    <th style="width: 7%">#</th>
+			    <th>Rúbrika</th>			
+			    <th style="width: 15%">Folin Hira</th>
+			</tr>
+		    </thead>
+		    <tbody>
+			<?php 
+			    $count = 'A';
+			    foreach ( $this->annual_expense as $expense ) :
+				echo $this->partial( 'templates/row-expense.phtml', array( 'expense' => $expense, 'name' => 'annual_expense', 'count' => $count++ ) );
+			    endforeach; 
+			?>
+		    </tbody>
+		    <tfoot>
+			 <tr>
+			    <td colspan="2">TOTAL</td>
+			    <td>
+				<?php echo $this->formBusiness->getElement( 'annual_expense' ); ?>
+			    </td>
+			</tr>
+		    </tfoot>
+		</table>
+	    </div>
+	</div>
+	
+	<div class="row-fluid">
+	    <div class="span12">
+		<h4><strong>Reseita sira</strong></h4>
+		<table class="table table-striped table-bordered table-hover table-full-width" id="revenue-expense-list">
+		    <thead>
+			<tr>
+			    <th style="width: 7%">#</th>
+			    <th>Rúbrika</th>			
+			    <th style="width: 15%">Folin Hira</th>
+			</tr>
+		    </thead>
+		    <tbody>
+			<?php 
+			    $count = 'A';
+			    foreach ( $this->revenue_expense as $expense ) :
+				echo $this->partial( 'templates/row-expense.phtml', array( 'expense' => $expense, 'name' => 'revenue_expense', 'count' => $count++ ) );
+			    endforeach; 
+			?>
+			    
+		    </tbody>
+		    <tfoot>
+			<tr>
+			    <td colspan="2">TOTAL</td>
+			    <td>
+				<?php echo $this->formBusiness->getElement( 'revenue' ); ?>
+			    </td>
+			</tr>
+		    </tfoot>
+		</table>
+	    </div>
+	</div>
+	
+	<h4><strong>LUKRU NE'EBÉ HEIN</strong></h4>
+	
+	<div class="row-fluid">
+	    <div class="span6">
+		<?php echo $this->formBusiness->getElement( 'first_year' ); ?>
+	    </div>
+	    <div class="span6">
+		<?php echo $this->formBusiness->getElement( 'following_year' ); ?>
+	    </div>
+	</div>
+	
+	<div class="row-fluid" id="financial-analysis">
+	</div>
+	
+    </div>
+</div>
+
+<div class="form-actions">
+    <a href="javascript:;" class="btn green previous">
+	Ba kotok <i class="m-icon-swapleft m-icon-white"></i>
+    </a>
+    <?php if ( !$this->no_edit && $this->can_create ) : ?>
+	<input type="submit" class="btn blue" value="Halot" id="save" name="save">
+    <?php endif; ?>
+</div>
+
+<?php
+    $this->placeholder( 'formBusiness' )->captureEnd();
+    echo $this->form( $this->formBusiness->getId(), $this->formBusiness->getAttribs(), $this->placeholder( 'formBusiness' ) );
+?>

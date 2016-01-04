@@ -1,0 +1,161 @@
+<?php $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/controller/client/case.js' ) ); ?>
+<div class="row-fluid" id="container-client">
+    
+    <div class="row-fluid <?php if ( empty( $this->id ) ) echo 'hide'; ?>">
+	<div class="span12">
+	    <div class="span4" id="button-back">
+		<?php if ( !empty( $this->id ) ) : ?>
+		    <a class="btn red" href="<?php echo $this->path( 'view/id/' . $this->id ); ?>">
+			<i class="m-icon-swapleft m-icon-white"></i>
+			Fila ba Kliente
+		    </a>
+		
+		    <?php if ( $this->access( Client_Form_ActionPlan::ID ) ) : ?>
+	    
+			<?php if ( !empty( $this->client->case ) ) : ?>
+			    <a class="btn green" href="<?php echo $this->baseUrl( 'client/case/edit/id/' . $this->client->id_action_plan ); ?>">
+				<i class="icon-folder-open"></i>  
+				Kazu                                           
+			    </a>
+			<?php else : ?>
+			    <a class="btn blue" href="javascript:;" onclick="Client.Case.checkClientData( <?php echo $this->client->id_perdata; ?> );">
+				<i class="icon-folder-open"></i>  
+				Kazu                                           
+			    </a>
+			<?php endif; ?>
+
+		    <?php endif; ?>
+
+		<?php endif; ?>
+	    </div>
+	    <div class="span8" id="container-num-client">
+		<?php if ( !empty( $this->id ) ) : ?>
+		    <span class="well pull-right number-system" id="client-number">
+			<strong>
+			    <?php echo Client_Model_Mapper_Client::buildNumById( $this->id ); ?>
+			</strong>
+		    </span>
+		<?php endif; ?>
+	    </div>
+	</div>
+    </div>
+    
+    <div class="row-fluid">
+	<div class="span12">
+	    <?php
+		echo $this->accordion()
+			    ->addStep(
+				array(
+				    'ref'	=> 'information',
+				    'content'   => $this->action( 'information', 'client', 'client', array( 'id' => $this->id ) ),
+				    'url'	=> $this->path( 'information/id/' . $this->id ),
+				    'label'	=> 'Dadus Principais',
+				    'callback'  => 'Client.Client.configInformation',
+				    'released'  => true,
+				    'id'	=> Client_Form_ClientInformation::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'document',
+				    'label'	    => 'Dokumento',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'document/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configDocument',
+				    'id'	    => Client_Form_ClientDocument::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'address',
+				    'label'	    => 'Hela Fatin',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'address/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configAddress',
+				    'id'	    => Client_Form_ClientAddress::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'visit',
+				    'label'	    => 'Objetivo Vizita',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'visit/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configVisit',
+				    'id'	    => Client_Form_ClientVisit::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'scholarity',
+				    'label'	    => 'Rekurso Akademiku',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'scholarity/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configScholarity',
+				    'id'	    => Client_Form_ClientScholarity::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'competency',
+				    'label'	    => 'Kompetensia',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'competency/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configCompetency',
+				    'id'	    => Client_Form_ClientCompetency::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'experience',
+				    'label'	    => 'Esperiensia Profisional',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'experience/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configExperience',
+				    'id'	    => Client_Form_ClientExperience::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'handicapped',
+				    'label'	    => 'Defisiensia',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'handicapped/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configHandicapped',
+				    'id'	    => Client_Form_ClientHandicapped::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'dependent',
+				    'label'	    => 'Dependente sira',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'dependent/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configDependent',
+				    'id'	    => Client_Form_ClientDependent::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'contact',
+				    'label'	    => 'Kontatu Kliente',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'contact/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configContact',
+				    'id'	    => Client_Form_ClientContact::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'bank',
+				    'label'	    => 'Informasaun Banku',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'bank/id/' . $this->id ),
+				    'callback'	    => 'Client.Client.configBank',
+				    'id'	    => Client_Form_ClientBank::ID
+				)
+			    );
+		?>
+	</div>
+    </div>
+</div>

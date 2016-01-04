@@ -1,0 +1,18 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_beneficiary_blacklist' );
+ ?>
+    <div class="row-fluid">
+	<div class="span12">
+	    <?php echo $this->form->getElement( 'comment_remove' ); ?>
+	    <div class="progress progress-striped active" id="progress-content">
+		<div class="bar"></div>
+	    </div>
+	</div>
+    </div>
+
+    <?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

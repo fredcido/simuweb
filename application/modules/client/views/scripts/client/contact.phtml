@@ -1,0 +1,23 @@
+<div class="tabbable tabbable-custom boxless">
+    <?php
+	echo $this->tab()
+		  ->addTab(
+			array(
+			    'ref'	    => 'contact-client',
+			    'label'	    => 'Kontatu Kliente',
+			    'released'	    => true,
+			    'url'	    => $this->path( 'contact-client/id/' . $this->id ),
+			    'id'	    => Client_Form_ClientContact::ID
+			)
+		    )
+		    ->addTab(
+			array(
+			    'ref'	    => 'about',
+			    'label'	    => 'Hatene CEOP husi ne\'ebe?',
+			    'released'	    => true,
+			    'url'	    => $this->path( 'about/id/' . $this->id ),
+			    'id'	    => Client_Form_ClientAbout::ID
+			)
+		    );
+    ?>
+</div>

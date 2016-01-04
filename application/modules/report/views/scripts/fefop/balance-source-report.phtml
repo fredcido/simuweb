@@ -1,0 +1,69 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<?php if (!empty($this->data['item'])): ?>
+    <table class="relatorio">
+        <thead>
+        	<tr>
+        	    <!-- <th rowspan="2"> --><th>Fundu</th>
+    		    <!-- <th rowspan="2"> --><th>Transferência</th>
+    		    <!-- <th rowspan="2"> --><th>Budget</th>
+    		    <?php foreach ($this->data['item']['category'] as $category): ?>
+                    <th colspan="3"><?php echo $category; ?></th>
+    		    <?php endforeach; ?>
+        	</tr>
+        	
+        	<tr>
+                <th></th>
+                <th></th>
+                <th></th>
+        		<?php foreach ($this->data['item']['category'] as $category): ?>
+        			<th>Contrato</th>
+        			<th>Real</th>
+        			<th>Acrescidos</th>
+        		<?php endforeach; ?>
+        	</tr>
+        </thead>
+        <tbody>
+        	<?php foreach ($this->data['item']['fund'] as $key => $fund): ?>
+        	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+            		<td><?php echo $fund['name']; ?></td>
+            		<td><?php echo $this->currency($fund['transaction']); ?></td>
+            		<td><?php echo $this->currency($fund['budget']); ?></td>
+                    
+                    <?php foreach ($this->data['item']['category'] as $key => $value): ?>
+                        <?php if (empty($fund['category'][$key])): ?>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        <?php else: ?>
+    						<td><?php echo $this->currency($fund['category'][$key]['contract']); ?></td>
+    						<td><?php echo $this->currency($fund['category'][$key]['real']); ?></td>
+    						<td><?php echo $this->currency($fund['category'][$key]['additional']); ?></td>
+                    	<?php endif; ?>
+            		<?php endforeach; ?>
+        	    </tr>
+        	<?php endforeach; ?>
+        </tbody>
+        <tfoot>
+            <tr>
+        	    <th></th>
+        	    <th><?php echo $this->currency(array_sum(array_map(function($item){return $item['transaction'];}, $this->data['item']['fund']))); ?></th>
+				<th><?php echo $this->currency(array_sum(array_map(function($item){return $item['budget'];}, $this->data['item']['fund']))); ?></th>
+				
+				<?php foreach (array_keys($this->data['item']['category']) as $category): ?>
+					<th><?php echo $this->currency($this->data['item']['total'][$category]['contract']); ?></th>
+					<th><?php echo $this->currency($this->data['item']['total'][$category]['real']); ?></th>
+					<th><?php echo $this->currency($this->data['item']['total'][$category]['additional']); ?></th>
+				<?php endforeach; ?>
+            </tr>
+        	<tr>
+        	    <th colspan="<?php echo count($this->data['item']['category']) * 3 + 2; ?>">Total</th>
+        	    <th>
+                    <?php echo count($this->data['item']['fund']); ?>
+    	       </th>
+            </tr>
+        </tfoot>
+    </table>
+<?php endif; ?>

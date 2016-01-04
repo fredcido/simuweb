@@ -1,0 +1,35 @@
+<?php 
+    foreach ( $this->rows as $row ) : 
+	$this->campaign( $row );
+?>
+    <tr>
+	<td><?php echo $row->campaign_title; ?></td>
+	<td><?php echo $row->department; ?></td>
+	<td><?php echo $row->campaign_type; ?></td>
+	<td><?php echo $row->to_send; ?></td>
+	<td><?php echo $row->sent; ?></td>
+	<td><?php echo $row->not_sent; ?></td>
+	<td>
+	    <?php echo $this->campaign()->getStatusLabel(); ?>
+	</td>
+	<td>
+	    <?php 
+		if ( $this->campaign()->isEditable() && $this->access( Sms_Form_Campaign::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) :
+	    ?>
+		<a class="btn green" href="<?php echo $this->baseUrl( 'sms/campaign/edit/id/' . $row->id_campaign ); ?>">
+		    <i class="icon-edit"></i>  
+		    Troka                                            
+		</a>
+	    <?php
+		else :
+	    ?>
+		<a class="btn green-stripe" href="<?php echo $this->baseUrl( 'sms/campaign/view/id/' . $row->id_campaign ); ?>">
+		    <i class="icon-eye-open"></i>  
+		    Haree                                           
+		</a>
+	    <?php
+		endif;
+	    ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

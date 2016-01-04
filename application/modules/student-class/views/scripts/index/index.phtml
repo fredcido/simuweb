@@ -1,0 +1,46 @@
+<div class="row-fluid">
+    <div class="span12">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Klase Formasaun' )
+			->setColor( 'grey' )
+			->addItem(
+			    array(
+				'label' =>  'Rejistu Klase Formasaun',
+				'url'   =>  'student-class/register',
+				'id'    =>  StudentClass_Form_RegisterInformation::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label' => 'Buka - Atualiza',
+				'url'   => 'student-class/register/list',
+				'id'    =>  StudentClass_Form_RegisterSearch::ID
+			    )
+			);
+	?>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Job Training' )
+			->setColor( 'grey' )
+			->addItem(
+			    array(
+				'label' =>  'Rejistu Job Training',
+				'url'   =>  'student-class/job-training',
+				'id'    => StudentClass_Form_JobTrainingInformation::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label' => 'Buka - Atualiza',
+				'url'   => 'student-class/job-training/list',
+				'id'    =>  StudentClass_Form_JobTrainingInformation::ID
+			    )
+			);
+	?>
+    </div>
+</div>

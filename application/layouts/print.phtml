@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<?php
+	    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/styles/layout_print.css' ), 'all' );
+	    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/styles/print.css' ), 'print' );
+	
+	    echo $this->headTitle();
+	    echo $this->headMeta() . "\n";
+	    echo $this->headLink() . "\n";
+	    echo $this->headScript() . "\n";
+	?>
+	
+        <script type="text/javascript">
+            var BASE_URL = '<?php echo $this->baseUrl(); ?>';
+        </script>
+    </head>
+    
+    <body>
+	<div class="container-fluid">
+	    <?php echo $this->layout()->content; ?>
+	</div>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th>Empreza</th>
+	    <th>Tipu Empreza</th>
+	    <th>Kontatu</th>
+	    <th>Tele-móvel</th>
+	    <th>Email</th>
+	    <th>CEOP</th>
+	</tr>
+    </thead>
+    <tbody>
+	<?php foreach ( $this->data['rows'] as $row ) : ?>
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $row->enterprise_name; ?></td>
+		<td><?php echo $row->type_enterprise; ?></td>
+		<td><?php echo $row->contact_name; ?></td>
+		<td><?php echo $row->cell_fone; ?></td>
+		<td><?php echo $row->email; ?></td>
+		<td><?php echo $row->name_dec; ?></td>
+	    </tr>
+	<?php endforeach; ?>
+    </tbody>
+    <tfoot>
+	<tr>
+	    <th colspan="5">Total</th>
+	    <th><?php echo count( $this->data['rows'] ); ?></th>
+	</tr>
+    </tfoot>
+</table>

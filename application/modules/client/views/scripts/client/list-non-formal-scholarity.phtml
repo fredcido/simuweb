@@ -1,0 +1,20 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo ( empty( $row->external_code ) ? '' : $row->external_code . ' - ' ) . $row->scholarity; ?></td>
+	<td><?php echo $row->institution; ?></td>
+	<td style="width: 12%" class="hidden-tablet hidden-phone"><?php echo $row->start_date_formated; ?></td>
+	<td style="width: 12%" class="hidden-tablet hidden-phone"><?php echo $row->finish_date_formated; ?></td>
+	<td style="width: 10%">
+	    <?php if ( $this->access( Client_Form_ClientScholarity::ID, Admin_Model_Mapper_SysUserHasForm::HAMOS ) ) : ?>
+		<a class="btn red" data-scholarity='<?php echo $row->id_relationship; ?>' onclick="Client.Client.removeNonFormalScholarity( this );">
+		    <i class="icon-remove-sign"></i>            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

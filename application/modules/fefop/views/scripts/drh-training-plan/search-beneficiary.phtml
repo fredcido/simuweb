@@ -1,0 +1,20 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo Fefop_Model_Mapper_DRHTrainingPlan::buildNum( $row->id_drh_trainingplan ); ?></td>
+	<td><?php echo $row->staff_name; ?></td>
+	<td><?php echo $row->entity; ?></td>
+	<td><?php echo $row->scholarity_area; ?></td>
+	<td><?php echo $row->ocupation_name_timor; ?></td>
+	<td>
+	    <?php if ( !empty( $row->id_drh_contract ) ) : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>
+		</a>
+	    <?php else : ?>
+		<a class="btn red action-ajax" href="javascript:;" data-id="<?php echo $row->id_drh_beneficiary; ?>">
+		    <i class="icon-ok"></i>                                     
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

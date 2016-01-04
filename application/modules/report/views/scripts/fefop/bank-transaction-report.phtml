@@ -1,0 +1,63 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+    	<tr>
+    	    <th>Consol.</th>
+    	    <th>Data</th>
+    	    <th>Deskrisaun</th>
+    	    <th>Valor</th>
+    	    <th>Total</th>
+    	    <th>Tipo Mov.</th>
+    	    <th>Fonte</th>
+    	</tr>
+    </thead>
+    <?php  ?>
+    <tbody>
+    	<?php 
+	    $total = 0;
+	    foreach ($this->data['rows'] as $row) : 
+		$total += (float)$row->amount * ( $row->operation == 'C' ? 1 : -1 );
+	?>
+    	    <tr>
+		<td>
+		    <?php
+			switch( $row->status ):
+			    case Fefop_Model_Mapper_BankStatement::CONSOLIDATED:
+				    $label = array(
+					'class' => 'green',
+					'label'	=> 'Consolidado',
+					'icon'	=> 'icon-ok-sign'
+				    );
+				break;
+			    case Fefop_Model_Mapper_BankStatement::PARCIAL:
+				    $label = array(
+					'class' => 'yellow',
+					'label'	=> 'Parcial',
+					'icon'	=> 'icon-exclamation-sign'
+				    );
+				break;
+			    case Fefop_Model_Mapper_BankStatement::PENDING:
+				    $label = array(
+					'class' => 'red',
+					'label'	=> 'Pendente',
+					'icon'	=> 'icon-minus-sign'
+				    );
+				break;
+			endswitch;
+		    ?>
+
+		    <?php echo $label['label']; ?>
+		</td>
+		<td><?php echo $this->date( $row->date_statement ); ?></td>
+		<td><?php echo $row->description; ?></td>
+		<td><?php echo $this->currency( $row->amount * ( $row->operation == 'C' ? 1 : -1 ) ); ?></td>
+		<td><?php echo $this->currency( $total ); ?></td>
+		<td><?php echo $row->type_transaction; ?></td>
+		<td><?php echo $row->name_fund; ?></td>
+	    </tr>
+    	<?php endforeach; ?>
+    </tbody>
+</table>

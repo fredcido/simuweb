@@ -1,0 +1,25 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'list-class-barrier',
+				'content'   => $this->action( 'list-class-barrier', 'case-group', 'client' ),
+				'label'	    => 'Lista Formasaun Profisional',
+				'released'  => true
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'search-job',
+				'label'	    => 'Buka Formasaun Profisional',
+				'released'  => $this->caseActiveGroup()->hasAccessEdit(),
+				'url'	    => $this->path( 'search-class/id/' . $this->id )
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

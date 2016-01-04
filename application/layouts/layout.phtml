@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<?php
+	    $this->headMeta()
+		    ->appendHttpEquiv( 'Content-Language', 'en-US' )
+		    ->appendHttpEquiv( 'expires', 'Wed, 26 Feb 2012 08:21:57 GMT' )
+		    ->appendHttpEquiv( 'pragma', 'no-cache' )
+		    ->appendHttpEquiv( 'Cache-Control', 'no-cache' )
+		    ->appendHttpEquiv( 'imagetoolbar', 'no' )
+		    ->appendHttpEquiv( 'Content-Encoding', 'gzip' )
+		    ->appendName( 'viewport', 'width=device-width, initial-scale=1.0' );
+	    
+	    $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/app/note.js' ) );
+
+	    echo $this->headTitle();
+	    echo $this->headMeta() . "\n";
+	    echo $this->headLink() . "\n";
+	    echo $this->headScript() . "\n";
+	?>
+	
+        <script type="text/javascript">
+            var BASE_URL = '<?php echo $this->baseUrl(); ?>';
+        </script>
+    </head>
+    
+    <body class="page-header-fixed">
+	<audio preload="auto" autobuffer id="message-audio"> 
+	    <source src="<?php echo $this->baseUrl( 'public/sounds/samsung_whistle.mp3'); ?>" />
+	    <source src="<?php echo $this->baseUrl( 'public/sounds/samsung_whistle.ogg'); ?>" />
+	</audio>
+	<!-- BEGIN HEADER -->
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+		<!-- BEGIN TOP NAVIGATION BAR -->
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				
+				<a class="brand" href="<?php echo $this->baseUrl( '/' ); ?>">
+				    <h1>SIMU<span>WEB</span></h1>
+				</a>
+			    
+				<div class="navbar hor-menu">
+				   <?php if ( !empty( $this->config->general->test ) ) : ?>
+					<div class="row-fluid">
+					    <div class="alert alert-error bottom">
+						<strong>
+						    <i class="icon-remove-sign"></i> 
+						    Atensaun!
+						</strong> 
+						Sistema ba teste.
+					    </div>
+					</div>
+				    <?php endif; ?>
+				</div>
+				
+				<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+				    <img src="<?php echo $this->baseUrl( 'public/template/img/menu-toggler.png' ); ?>" alt="" />
+				</a>          
+				
+				<ul class="nav pull-right">
+				    <li class="dropdown hidden-phone">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+					    <i class="icon-envelope"></i>
+					</a>
+					<ul class="dropdown-menu">
+					    <li>
+						<a href="javascript:;" onclick="Note.newNote()">
+						    <i class="icon-upload-alt"></i> Avizu Foun
+						</a>
+					    </li>
+					    <li>
+						<a href="javascript:;" onclick="Note.listAll()">
+						    <i class="icon-hdd"></i> Avizu hotu-hotu
+						</a>
+					    </li>
+					</ul>
+				    </li>
+				    <li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+					    <i class="icon-user pico icon-white"></i>
+					    <span class="username">
+						<?php echo Zend_Auth::getInstance()->getIdentity()->name; ?>
+					    </span>
+					    <i class="icon-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu">
+					    <li>
+						<a href="javascript:;">
+						    <i class="icon-globe"></i> 
+						    <?php echo Zend_Auth::getInstance()->getIdentity()->name_dec; ?>
+						</a>
+					    </li>
+					    <li>
+						<a href="<?php echo $this->baseUrl( 'auth/profile' ); ?>">
+						    <i class="icon-user"></i> Perfil
+						</a>
+					    </li>
+					    <li>
+						<a href="<?php echo $this->baseUrl( 'auth/logout' ); ?>">
+						    <i class="icon-key"></i> Sai Sistema
+						</a>
+					    </li>
+					</ul>
+				    </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="page-container row-fluid">
+	    
+	    <div class="page-sidebar nav-collapse collapse">
+		<?php echo $this->menu(); ?>
+	    </div>
+	    
+	    <div class="page-content">
+		<div class="container-fluid">
+		    <div class="row-fluid">
+			<div class="span12">
+			    <?php 
+				echo $this->title();
+				echo $this->breadcrumb();
+			    ?>
+			</div>
+		    </div>
+
+		    <?php echo $this->layout()->content; ?>
+		</div>
+	    </div>
+	</div>
+
+	<div class="footer">
+	    <div class="footer-inner">
+		2013 &copy; Secretaria de Estado para Política da Formação Profissional e Emprego - SEPFOPE. <br />
+		Departamento da Informação sobre o Mercado de Trabalho - DMIT.
+	    </div>
+	    <div class="footer-tools">
+		<span class="go-top">
+		    <i class="icon-angle-up"></i>
+		</span>
+	    </div>
+	</div>
+	
+	<div id="modal-root" class="modal hide fade active" style="width: 75%; margin-left: -35%">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h3 class="">
+		    <i></i>
+		</h3>
+	    </div>
+	    <div class="modal-body">
+	    </div>
+	    <div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn">Taka</button>
+	    </div>
+	</div>
+    </body>
+    
+    <script type="text/javascript">
+	
+	$( document ).ready(
+	    function() 
+	    {    
+		App.init();
+	    }
+	);
+    
+	window.onload = function()
+	{
+	    document.onmouseover = verificaSessao;
+	    document.onkeyup     = verificaSessao;
+	};
+
+	var dhUltMMosuse = new Date();
+	var redirecting = false;
+	function verificaSessao()
+	{       
+	    if ( redirecting )
+		return false;
+	    
+	    var  now  = new Date();
+	    var  diffMin = ( ( now.getTime() - dhUltMMosuse.getTime() ) / ( 1000 * 60 ) );
+	    
+	    if (  diffMin >= 30 ) {
+
+		redirecting = true;
+		setTimeout( "location = ( BASE_URL + '/auth/logout/' );", 100 );  
+
+	    } else {
+
+		dhUltMMosuse = new Date();
+	    }
+	}
+    </script>
+    
+</html>

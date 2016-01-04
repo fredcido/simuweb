@@ -1,0 +1,26 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th>Departamentu</th>
+	    <th>Total</th>
+	</tr>
+    </thead>
+    <tbody>
+	<?php foreach ( $this->data['rows'] as $row ) :  ?>
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $row->department; ?></td>
+		<td><?php echo $this->currency( $row->balance , 'en_US' ); ?></td>
+	    </tr>
+	<?php endforeach; ?>
+    </tbody>
+    <tfoot>
+	<tr>
+	    <th>Total</th>
+	    <th><?php echo $this->currency( $this->data['total'] , 'en_US' ); ?></th>
+	</tr>
+    </tfoot>
+</table>

@@ -1,0 +1,19 @@
+<div class="logo-print">
+    <img src="<?php echo $this->baseUrl( 'public/images/brasao_print.png' ); ?>" />
+</div>
+<h4 class="text-center">SECRETARIA DE ESTADO PARA POLÍTICA DA FORMAÇÃO PROFISSIONAL E EMPREGO</h4>
+<h4 class="text-center">CENTRO DE EMPREGO - <?php echo $this->ceop->name_dec; ?></h4>
+<?php if ( !empty( $this->ceop->phone1 ) || !empty( $this->ceop->email ) ) : ?>
+    <h4 class="text-center margin-bottom-20">
+	<?php 
+	    $data = array();
+	    if ( !empty( $this->ceop->phone1 ) )
+		$data[] = $this->ceop->phone1;
+	    
+	    if ( !empty( $this->ceop->email ) )
+		$data[] = $this->ceop->email;
+	    
+	    echo implode( ' - ', $data ); 
+	?>
+    </h4>
+<?php endif; ?>

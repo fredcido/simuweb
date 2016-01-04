@@ -1,0 +1,20 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?></td>
+	<td><?php echo Client_Model_Mapper_Client::buildName( $row ); ?></td>
+	<td><?php echo $row->client_fone; ?></td>
+	<td><?php echo $row->gender; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->name_dec; ?></td>
+	<td style="width: 21%">
+	    <?php if ( $this->groupSms()->isEnabled() ) : ?>
+		<a class="btn red" data-id="<?php echo $row->id_perdata; ?>" onclick="Sms.Group.removeItem( this, 'fk_id_perdata' );">
+		    <i class="icon-remove-sign"></i>            
+		</a>
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>                    
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

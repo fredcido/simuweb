@@ -1,0 +1,158 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<?php if (!empty($this->data['item'])): ?>
+    <table class="relatorio">
+        <thead>
+            <tr>
+                <th rowspan="2">Seksu</th>
+        	    <th>Mane</th>
+        	    <th>Feto</th>
+        	</tr>
+        </thead>
+        <tbody>
+    	    <tr>
+                <th></th>
+                <td><?php echo $this->data['item']['gender']['mane']; ?></td>
+                <td><?php echo $this->data['item']['gender']['feto']; ?></td>
+    	    </tr>
+        </tbody>
+    </table>
+    
+    <table class="relatorio">
+        <thead>
+        	<tr>
+        	    <th>Distritu</th>
+        	    <th>Total</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<?php foreach ($this->data['item']['district'] as $district): ?>
+        	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+                    <td><?php echo $district['name']; ?></td>
+                    <td><?php echo $district['count']; ?></td>
+        	    </tr>
+        	<?php endforeach; ?>
+        </tbody>
+        <tfoot>
+            <tr>
+        	    <th></th>
+        	    <th>
+                    <?php echo array_sum(array_map(function($item){return $item['count'];}, $this->data['item']['district'])); ?>
+    	       </th>
+            </tr>
+        	<tr>
+        	    <th>Total Distritu</th>
+        	    <th>
+                    <?php echo count($this->data['item']['district']); ?>
+    	       </th>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <table class="relatorio">
+        <thead>
+            <tr>
+                <th rowspan="2">Disability</th>
+        	    <th>Sin</th>
+        	    <th>Lae</th>
+        	</tr>
+        </thead>
+        <tbody>
+    	    <tr>
+    	    	<th></th>
+                <td><?php echo $this->data['item']['disability']['yes']; ?></td>
+                <td><?php echo $this->data['item']['disability']['no']; ?></td>
+    	    </tr>
+        </tbody>
+    </table>
+    
+    <table class="relatorio">
+        <thead>
+        	<tr>
+        	    <th>Program</th>
+        	    <th>Module</th>
+        	    <th>Total</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<?php foreach (array_keys($this->data['item']['modules']) as $key): ?>
+                <?php $data = unserialize($key); ?>
+        	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+                    <td><?php echo $data['num_program']; ?></td>
+                    <td><?php echo $data['num_module']; ?></td>
+                    <td><?php echo $this->data['item']['modules'][$key]; ?></td>
+        	    </tr>
+        	<?php endforeach; ?>
+        </tbody>
+        <tfoot>
+            <tr>
+        	    <th colspan="2"></th>
+        	    <th>
+                    <?php echo array_sum($this->data['item']['modules']); ?>
+    	       </th>
+            </tr>
+        	<tr>
+        	    <th colspan="2">Total</th>
+        	    <th>
+                    <?php echo count($this->data['item']['modules']); ?>
+    	       </th>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <table class="relatorio">
+        <thead>
+        	<tr>
+        	    <th>Nível Certificação Nacional</th>
+        	    <th>Total</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<?php foreach ($this->data['item']['certificate'] as $certificate): ?>
+        	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+                    <td>
+                        <?php if (!empty($certificate['external_code'])): ?>
+                        	<?php echo $certificate['external_code'], ' - '; ?>
+                        <?php endif; ?>
+                        
+                       	<?php echo $certificate['scholarity']; ?>
+                    </td>
+                    <td><?php echo $certificate['total']; ?></td>
+        	    </tr>
+        	<?php endforeach; ?>
+        </tbody>
+        <tfoot>
+            <tr>
+        	    <th></th>
+        	    <th>
+                    <?php echo array_sum(array_map(function($item){return $item['total'];}, $this->data['item']['certificate'])); ?>
+    	       </th>
+            </tr>
+        	<tr>
+        	    <th>Total</th>
+        	    <th>
+                    <?php echo count($this->data['item']['certificate']); ?>
+    	       </th>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <table class="relatorio">
+        <thead>
+            <tr>
+        	    <th>Valor Contratado</th>
+        	    <th>Valor Financiado</th>
+        	    <th>Custos Acrescidos</th>
+        	</tr>
+        </thead>
+        <tbody>
+    	    <tr>
+                <td><?php echo $this->currency($this->data['item']['amount']['contracted']); ?></td>
+                <td><?php echo $this->currency($this->data['item']['amount']['funded']); ?></td>
+                <td><?php echo $this->currency($this->data['item']['amount']['addcosts']); ?></td>
+    	    </tr>
+        </tbody>
+    </table>
+<?php endif; ?>

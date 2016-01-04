@@ -1,0 +1,27 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data-followup',
+				'content'   => $this->action( 'information', 'followup', 'fefop', array( 'id' => $this->id ) ),
+				'label'	    => 'Followup',
+				'released'  => true,
+				'id'	    => Fefop_Form_Followup::ID
+			    )
+			  )
+			 ->addTab(
+			    array(
+				'ref'	    => 'list-followup',
+				'label'	    => 'List Followup',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'list/id/' . $this->id ),
+				'id'	    => Fefop_Form_FPContract::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="tabbable tabbable-custom boxless">
+    <?php
+	echo $this->tab()
+		  ->addTab(
+			array(
+			    'ref'	    => 'upload-file',
+			    'label'	    => 'Upload dokumentu',
+			    'released'	    => true,
+			    'content'	    => $this->render( 'document/upload-file.phtml' )
+			)
+		    )
+		    ->addTab(
+			array(
+			    'ref'	    => 'list-files',
+			    'label'	    => 'Lista Dokumentu Sira',
+			    'released'	    => true,
+			    'url'	    => $this->path( 'list-files/id/' . $this->id )
+			)
+		    );
+    ?>
+</div>

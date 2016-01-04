@@ -1,0 +1,36 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<?php if (!empty($this->data['rows'])): ?>
+    <table class="relatorio">
+        <thead>
+        	<tr>
+        	    <th>Kontratu</th>
+    		    <th>Entidade</th>
+    		    <th>Benefisiariu</th>
+    		    <th>Status</th>
+    		    <th>Rubrica</th>
+    		    <th>Valor Kontratu</th>
+		    <th>Gasto</th>
+    		    <th>Saldo</th>
+    		    <th>Limite</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<?php foreach ($this->data['rows'] as $row): ?>
+        	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+            		<td><?php echo Fefop_Model_Mapper_Contract::buildNumRow( $row ); ?></td>
+            		<td><?php echo $row['entity']; ?></td>
+            		<td><?php echo $row['beneficiary']; ?></td>
+            		<td><?php echo $row['status_description']; ?></td>
+            		<td><?php echo $row['expense']; ?></td>
+            		<td><?php echo $this->currency($row['contract_amount']); ?></td>
+            		<td><?php echo $this->currency($row['total_spent']); ?></td>
+            		<td><?php echo $this->currency($row['contract_amount'] - $row['total_spent']); ?></td>
+			<td><?php echo $this->date( $row['date_formation'] ); ?></td>
+        	    </tr>
+        	<?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>

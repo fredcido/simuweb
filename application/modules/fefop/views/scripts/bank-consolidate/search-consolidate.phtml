@@ -1,0 +1,32 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td>
+	    <a class="btn disabled green" href="javascript:;" title="Consolidado">
+		<i class="icon-ok-sign"></i>
+	    </a>
+	</td>
+	<td><?php echo $this->date( $row->date_consolidated ); ?></td>
+	<td><?php echo $this->date( $row->date_statement ); ?></td>
+	<td><?php echo $row->description; ?></td>
+	<td class="text-right">
+	    <p class="pull-right bold text-<?php echo $row->total_consolidated > 0 ? 'success' : 'error'; ?>">
+		 <?php echo $this->currency( $row->total_consolidated  ); ?>
+	    </p>
+	</td>
+	<td class="text-right">
+	    <p class="pull-right bold text-<?php echo $row->operation == 'C' ? 'success' : 'error'; ?>">
+		 <?php echo $this->currency( $row->total_statement * ( $row->operation == 'C' ? 1 : -1 ) ); ?>
+	    </p>
+	</td>
+	<td>
+	    <a class="btn red" title="Remove Kontratu"
+	       onclick="Fefop.BankConsolidate.removeConsolidate( <?php echo $row->id_fefop_consolidated_id; ?> );">
+		<i class="icon-remove-sign"></i>            
+	    </a>
+	    <a class="btn blue" title="Detalha Lansamentu"
+	      onclick="Fefop.BankConsolidate.detailConsolidate( <?php echo $row->id_fefop_consolidated_id; ?> );">
+	       <i class="icon-info-sign"></i>            
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

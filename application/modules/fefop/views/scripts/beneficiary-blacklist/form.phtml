@@ -1,0 +1,75 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'fk_id_perdata' );
+    echo $this->form->getElement( 'fk_id_staff' );
+    echo $this->form->getElement( 'fk_id_fefpeduinstitution' );
+    echo $this->form->getElement( 'fk_id_fefpenterprise' );
+ ?>
+	<div class="row-fluid">
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'id_fefop_programs' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'fk_id_fefop_modules' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span2">
+		    <div class="control-group">
+			<label class="control-label">&#160;</label>
+			<div class="controls">
+			    <div class="btn-group">
+				<a class="btn red" href="javascript:;" data-toggle="dropdown">
+				    <i class="icon-search"></i> Buka
+				    <i class="icon-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu">
+				    <li>
+					<a href="javascript:;" onClick="Fefop.BeneficiaryBlacklist.searchClient();">
+					    <i class="icon-user"></i> 
+					    Buka Kliente
+					</a>
+				    </li>
+				    <li>
+					<a href="javascript:;" onClick="Fefop.BeneficiaryBlacklist.searchInstitute();">
+					    <i class="icon-book"></i> 
+					    Buka Inst. Ensinu
+					</a>
+				    </li>
+				    <li>
+					<a href="javascript:;" onClick="Fefop.BeneficiaryBlacklist.searchStaff();">
+					    <i class="icon-user-md"></i> 
+					    Buka Staff
+					</a>
+				    </li>
+				    <li>
+					<a href="javascript:;" onClick="Fefop.BeneficiaryBlacklist.searchEnterprise();">
+					    <i class="icon-group"></i> 
+					    Buka Empreza
+					</a>
+				    </li>
+				</ul>
+			    </div>
+			</div>
+		    </div>
+		</div>
+		<div class="span10">
+		    <?php echo $this->form->getElement( 'beneficiary' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span12">
+		    <?php echo $this->form->getElement( 'comment' ); ?>
+		    <div class="progress progress-striped active" id="progress-content">
+			<div class="bar"></div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+
+    <?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

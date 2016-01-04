@@ -1,0 +1,60 @@
+<?php 
+    $total = 0;
+    foreach ( $this->rows as $row ) :
+	$total += (float)$row->amount * ( $row->operation == 'C' ? 1 : -1 )
+?>
+    <tr class="<?php echo $row->status == Fefop_Model_Mapper_BankStatement::CONSOLIDATED ? 'muted' : ''; ?>">
+	<td>
+	    <?php
+		switch( $row->status ):
+		    case Fefop_Model_Mapper_BankStatement::CONSOLIDATED:
+			    $label = array(
+				'class' => 'green',
+				'label'	=> 'Consolidado',
+				'icon'	=> 'icon-ok-sign'
+			    );
+			break;
+		    case Fefop_Model_Mapper_BankStatement::PARCIAL:
+			    $label = array(
+				'class' => 'yellow',
+				'label'	=> 'Parcial',
+				'icon'	=> 'icon-exclamation-sign'
+			    );
+			break;
+		    case Fefop_Model_Mapper_BankStatement::PENDING:
+			    $label = array(
+				'class' => 'red',
+				'label'	=> 'Pendente',
+				'icon'	=> 'icon-minus-sign'
+			    );
+			break;
+		endswitch;
+	    ?>
+	    
+	    <a class="btn disabled <?php echo $label['class']; ?>" href="javascript:;" title="<?php echo $label['label']; ?>">
+		<i class="<?php echo $label['icon']; ?>"></i>
+	    </a>
+	</td>
+	<td><?php echo $this->date( $row->date_statement ); ?></td>
+	<td><?php echo $row->description; ?></td>
+	<td class="text-right">
+	    <p class="pull-right bold text-<?php echo $row->operation == 'C' ? 'success' : 'error'; ?>">
+		 <?php echo $this->currency( $row->amount * ( $row->operation == 'C' ? 1 : -1 ) ); ?>
+	    </p>
+	</td>
+	<td class="text-right">
+	    <p class="pull-right bold text-<?php echo $total >= 0 ? 'success' : 'error'; ?>">
+		 <?php echo $this->currency( $total ); ?>
+	    </p>
+	</td>
+	<td><?php echo $row->type_transaction; ?></td>
+	<td><?php echo $row->name_fund; ?></td>
+	<td>
+	    <?php if ( empty( $row->id_fefop_bank_contract ) || $row->status != Fefop_Model_Mapper_BankStatement::CONSOLIDATED ) : ?>
+		<a class="btn red" href="javascript:;" onclick="Fefop.BankStatement.editStatement(<?php echo $row->id_fefop_bank_statements; ?>);">
+		    <i class="icon-edit"></i>                                     
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

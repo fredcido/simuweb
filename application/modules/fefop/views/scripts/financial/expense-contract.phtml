@@ -1,0 +1,126 @@
+<?php
+    $attribsValue = array(
+	'class'	    => 'text-right span12 pull-right required money-mask',
+	'disabled'  => true
+    );
+    
+    $totalContract = 0;
+    $totalPayment = 0;
+    $totalReimbursement = 0;
+    $totalReal = 0;
+?>
+<table class="table table-striped table-bordered table-hover table-full-width">
+    <thead>
+	<tr>
+	    <th>Rúbrica</th>
+	    <th>Valor Kontratu</th>
+	    <th>Valor Pagamentu</th>
+	    <th>Devolução</th>
+	    <th>Valor Real</th>
+	</tr>
+    </thead>
+    <tbody>
+	<?php
+	    $cont = 'A';
+	    foreach ( $this->expenses as $expense ) :
+		
+		$attribsRow = $attribsValue;
+	    
+		$valueContract = $expense->amount;
+		$valuePayment = 0;
+		$valueReimbursement = 0;
+		$valueReal = 0;
+		
+		$totalContract += $valueContract;
+		
+		if ( !empty( $this->reimbursement_total[$expense->id_budget_category] ) ) {
+
+		    $valueReimbursement = $this->reimbursement_total[$expense->id_budget_category];
+		    $totalReimbursement += $valueReimbursement;
+		}
+		
+		if ( !empty( $this->expense_totals[$expense->id_budget_category] ) ) {
+
+		    $valuePayment = $this->expense_totals[$expense->id_budget_category];
+		    $valueReal = $valuePayment - $valueReimbursement;
+		    
+		    $totalPayment += $valuePayment;
+		    $totalReal += $valueReal;
+		}
+	?>
+    	<tr class="<?php echo $valueReal > $valueContract ? 'text-error' : ''; ?>">
+    	    <td><?php echo $cont++ . ' - ' . $expense->description; ?></td>
+    	    <td>
+		<div class="control-group <?php echo $valueReal > $valueContract ? 'error' : ''; ?>">
+    		    <div class="controls">
+			<?php echo $this->formText( 'total_expense_contract', $this->currency( $valueContract ), $attribsRow ); ?>
+    		    </div>
+    		</div>
+    	    </td>
+	    <td>
+    		<div class="control-group">
+    		    <div class="controls">
+			<?php echo $this->formText( 'total_payment_contract', $this->currency( $valuePayment ), $attribsRow ); ?>
+    		    </div>
+    		</div>
+    	    </td>
+    	    <td>
+    		<div class="control-group">
+    		    <div class="controls">
+			<?php echo $this->formText( 'total_reimbursement_contract', $this->currency( $valueReimbursement ), $attribsRow ); ?>
+    		    </div>
+    		</div>
+    	    </td>
+    	    <td>
+    		<div class="control-group <?php echo $valueReal > $valueContract ? 'error' : ''; ?>">
+    		    <div class="controls">
+			 <?php echo $this->formText( 'total_expense_real', $this->currency( $valueReal ), $attribsRow ); ?>
+    		    </div>
+    		</div>
+    	    </td>
+    	</tr>
+	<?php endforeach; ?>
+    </tbody>
+    <tfoot>
+	<tr class="<?php echo $totalReal > $totalContract ? 'text-error' : ''; ?>">
+	    <th>Total</th>
+	    <th>
+    		<div class="control-group <?php echo $totalReal > $totalContract ? 'error' : ''; ?>">
+    		    <div class="controls">
+			<?php 
+			    $attribsValue['class'] .= ' bold';
+			    echo $this->formText( 'total_contract', $this->currency( $totalContract ), $attribsValue ); 
+			?>
+    		    </div>
+    		</div>
+	    </th>
+	    <th>
+    		<div class="control-group">
+    		    <div class="controls">
+			<?php
+			    echo $this->formText( 'total_payment', $this->currency( $totalPayment ), $attribsValue ); 
+			?>
+    		    </div>
+    		</div>
+	    </th>
+	    <th>
+    		<div class="control-group">
+    		    <div class="controls">
+			<?php
+			    echo $this->formText( 'total_reimbursement', $this->currency( $totalReimbursement ), $attribsValue ); 
+			?>
+    		    </div>
+    		</div>
+	    </th>
+	    <th>
+    		<div class="control-group <?php echo $totalReal > $totalContract ? 'error' : ''; ?>">
+    		    <div class="controls">
+			<?php 
+			    echo $this->formText( 'total_real', $this->currency( $totalReal ), $attribsValue ); 
+			?>
+    		    </div>
+    		</div>
+	    </th>
+	</tr>
+    </tfoot>
+</table>

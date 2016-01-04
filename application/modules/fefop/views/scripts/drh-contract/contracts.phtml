@@ -1,0 +1,74 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'fk_id_drh_trainingplan' );
+    echo $this->form->getElement( 'contracts_ids' );
+ ?>
+
+    <?php echo $this->fefopContract()->getMessages(); ?>
+
+    <div class="box-content">
+	<div class="row-fluid">
+	    <div class="row-fluid">
+		<div class="span5">
+		    <?php echo $this->form->getElement( 'num_training_plan' ); ?>
+		</div>
+		<div class="span1">
+		    <div class="control-group">
+			<label class="control-label">&#160;</label>
+			<div class="controls">
+			    <button type="button" id="btn-search-planning" class="btn green" title="Buka Planeamentu" onclick="Fefop.DRHContract.searchPlanningBluk()">
+				 <i class="icon-search"></i>  
+			     </button>
+			</div>
+		    </div>
+		</div>
+		<div class="span1">
+		    <div class="control-group">
+			<label class="control-label">&#160;</label>
+			<div class="controls">
+			    <button type="button" id="btn-print-contracts" disabled class="btn green" title="Print Kontratu" onclick="Fefop.DRHContract.printContracts()">
+				 <i class="icon-print"></i>  
+			     </button>
+			</div>
+		    </div>
+		</div>
+		<div class="span5">
+		    <?php echo $this->form->getElement( 'modality' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'scholarity_area' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'ocupation_name_timor' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'country' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'city' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'fk_id_adddistrict' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'entity' ); ?>
+		</div>
+	    </div>
+	    
+	    <div class="row-fluid" id="container-contracts">
+		
+	    </div>
+	</div>
+
+	<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

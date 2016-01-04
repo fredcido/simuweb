@@ -1,0 +1,41 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td style="width: 17%"><?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?></td>
+	<td style="width: 50%">
+	    <?php if ( $this->access( Client_Form_ClientInformation::ID) ) : ?>
+		<a href="<?php echo $this->baseUrl( '/client/client/print/id/' . $row->id_perdata ); ?>" target="_blank">
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+		</a>
+	    <?php else : ?>
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+	    <?php endif; ?>
+	</td>
+	<td><?php echo $row->gender; ?></td>
+	<td>
+	    <span class="label label-<?php echo $row->status ? 'success' : 'important'; ?>">
+		<?php echo $row->status ? 'Sim' : 'Lae'; ?>
+	    </span>
+	</td>
+	<td>
+	    <?php if ( !empty( $row->contract ) ) : ?>
+		<span class="label label-<?php echo $row->contract == 'P' ? 'success' : 'warning'; ?>">
+		    <?php echo $row->contract == 'T' ? 'Temporariu' : 'Permanente'; ?>
+		</span>
+	    <?php else : ?>
+		<span class="label label-important">
+		    Lae
+		</span>
+	    <?php endif; ?>
+	</td>
+	<td>
+	    <span class="label label-<?php echo $row->completed ? 'success' : 'important'; ?>">
+		<?php echo $row->completed ? 'Sim' : 'Lae'; ?>
+	    </span>
+	</td>
+	<td>
+	    <a class="btn green" href="javascript:;" onClick="StudentClass.JobTraining.editTrainee( <?php echo $row->id_trainee; ?>)">
+		<i class="icon-edit"></i>                                   
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

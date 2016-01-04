@@ -1,0 +1,79 @@
+<tr class="expense-contract-<?php echo $this->idContract; ?>">
+    <td>
+	<?php
+	    $idRand = App_General_String::randomHash();
+	    $idTransaction = null;
+	    if ( !empty( $this->row->id_fefop_transaction ) )
+		$idTransaction = $this->row->id_fefop_transaction;
+	?>
+	<input type="hidden" 
+	       value="<?php echo $idTransaction; ?>"
+	       name="fk_id_fefop_transaction[<?php $this->idContract; ?>][<?php echo $idRand; ?>" />
+    </td>
+    <td>
+	<a href="javascript:;" tabindex="-1" class="select-category">
+	    <?php
+		$textLink = 'Hili ida';
+		if ( !empty( $this->row->fk_id_budget_category ) )
+		    $textLink = $this->optionsBudgetCategory[$this->row->fk_id_budget_category];
+		
+		echo $textLink;
+	    ?>
+	</a>
+	<?php
+	    $attribsSelect = array( 
+		'class'		=> 'submit-field span11 expense-category required',
+		'data-contract' => $this->idContract,
+		'id'		=> 'budget_category_' . $idRand
+	    );
+	    
+	    $budgetCategory = null;
+	    if ( !empty( $this->row->fk_id_budget_category ) ) {
+		$budgetCategory = $this->row->fk_id_budget_category;
+		
+		if ( $this->row->id_fefop_transaction_status != Fefop_Model_Mapper_Financial::ACTIVE )
+		    $attribsSelect['readonly'] = true;
+	    }
+	?>
+	<div class="control-group hide">
+	    <div class="controls">
+		<?php echo $this->formSelect( 'fk_id_budget_category[' . $this->idContract . '][' . $idRand . ']', $budgetCategory, $attribsSelect, $this->optionsBudgetCategory ); ?>
+		<a href="javascript:;" class="hide-select"><i class="icon-eye-close"></i></a>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php 
+	    $attribsTotal = array( 
+		'class'		=> 'submit-field text-right span10 pull-right required expense-total money-mask',
+		'id'		=> 'total_expense_' . $this->idContract . '_' . $idRand,
+		'data-contract' => $this->idContract
+	    );
+	    
+	    $totalExpense = null;
+	    if ( !empty( $this->row->amount ) ) {
+		
+		$totalExpense = number_format( $this->row->amount, 2, '.', ',' );
+		
+		if ( $this->row->id_fefop_transaction_status != Fefop_Model_Mapper_Financial::ACTIVE )
+		    $attribsTotal['readonly'] = true;
+	    }
+	?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'total_expense[' . $this->idContract . '][' . $idRand . ']', $totalExpense, $attribsTotal ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php if ( empty( $this->row ) || $this->row->id_fefop_transaction_status == Fefop_Model_Mapper_Financial::ACTIVE ) : ?>
+	    <a class="btn red" title="Remove Expense" onclick="Fefop.Financial.removeExpense( this, <?php echo $this->idContract; ?> );">
+		<i class="icon-remove-sign"></i>            
+	    </a>
+	<?php else : ?>
+	    <a class="btn red" href="javascript:;">
+		<i class="icon-alert icon-lock"></i>                                        
+	    </a>
+	<?php endif; ?>
+    </td>
+</tr>

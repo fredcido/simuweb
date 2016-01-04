@@ -1,0 +1,30 @@
+<div class="row-fluid">
+    <div class="span12">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Vaga Empregu' )
+			->setColor( 'yellow' )
+			->addItem(
+			    array(
+				'label' =>  'Rejistu Vaga Empregu',
+				'url'   =>  'job/vacancy',
+				'id'    =>  Job_Form_VacancyInformation::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label' => 'Buka - Atualiza',
+				'url'   => 'job/vacancy/list',
+				'id'    =>  Job_Form_VacancySearch::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label' => 'Buka Kliente Sira',
+				'url'   => 'job/vacancy/search-client',
+				'id'    =>  Job_Form_SearchClient::ID
+			    )
+			);
+	?>
+    </div>
+</div>

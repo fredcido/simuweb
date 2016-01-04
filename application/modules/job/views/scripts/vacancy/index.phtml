@@ -1,0 +1,78 @@
+<div class="row-fluid <?php if ( empty( $this->id ) ) echo 'hide'; ?> margin-bottom-15">
+    <div class="span12">
+	<div class="span4" id="button-back">
+	    <?php if ( !empty( $this->id ) ) : ?>
+		<a class="btn red" href="<?php echo $this->path( 'view/id/' . $this->id ); ?>">
+		    <i class="m-icon-swapleft m-icon-white"></i>
+		    Fila ba Vaga
+		</a>
+	    <?php endif; ?>
+	</div>
+    </div>
+</div>
+
+<?php echo $this->jobActive()->getMessage(); ?>
+
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->action( 'information', 'vacancy', 'job', array( 'id' => $this->id ) ),
+				'label'	    => 'Dadus Principais',
+				'released'  => true,
+				'id'	    => Job_Form_VacancyInformation::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'address',
+				'label'	    => 'Fatin Vaga',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'address/id/' . $this->id ),
+				'id'	    => Job_Form_VacancyAddress::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'scholarity',
+				'label'	    => 'Edukasaun Formal',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'scholarity/id/' . $this->id ),
+				'id'	    => Job_Form_VacancyScholarity::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'training',
+				'label'	    => 'Formasaun Profisional',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'training/id/' . $this->id ),
+				'id'	    => Job_Form_VacancyTraining::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'language',
+				'label'	    => 'Lian Fuan',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'language/id/' . $this->id ),
+				'id'	    => Job_Form_VacancyLanguage::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'handicapped',
+				'label'	    => 'Defisiensia',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'handicapped/id/' . $this->id ),
+				'id'	    => Job_Form_VacancyHandicapped::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

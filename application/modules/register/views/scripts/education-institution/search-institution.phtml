@@ -1,0 +1,32 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->institution; ?></td>
+	<td style="width: 15%"><?php echo $row->type_institution; ?></td>
+	<!--<td class="hidden-phone hidden-table"><?php //echo $row->date_visit_formated; ?></td>-->
+	<td style="width: 10%"><?php echo $row->register ? 'Sim' : 'Lae'; ?></td>
+	<!--<td class="hidden-phone hidden-table"><?php echo $row->name_dec; ?></td>-->
+	<td>
+	    <?php if ( empty( $this->listAjax ) ) : ?>
+		<?php if ( $this->access( Register_Form_EducationInstitutionInformation::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		    <a class="btn green" href="<?php echo $this->baseUrl( 'register/education-institution/edit/id/' . $row->id_fefpeduinstitution ); ?>">
+			<i class="icon-edit"></i>  
+			Troka                                            
+		    </a>
+		    <a class="btn red" href="javascript:;" onClick="Register.EducationInstitute.listCourses( <?php echo $row->id_fefpeduinstitution; ?> );">
+			<i class="icon-book"></i>  
+			Kursu                                            
+		    </a>
+		<?php else : ?>
+		    <a class="btn red" href="javascript:;">
+			<i class="icon-alert icon-lock"></i>  
+			La bele acessu                                            
+		    </a>
+		<?php endif; ?>
+	    <?php else : ?>
+		<a class="btn red action-ajax" href="javascript:;" data-id="<?php echo $row->id_fefpeduinstitution; ?>">
+		    <i class="icon-ok"></i>                                     
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

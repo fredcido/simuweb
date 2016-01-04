@@ -1,0 +1,54 @@
+<div class="row-fluid">
+    <div class="span3">
+	<div class="control-group">
+	    <label class="control-label">Numeru Rejistu:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <strong><?php echo Client_Model_Mapper_Client::buildNumRow( $this->client ); ?></strong>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span6">
+	<div class="control-group">
+	    <label class="control-label">Naran Kliente:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo Client_Model_Mapper_Client::buildName( $this->client ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span3">
+	<div class="control-group">
+	    <label class="control-label">CEOP Kliente:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo $this->client->name_dec; ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+</div>
+<hr />
+<div class="tabbable tabbable-custom boxless">
+    <?php
+	echo $this->tab()
+		  ->addTab(
+			array(
+			    'ref'	    => 'list-note',
+			    'label'	    => 'Lista Nota Kazu',
+			    'released'	    => true,
+			    'content'	    => $this->render( 'case/list-note.phtml' )
+			)
+		    )
+		    ->addTab(
+			array(
+			    'ref'	    => 'register-note',
+			    'label'	    => 'Rejistu Foun',
+			    'released'	    => true,
+			    'content'	    => $this->render( 'case/register-note.phtml' )
+			)
+		    );
+    ?>
+</div>

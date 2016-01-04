@@ -1,0 +1,52 @@
+<div class="row-fluid well">
+    <div class="span2">
+	<div class="control-group">
+	    <label class="control-label">Mane:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <strong><?php echo $this->event->total_man; ?></strong>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span2">
+	<div class="control-group">
+	    <label class="control-label">Feto:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo $this->event->total_woman; ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span2">
+	<div class="control-group">
+	    <label class="control-label">Alunu Nain Hira:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo $this->event->students_course; ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span3">
+	<div class="control-group">
+	    <label class="control-label">Kustu Unitariu:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo $this->currency( $this->event->unit_cost ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span3">
+	<div class="control-group">
+	    <label class="control-label">Kustu Total:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo $this->currency( $this->event->total_cost ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+</div>

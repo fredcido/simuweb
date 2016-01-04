@@ -1,0 +1,45 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->action( 'information', 'enterprise', 'register', array( 'id' => $this->id ) ),
+				'label'	    => 'Dadus Empreza',
+				'released'  => true,
+				'id'	    => Register_Form_EnterpriseInformation::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'contact',
+				'label'	    => 'Kontatu',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'contact/id/' . $this->id ),
+				'id'	    => Register_Form_EnterpriseContact::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'address',
+				'label'	    => 'Hela fatin',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'address/id/' . $this->id ),
+				'id'	    => Register_Form_EnterpriseAddress::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'staff',
+				'label'	    => 'Funcionariu',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'staff/id/' . $this->id ),
+				'id'	    => Register_Form_EnterpriseStaff::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

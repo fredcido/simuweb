@@ -1,0 +1,36 @@
+<div class="row-fluid well" style="padding: 7px">
+    <div class="span6">
+	<div class="control-group">
+	    <label class="control-label">Departamentu:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <strong><?php echo $this->department['name']; ?></strong>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span3">
+	<div class="control-group">
+	    <label class="control-label">Balance:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <a href="javascript:;" class="btn disabled bold <?php echo $this->department['balance'] > 0 ? 'green' : 'red'; ?>">
+			<?php echo $this->currency( $this->department['balance'] , 'en_US' ); ?>
+		    </a>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span3">
+	<div class="control-group">
+	    <label class="control-label">Envio:</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <a href="javascript:;" class="btn disabled bold <?php echo $this->department['sending'] > 0 ? 'green' : 'red'; ?>">
+			<?php echo $this->department['sending']; ?>
+		    </a>
+		</span>
+	    </div>
+	</div>
+    </div>
+</div>

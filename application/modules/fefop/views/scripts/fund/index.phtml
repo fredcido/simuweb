@@ -1,0 +1,45 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'fund/form.phtml' ),
+				'label'	    => 'Fundu Rejistu',
+				'released'  => true,
+				'id'	    => Fefop_Form_Fund::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'list',
+				'content'   => $this->render( 'fund/rows.phtml' ),
+				'label'	    => 'Fundu Sira',
+				'released'  => true,
+				'id'	    => Fefop_Form_Fund::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'fund-planning',
+				'label'	    => 'Planeamentu ba Tinan',
+				'released'  => true,
+				'url'	    => $this->path( 'fund-planning/' ),
+				'id'	    => Fefop_Form_Fund::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'totals',
+				'label'	    => 'Totais',
+				'released'  => true,
+				'url'	    => $this->path( 'totals/' ),
+				'id'	    => Fefop_Form_Fund::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

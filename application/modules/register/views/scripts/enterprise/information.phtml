@@ -1,0 +1,60 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_fefpenterprise' );
+    echo $this->form->getElement( 'step' );
+ ?>
+    <div class="box-content">
+	<div class="row-fluid">
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'enterprise_name' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'num_workers' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'fk_fefptypeenterprite' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'men_workers' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'fk_nationality' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'women_workers' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'fk_id_dec' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'num_handicapped' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'fk_id_sectorindustry' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'descrition' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'condition_handicapped' ); ?>
+		</div>
+	    </div>
+	</div>
+
+	<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

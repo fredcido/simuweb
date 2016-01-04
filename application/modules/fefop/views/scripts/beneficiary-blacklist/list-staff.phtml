@@ -1,0 +1,24 @@
+<table class="table table-striped table-bordered table-hover table-full-width" id="staff-list">
+    <thead>
+	<tr>
+	    <th>Naran Funcionariu</th>
+	    <th>Seksu</th>
+	    <th>Kargo</th>
+	    <th>Action</th>
+	</tr>
+    </thead>
+    <tbody>
+	<?php foreach ( $this->rows as $row ) : ?>
+	    <tr>
+		<td><?php echo $row->staff_name; ?></td>
+		<td><?php echo $row->gender == 'M' ? 'MANE' : 'FETO'; ?></td>
+		<td><?php echo $row->post; ?></td>
+		<td>
+		    <a class="btn red action-ajax" href="javascript:;" data-id="<?php echo $row->id_staff; ?>">
+			<i class="icon-ok"></i>                                     
+		    </a>
+		</td>
+	    </tr>
+	<?php endforeach; ?>
+    </tbody>
+</table>

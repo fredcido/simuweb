@@ -1,0 +1,36 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">	    
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'group/form.phtml' ),
+				'label'	    => 'Grupu Rejistu',
+				'released'  => true,
+				'id'	    => Admin_Form_Group::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'list',
+				'content'   => $this->render( 'group/rows.phtml' ),
+				'label'	    => 'Grupu Sira',
+				'released'  => true,
+				'id'	    => Admin_Form_Group::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'group-note',
+				'label'	    => 'Ligasaun',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'group-note/id/' . $this->id ),
+				'id'	    => Admin_Form_Group::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

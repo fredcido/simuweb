@@ -1,0 +1,42 @@
+<?php $this->placeholder( 'form' )->captureStart(); ?>
+
+<div class="box-content">
+    <div class="row-fluid">
+	<div class="span8">
+	    <?php echo $this->form->getElement( 'identifier' ); ?>
+	</div>
+	<div class="span2">
+	    <div class="control-group">
+		<label class="control-label">&#160;</label>
+		<div class="controls">
+		    <button id="btn-add-rule" disabled type="button" class="btn blue" title="Aumenta Regra" onclick="Fefop.Rule.addRule()">
+			 <i class="icon-plus-sign"></i>  
+			 Aumenta Regra
+		    </button>
+		</div>
+	    </div>
+	</div>
+	<div class="span2">
+	    <div class="control-group">
+		<label class="control-label">&#160;</label>
+		<div class="controls">
+		    <button id="btn-print-rule" disabled type="button" class="btn green" title="Print Regra" onclick="Fefop.Rule.printRule()">
+			 <i class="icon-print"></i>  
+			 Print Regra
+		    </button>
+		</div>
+	    </div>
+	</div>
+    </div>
+    <h4 class="bold">Regra Hotu-hotu</h4>
+    <hr/>
+    <div class="row-fluid" id="container-rules">
+	
+    </div>
+
+    <?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+</div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

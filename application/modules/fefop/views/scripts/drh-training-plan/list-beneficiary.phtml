@@ -1,0 +1,85 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box blue ">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-search"></i>Buka DRH - Benefiariu Sira</div>
+		<div class="tools"><a href="javascript:;" class="collapse"></a></div>
+	    </div>
+	    <div class="portlet-body form">
+		<?php $this->placeholder( 'form' )->captureStart(); ?>
+
+		    <div class="box-content">
+			<div class="row-fluid">
+			    <div class="span6">
+				<?php echo $this->form->getElement( 'fk_id_fefpeduinstitution' ); ?>
+			    </div>
+			    <div class="span6">
+				<?php echo $this->form->getElement( 'fk_id_addcountry' ); ?>
+			    </div>
+			</div>
+			<div class="row-fluid">
+			    <div class="span6">
+				<?php echo $this->form->getElement( 'fk_id_scholarity_area' ); ?>
+			    </div>
+			    <div class="span6">
+				<?php echo $this->form->getElement( 'fk_id_profocupationtimor' ); ?>
+			    </div>
+			</div>
+                        <div class="row-fluid">
+                            <div class="span4">
+                                <?php echo $this->form->getElement( 'modality' ); ?>
+                            </div>
+                            <div class="span4">
+                                <?php echo $this->form->getElement( 'date_start' ); ?>
+                            </div>
+                            <div class="span4">
+                                <?php echo $this->form->getElement( 'date_finish' ); ?>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <?php echo $this->form->getElement( 'beneficiary' ); ?>
+                            </div>
+                        </div>
+			<div class="row-fluid">
+			    <div class="form-actions">
+				<button class="btn blue">Buka <i class="icon-search m-icon-white"></i></button>
+				<button class="btn green" type="reset" id="clear">Hamoos <i class="icon-trash m-icon-white"></i></button>
+			    </div>
+			</div>
+		    </div>
+		
+		<?php
+		    $this->placeholder( 'form' )->captureEnd();
+		    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+		?>
+	    </div>
+	</div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box blue ">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-reorder"></i>Resultadu Buka DRH - Benefisiariu</div>
+		<div class="tools"><a href="javascript:;" class="collapse"></a></div>
+	    </div>
+	    <div class="portlet-body form">
+		<table class="table table-striped table-bordered table-hover table-full-width" id="drh-beneficiary-list">
+		    <thead>
+			<tr>
+			    <th>#</th>
+			    <th>Naran</th>
+			    <th>Entidade</th>
+			    <th>Area</th>
+			    <th>Dezignasaun</th>
+			    <th class="no-sort" style="width: 10%">Asaun</th>
+			</tr>
+		    </thead>
+		    <tbody></tbody>
+		</table>
+	    </div>
+	</div>
+    </div>
+</div>

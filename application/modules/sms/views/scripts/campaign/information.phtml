@@ -1,0 +1,110 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_campaign' );
+    echo $this->form->getElement( 'fk_id_department' );
+ ?>
+
+    <?php
+	echo $this->campaign()->getMessages(); 
+	
+	$department = $this->campaign()->getDepartment();
+	if ( !empty( $department ) )
+	    echo $this->action( 'department', 'campaign', 'sms', array( 'department' => $department ) );
+    ?>
+
+    <div class="box-content">
+	<div class="row-fluid">
+	    <div class="span12">
+		<div class="portlet box blue">
+		    <div class="portlet-title">
+			<div class="caption"><i class="icon-info"></i>Informasaun</div>
+			<div class="tools">
+			    <a href="javascript:;" class="collapse"></a>
+			</div>
+		    </div>
+		    <div class="portlet-body form">
+			<div class="row-fluid">
+			    <div class="row-fluid">
+				<div class="span8">
+				    <?php echo $this->form->getElement( 'campaign_title' ); ?>
+				</div>
+				<div class="span4">
+				    <?php echo $this->form->getElement( 'fk_id_campaign_type' ); ?>
+				</div>
+			    </div>
+			    <div class="row-fluid">
+				<div class="span12">
+				    <?php echo $this->form->getElement( 'content' ); ?>
+				    <div class="progress progress-striped active" id="progress-content">
+					<div class="bar"></div>
+				    </div>
+				</div>
+			    </div>
+			    <div class="row-fluid">
+				<div class="span6">
+				    <?php echo $this->form->getElement( 'date_scheduled' ); ?>
+				</div>
+				<div class="span3">
+				    <div class="control-group">
+					<label class="control-label optional">Status Kampanha</label>
+					<div class="controls">
+					    <?php echo $this->campaign()->getStatusLabel(); ?>
+					</div>
+				    </div>
+				</div>
+				<div class="span3">
+				    <?php echo $this->form->getElement( 'wait_response' ); ?>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="row-fluid">
+	    <div class="span12">
+		<div class="portlet box blue">
+		    <div class="portlet-title">
+			<div class="caption"><i class="icon-group"></i>Grupu</div>
+			<div class="tools">
+			    <a href="javascript:;" class="collapse"></a>
+			</div>
+		    </div>
+		    <div class="portlet-body form" id="group-container">
+			<div class="row-fluid">
+			    <div class="span6">
+				<label class="control-label required">Grupu atu haruka</label>
+			    </div>
+			    <div class="span6">
+				<div class="control-group pull-right">
+				    <label class="control-label">
+					Total atu haruka:
+					<a href="javascript:;" class="btn red disabled bold" id="total-sending">0</a>
+				    </label>
+				</div>
+			    </div>
+			</div>
+			<div class="row-fluid">
+			    <div class="span12">
+				<div class="progress progress-striped progress-danger active" id="progress-group">
+				    <div class="bar"></div>
+				</div>
+			    </div>
+			</div>
+			<div class="row-fluid">
+			    <div class="control-group span12">
+				
+				<div class="container-checkbox"><?php echo $this->form->getElement( 'group' ); ?></div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+
+    <?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

@@ -1,0 +1,307 @@
+<?php
+    $id = App_General_String::randomHash();
+
+    if ( !function_exists( 'getNameField') ) {
+	
+	function getNameField( $item, $id = null )
+	{
+	    return 'value[' . $item . '][' . $id . ']';
+	}
+    }
+    
+    $durationUnit = array(
+	'D' => 'Loron',
+	'M' => 'Fulan',
+	'Y' => 'Tinan'
+    );
+?>
+<div class="row-fluid rule">
+    <div class="span12">
+	<div class="portlet box yellow">
+	    <div class="portlet-title">
+		<div class="caption">
+		    <i class="icon-reorder"></i>
+		    <i class="icon-legal"></i>
+		    <span class="rule-label">
+			<?php if ( $this->row ) : ?>
+			    <?php echo $this->optionsRules[$this->row->rule]; ?>
+			<?php else : ?>
+			    Regra Foun
+			<?php endif; ?>
+		    </span>
+		</div>
+		<div class="tools">
+		    <a href="javascript:;" class="expand"></a>
+		    <a href="javascript:;" class="remove" onclick="Fefop.Rule.removeRule( this, event );"></a>
+		</div>
+	    </div>
+	    <div class="portlet-body form hide">
+		<div class="row-fluid">
+		    <div class="span10">
+			<div class="control-group">
+			    <label class="control-label required" for="rule">Regra</label>
+			    <div class="controls">
+				<?php
+				    $options = array( 
+					'class'	    => 'span12 chosen rule-name',
+					'multiple'  => false,
+					'id'	    => 'rule-' . $id
+				    );
+				    
+				    $rule = null;
+				    if ( !empty( $this->row ) )
+					$rule = $this->row->rule;
+				    
+				    echo $this->formSelect( 'rule[' . $id . ']', $rule, $options, $this->optionsRules ); 
+				?>
+			    </div>
+			</div>		
+		    </div>
+		    <div class="span2">
+			<div class="control-group">
+			    <label class="control-label required" for="rule">Obrigatoriu?</label>
+			    <div class="controls">
+				<input type="checkbox" <?php echo empty( $this->row->required ) ? '' : 'checked' ?> name="required[<?php echo $id; ?>]" 
+				       value="1" class="toggle-check">
+			    </div>
+			</div>		
+		    </div>
+		</div>
+		
+		<div class="row-fluid item-rule <?php echo !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::AGE_MIN ? '' : 'hide'; ?>" 
+		     id="<?php echo Fefop_Model_Mapper_Rule::AGE_MIN; ?>">
+		    <div class="span12">
+			<div class="control-group">
+			    <label class="control-label required">
+				<?php echo $this->optionsRules[Fefop_Model_Mapper_Rule::AGE_MIN]; ?>
+			    </label>
+			    <div class="controls">
+				<?php
+				    $optionsField = array( 
+					'class'	    => 'span12 text-numeric',
+					'multiple'  => false,
+					'id'	    => Fefop_Model_Mapper_Rule::AGE_MIN . $id
+				    );
+				    
+				    $value = null;
+				    if ( !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::AGE_MIN ) {
+					
+					$optionsField['class'] .= ' is-required';
+					$value = $this->row->value;
+				    }
+				    
+				    echo $this->formText( getNameField( Fefop_Model_Mapper_Rule::AGE_MIN, $id ), $value, $optionsField ); 
+				?>
+			    </div>
+			</div>		
+		    </div>
+		</div>
+		
+		<div class="row-fluid item-rule <?php echo !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::AGE_MAX ? '' : 'hide'; ?>"
+		     id="<?php echo Fefop_Model_Mapper_Rule::AGE_MAX; ?>">
+		    <div class="span12">
+			<div class="control-group">
+			    <label class="control-label required">
+				<?php echo $this->optionsRules[Fefop_Model_Mapper_Rule::AGE_MAX]; ?>
+			    </label>
+			    <div class="controls">
+				<?php
+				    $optionsField = array( 
+					'class'	    => 'span12 text-numeric',
+					'multiple'  => false,
+					'id'	    => Fefop_Model_Mapper_Rule::AGE_MAX . $id
+				    );
+				    
+				    $value = null;
+				    if ( !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::AGE_MAX ) {
+					
+					$value = $this->row->value;
+					$optionsField['class'] .= ' is-required';
+				    }
+				    
+				    echo $this->formText( getNameField( Fefop_Model_Mapper_Rule::AGE_MAX, $id ), $value, $optionsField ); 
+				?>
+			    </div>
+			</div>		
+		    </div>
+		</div>
+		
+		<div class="row-fluid item-rule <?php echo !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::AMOUNT_MIN ? '' : 'hide'; ?>" 
+		     id="<?php echo Fefop_Model_Mapper_Rule::AMOUNT_MIN; ?>">
+		    <div class="span12">
+			<div class="control-group">
+			    <label class="control-label required">
+				<?php echo $this->optionsRules[Fefop_Model_Mapper_Rule::AMOUNT_MIN]; ?>
+			    </label>
+			    <div class="controls">
+				<?php
+				    $optionsField = array( 
+					'class'	    => 'span12 money-mask',
+					'multiple'  => false,
+					'id'	    => Fefop_Model_Mapper_Rule::AMOUNT_MIN . $id
+				    );
+				    
+				    $value = null;
+				    if ( !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::AMOUNT_MIN ) {
+					
+					$value = number_format( $this->row->value, 2, '.', ',' );
+					$optionsField['class'] .= ' is-required';
+				    }
+				    
+				    echo $this->formText( getNameField( Fefop_Model_Mapper_Rule::AMOUNT_MIN, $id ), $value, $optionsField ); 
+				?>
+			    </div>
+			</div>		
+		    </div>
+		</div>
+		
+		<div class="row-fluid item-rule <?php echo !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::AMOUNT_MAX ? '' : 'hide'; ?>" 
+		     id="<?php echo Fefop_Model_Mapper_Rule::AMOUNT_MAX; ?>">
+		    <div class="span12">
+			<div class="control-group">
+			    <label class="control-label required">
+				<?php echo $this->optionsRules[Fefop_Model_Mapper_Rule::AMOUNT_MAX]; ?>
+			    </label>
+			    <div class="controls">
+				<?php
+				    $optionsField = array( 
+					'class'	    => 'span12 money-mask',
+					'multiple'  => false,
+					'id'	    => Fefop_Model_Mapper_Rule::AMOUNT_MAX . $id
+				    );
+				    
+				    $value = null;
+				    if ( !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::AMOUNT_MAX ) {
+					
+					$value = number_format( $this->row->value, 2, '.', ',' );
+					$optionsField['class'] .= ' is-required';
+				    }
+				    
+				    echo $this->formText( getNameField( Fefop_Model_Mapper_Rule::AMOUNT_MAX, $id ), $value, $optionsField ); 
+				?>
+			    </div>
+			</div>		
+		    </div>
+		</div>
+		
+		<div class="row-fluid item-rule <?php echo !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::DURATION_MIN ? '' : 'hide'; ?>"
+		     id="<?php echo Fefop_Model_Mapper_Rule::DURATION_MIN; ?>">
+		    <div class="row-fluid">
+			<div class="span6">
+			    <div class="control-group">
+				<label class="control-label required" for="time_unit">Periudu</label>
+				<div class="controls">
+				    <?php
+					$options = array( 
+					    'class'	=> 'span12',
+					    'multiple'  => false,
+					    'id'	=> Fefop_Model_Mapper_Rule::DURATION_MIN . $id . 'unit'
+					);
+					
+					$value = null;
+					$unit = null;
+					if ( !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::DURATION_MIN ) {
+					    
+					    $timeUnit = explode( '-', $this->row->value );
+					    $value = $timeUnit[0];
+					    $unit = $timeUnit[1];
+					    $options['class'] .= ' is-required';
+					}
+
+					echo $this->formSelect( 'time_unit[' .  Fefop_Model_Mapper_Rule::DURATION_MIN . '][' . $id . ']', $unit, $options, $durationUnit ); 
+				    ?>
+				</div>
+			    </div>		
+			</div>
+			<div class="span6">
+			    <div class="control-group">
+				<label class="control-label required">
+				    <?php echo $this->optionsRules[Fefop_Model_Mapper_Rule::DURATION_MIN]; ?>
+				</label>
+				<div class="controls">
+				    <?php
+					$optionsField = array( 
+					    'class'	=> 'span12 text-numeric',
+					    'multiple'  => false,
+					    'id'	=> Fefop_Model_Mapper_Rule::DURATION_MIN . $id . 'value'
+					);
+					
+					if ( !empty( $value ) )
+					    $optionsField['class'] .= ' is-required';
+
+					echo $this->formText( getNameField( Fefop_Model_Mapper_Rule::DURATION_MIN, $id ), $value, $optionsField ); 
+				    ?>
+				</div>
+			    </div>		
+			</div>
+		    </div>
+		</div>
+		
+		<div class="row-fluid item-rule <?php echo !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::DURATION_MAX ? '' : 'hide'; ?>"" 
+		     id="<?php echo Fefop_Model_Mapper_Rule::DURATION_MAX; ?>">
+		    <div class="row-fluid">
+			<div class="span6">
+			    <div class="control-group">
+				<label class="control-label required" for="time_unit">Periudu</label>
+				<div class="controls">
+				    <?php
+					$options = array( 
+					    'class'	=> 'span12',
+					    'multiple'  => false,
+					    'id'	=> Fefop_Model_Mapper_Rule::DURATION_MAX  . $id . 'unit'
+					);
+					
+					$value = null;
+					$unit = null;
+					if ( !empty( $this->row ) && $this->row->rule == Fefop_Model_Mapper_Rule::DURATION_MAX ) {
+					    
+					    $timeUnit = explode( '-', $this->row->value );
+					    $value = $timeUnit[0];
+					    $unit = $timeUnit[1];
+					    $options['class'] .= ' is-required ' . $unit;
+					}
+
+					echo $this->formSelect( 'time_unit[' .  Fefop_Model_Mapper_Rule::DURATION_MAX . '][' . $id . ']', $unit, $options, $durationUnit ); 
+				    ?>
+				</div>
+			    </div>		
+			</div>
+			<div class="span6">
+			    <div class="control-group">
+				<label class="control-label required">
+				    <?php echo $this->optionsRules[Fefop_Model_Mapper_Rule::DURATION_MAX]; ?>
+				</label>
+				<div class="controls">
+				    <?php
+					$optionsField = array( 
+					    'class'	=> 'span12 text-numeric',
+					    'multiple'  => false,
+					    'id'	=> Fefop_Model_Mapper_Rule::DURATION_MAX  . $id . 'value'
+					);
+					
+					if ( !empty( $value ) )
+					    $optionsField['class'] .= ' is-required';
+
+					echo $this->formText( getNameField( Fefop_Model_Mapper_Rule::DURATION_MAX, $id ), $value, $optionsField ); 
+				    ?>
+				</div>
+			    </div>		
+			</div>
+		    </div>
+		</div>
+
+		<div class="row-fluid">
+		    <div class="span12">
+			<div class="control-group">
+			    <label class="control-label" for="message">Messajem?</label>
+			    <div class="controls">
+				<textarea cols="80" rows="2" class="span12" 
+				   id="message" name="message[<?php echo $id; ?>]"><?php echo !empty( $this->row ) ? $this->row->message : ''; ?></textarea>
+			    </div>
+			</div>		
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>

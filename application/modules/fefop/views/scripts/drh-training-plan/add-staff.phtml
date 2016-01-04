@@ -1,0 +1,39 @@
+<tr>
+    <td>
+	<input type="hidden" name="staff[<?php echo $this->staff->id_staff ?>]" class="submit-field id-staff" value="<?php echo $this->staff->id_staff ?>" />
+	<input type="hidden" name="handicapped[<?php echo $this->staff->id_staff ?>]" class="submit-field" value="<?php echo (int)!empty( $this->staff->id_handicapped )?>" />
+	<input type="hidden" name="gender[<?php echo $this->staff->id_staff ?>]" class="submit-field" value="<?php echo $this->staff->gender?>" />
+	<input type="hidden" id="final_cost-<?php echo $this->staff->id_staff ?>" name="final_cost[<?php echo $this->staff->id_staff ?>]" class="submit-field" value="<?php echo $this->defaultValues['final_cost']?>" />
+	<?php echo Client_Model_Mapper_Client::buildNumById( $this->staff->fk_id_perdata ) . ' - ' . $this->staff->staff_name; ?>
+    </td>
+    <td><?php echo $this->staff->institution; ?></td>
+    <td><?php echo $this->staff->gender == 'M' ? 'Mane' : 'Feto'; ?></td>
+    <td><?php echo !empty( $this->staff->id_handicapped ) ? 'Sin' : 'Lae'; ?></td>
+    <td>
+	<?php $attribsComments = array( 'class' => 'm-wrap span12 submit-field required money-mask', 'readonly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'training_fund[' . $this->staff->id_staff . ']', $this->defaultValues['training_fund'], $attribsComments ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsPriceUnity = array( 'class' => 'm-wrap span12 submit-field required money-mask', 'readonly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'unit_cost[' . $this->staff->id_staff . ']', $this->defaultValues['unit_cost'], $attribsPriceUnity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php if ( !empty( $this->staff->id_drh_contract ) ) : ?>
+	    <a class="btn red" href="javascript:;">
+		<i class="icon-alert icon-lock"></i>                                         
+	    </a>
+	<?php else :?>
+	    <a class="btn red" onclick="Fefop.DRHTrainingPlan.removeItem( this );">
+		<i class="icon-remove-sign"></i>            
+	    </a>
+	<?php endif; ?>
+    </td>
+</tr>

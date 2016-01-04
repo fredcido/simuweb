@@ -1,0 +1,36 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th>Kampanha</th>
+	    <th>Numeru simu</th>
+	    <th>Kontatu</th>
+	    <th>Tipu</th>
+	    <th>Telemóvel</th>
+	    <th>Data</th>
+	    <th>Messaje</th>
+	</tr>
+    </thead>
+    <tbody>
+	<?php foreach ( $this->data['rows'] as $row ) : ?>
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo $row->campaign_title; ?></td>
+		<td><?php echo App_General_String::cleanFone( $row->target ); ?></td>
+		<td><?php echo $row->contact; ?></td>
+		<td><?php echo $row->type; ?></td>
+		<td><?php echo App_General_String::cleanFone( $row->source ); ?></td>
+		<td><?php echo $this->date( $row->date_time, 'dd/MM/yyyy HH:mm' ); ?></td>
+		<td><?php echo $row->content; ?></td>
+	    </tr>
+	<?php endforeach; ?>
+    </tbody>
+    <tfoot>
+	<tr>
+	    <th colspan="6">Total</th>
+	    <th><?php echo count( $this->data['rows'] ); ?></th>
+	</tr>
+    </tfoot>
+</table>

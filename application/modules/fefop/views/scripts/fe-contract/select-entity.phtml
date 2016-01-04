@@ -1,0 +1,52 @@
+<div class="row-fluid">
+    <div class="span4">
+	<div class="control-group">
+	    <label class="control-label">Evidensia</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo Client_Model_Mapper_Client::buildNumRow( $this->registration ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+    <div class="span8">
+	<div class="control-group">
+	    <label class="control-label">Benefisiariu</label>
+	    <div class="controls">
+		<span class="text bold">
+		    <?php echo Client_Model_Mapper_Client::buildName( $this->registration ); ?>
+		</span>
+	    </div>
+	</div>
+    </div>
+</div>
+<hr>
+<div class="row-fluid">
+    <table class="table table-striped table-bordered table-hover table-full-width">
+	<thead>
+	    <tr>
+		<th>Entidade</th>
+		<th>Tipu</th>
+		<th class="no-sort" style="width: 12%">Action</th>
+	    </tr>
+	</thead>
+	<tbody>
+	    <?php foreach ( $this->entities as $entity ) : ?>
+		<tr>
+		    <td><?php echo $entity['name']; ?></td>
+		    <td>
+			<?php echo ucfirst( $entity['type'] ); ?>
+		    </td>
+		    <td>
+			<a class="btn red action-ajax" href="javascript:;" 
+			   data-entity="<?php echo $entity['name']; ?>"
+			   data-type="<?php echo $entity['type'] == 'enterprise' ? 'fk_id_fefpenterprise' : 'fk_id_fefpeduinstitution'; ?>"
+			   data-id="<?php echo $entity['id']; ?>">
+			    <i class="icon-check"></i>            
+			</a>
+		    </td>
+		</tr>
+	    <?php endforeach; ?>
+	</tbody>
+    </table>
+</div>

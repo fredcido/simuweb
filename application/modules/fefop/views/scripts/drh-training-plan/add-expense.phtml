@@ -1,0 +1,19 @@
+<tr>
+    <td>
+	<input type="hidden" name="expense[<?php echo $this->expense->id_budget_category ?>]" class="submit-field id-expense" value="<?php echo $this->expense->id_budget_category ?>" />
+	<?php echo $this->expense->description; ?>
+    </td>
+    <td>
+	<?php $attribsPriceUnity = array( 'class' => 'm-wrap span12 submit-field expense-amount required money-mask' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'amount_expense[' . $this->expense->id_budget_category . ']', $this->defaultValues['amount'], $attribsPriceUnity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<a class="btn red" onclick="Fefop.DRHTrainingPlan.removeItem( this );">
+	    <i class="icon-remove-sign"></i>            
+	</a>
+    </td>
+</tr>

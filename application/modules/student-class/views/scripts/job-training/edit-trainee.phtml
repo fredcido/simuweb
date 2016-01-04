@@ -1,0 +1,84 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_trainee' );
+    echo $this->form->getElement( 'fk_id_jobtraining' );
+    echo $this->form->getElement( 'fk_id_perdata' );
+    echo $this->form->getElement( 'step' );
+ ?>
+    <div class="box-content">
+	<div class="row-fluid">
+	    <div class="span3">
+		<div class="control-group">
+		    <label class="control-label">Numeru Rejistu:</label>
+		    <div class="controls">
+			<span class="text bold">
+			    <strong><?php echo Client_Model_Mapper_Client::buildNumRow( $this->client ); ?></strong>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	    <div class="span6">
+		<div class="control-group">
+		    <label class="control-label">Naran Kliente:</label>
+		    <div class="controls">
+			<span class="text bold">
+			    <?php echo Client_Model_Mapper_Client::buildName( $this->client ); ?>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	    <div class="span3">
+		<div class="control-group">
+		    <label class="control-label">CEOP Kliente:</label>
+		    <div class="controls">
+			<span class="text bold">
+			    <?php echo $this->client->name_dec; ?>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<?php 
+	    if ( !empty( $this->contract ) ) :
+		echo $this->action( 'contract', 'index', 'fefop', array( 'id' => $this->contract ) );
+	    endif; 
+	?>
+	<hr />
+	<div class="row-fluid">
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'date_start' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'date_finish' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'duration' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'contract' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'status' ); ?>
+		</div>
+		<div class="span4">
+		    <div class="control-group">
+			<label class="control-label required">Kompletu?</label>
+			<div class="controls">
+			    <span class="label label-<?php echo empty( $this->trainee->completed ) ? 'important' : 'success'; ?>">
+				<?php echo empty( $this->trainee->completed ) ? 'LAE' : 'SIM'; ?>
+			    </span>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+
+	<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

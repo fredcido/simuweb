@@ -1,0 +1,46 @@
+<div class="row-fluid">
+    <div class="span12">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Rejistu Kliente' )
+			->setColor( 'purple' )
+			->addItem(
+			    array(
+				'label' =>  'Rejistu Kliente Foun',
+				'url'   =>  'client/client',
+				'id'    =>  Client_Form_ClientInformation::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label' => 'Buka - Atualiza',
+				'url'   => 'client/client/list',
+				'id'    =>  Client_Form_ClientSearch::ID
+			    )
+			);
+	?>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+	<?php 
+	    echo $this->portlet()
+			->setTitle( 'Rejistu Kazu' )
+			->setColor( 'purple' )
+			->addItem(
+			    array(
+				'label' =>  'Rejistu Kazu Grupu Foun',
+				'url'   =>  'client/case-group',
+				'id'    => Client_Form_CaseGroup::ID
+			    )
+			)
+			->addItem(
+			    array(
+				'label' => 'Buka - Atualiza',
+				'url'   => 'client/case/list',
+				'id'    =>  Client_Form_CaseGroup::ID
+			    )
+			);
+	?>
+    </div>
+</div>

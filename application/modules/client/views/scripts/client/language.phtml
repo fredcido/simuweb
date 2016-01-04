@@ -1,0 +1,49 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'fk_id_perdata' );
+    echo $this->form->getElement( 'step' );
+ ?>
+    <div class="box-content">
+	<div class="row-fluid">
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_perlanguage' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_levelknowledge' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'usage' ); ?>
+		</div>
+	    </div>
+	</div>
+
+	<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>
+
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box light-grey ">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-reorder"></i>Resultadu Lian Fuan Sira</div>
+	    </div>
+	    <div class="portlet-body form">
+		<table class="table table-striped table-bordered table-hover table-full-width" id="language-list">
+		    <thead>
+			<tr>
+			    <th style="width: 20%">Lian Fuan</th>
+			    <th>Nivel</th>
+			    <th>Utilizasaun</th>
+			    <th>Action</th>
+			</tr>
+		    </thead>
+		    <tbody></tbody>
+		</table>
+	    </div>
+	</div>
+    </div>
+</div>

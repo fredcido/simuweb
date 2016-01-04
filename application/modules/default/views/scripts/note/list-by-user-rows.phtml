@@ -1,0 +1,18 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->title; ?></td>
+	<td><?php echo $row->date; ?></td>
+	<td>
+	    <span class="label label-<?php echo $row->level == 1 ? 'warning' : 'important'; ?>">
+		<?php echo $row->level == 1 ? 'Normal' : 'Urgente' ; ?>
+	    </span>
+	</td>
+	<td><?php echo $row->name; ?></td>
+	<td><?php echo $this->truncate( strip_tags( $row->message ), 40 ); ?></td>
+	<td>
+	    <span class="label label-<?php echo $row->read == 1 ? 'success' : 'important'; ?>">
+		<?php echo $row->read == 1 ? 'Sim' : 'Lae' ; ?>
+	    </span>
+	</td>
+    </tr>
+<?php endforeach; ?>

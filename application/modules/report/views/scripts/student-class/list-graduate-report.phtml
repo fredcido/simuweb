@@ -1,0 +1,43 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th>Kartaun Evidensia</th>
+	    <th>Naran</th>
+	    <th>Seksu</th>
+	    <th>Data moris</th>
+	    <th>Tinan</th>
+	    <th>Kartaun Eleitoral</th>
+	    <th>Phone</th>
+	    <th>E-mail</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['rows'] as $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?></td>
+		<td><?php echo Client_Model_Mapper_Client::buildName( $row ); ?></td>
+		<td><?php echo $row['gender']; ?></td>
+		<td><?php echo $row['birth_date_format']; ?></td>
+		<td><?php echo $row['age']; ?></td>
+		<td><?php echo $row['electoral']; ?></td>
+		<td><?php echo $row['client_fone']; ?></td>
+		<td><?php echo $row['email']; ?></td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th colspan="7">Total Rejistu</th>
+	    <th><?php echo count( $this->data['rows'] ); ?></th>
+	</tr>
+    </tfoot>
+</table>

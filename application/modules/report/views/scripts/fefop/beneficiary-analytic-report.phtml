@@ -1,0 +1,42 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+    	<tr>
+    	    <th>Kartaun Evidensia</th>
+    	    <th>Benefisiariu</th>
+    	    <th>Seksu</th>
+    	    <th>Disability</th>
+    	    <th>Prinsipal</th>
+    	    <th>Program</th>
+    	    <th>Module</th>
+    	    <th>Kontratu</th>
+    	    <th>Status</th>    	    
+    	    <th>Distritu</th>
+    	</tr>
+    </thead>
+    <tbody>
+    	<?php foreach ($this->data['rows'] as $row) : ?>
+    	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+                <td><?php echo $row['code']; ?></td>
+                <td><?php echo $row['name']; ?></td>
+                <td><?php echo $row['gender']; ?></td>
+                <td><?php echo $row['disability']; ?></td>
+                <td><?php echo $row['target']; ?></td>
+				<td><?php echo $row['program']; ?></td>
+				<td><?php echo $row['module']; ?></td>
+				<td><?php echo $row['cod_contract']; ?></td>
+				<td><?php echo $row['status_description']; ?></td>
+				<td><?php echo $row['num_district'], ' - ', $row['District']; ?></td>
+    	    </tr>
+    	<?php endforeach; ?>
+    </tbody>
+    <tfoot>
+    	<tr>
+    	    <th colspan="9">Total</th>
+    	    <th><?php echo count($this->data['rows']); ?></th>
+    	</tr>
+    </tfoot>
+</table>

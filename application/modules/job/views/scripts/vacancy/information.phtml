@@ -1,0 +1,116 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_jobvacancy' );
+    echo $this->form->getElement( 'step' );
+ ?>
+    <div class="box-content">
+	<div class="row-fluid">
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'vacancy_titule' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_dec' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'start_salary' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_profocupation' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'registration_date' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'finish_salary' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_id_fefpenterprise' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'open_date' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'additional_salary' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'num_position' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'close_date' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'drive_licence' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'minimum_experience' ); ?>
+		</div>
+		<div class="span4">
+		    <div class="span6">
+			<?php echo $this->form->getElement( 'start_job_date' ); ?>
+		    </div>
+		    <div class="span6">
+			<?php echo $this->form->getElement( 'finish_job_date' ); ?>
+		    </div>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'category_drive_licence' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'minimum_age' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'weekly_workload' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'use_vehicle' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'maximum_age' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'start_time_job' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'vehicle' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'fk_location_overseas' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'finish_time_job' ); ?>
+		</div>
+		<div class="span4">
+		    <?php echo $this->form->getElement( 'gender' ); ?>
+		</div>
+	    </div>
+	    <div class="row-fluid">
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'description_vacancy' ); ?>
+		</div>
+		<div class="span6">
+		    <?php echo $this->form->getElement( 'description_job' ); ?>
+		</div>
+	    </div>
+	</div>
+
+	<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

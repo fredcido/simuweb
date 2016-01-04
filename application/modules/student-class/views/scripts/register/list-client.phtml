@@ -1,0 +1,73 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td>
+	    <input type="hidden" name="date_drop_out[<?php $row->id_perdata; ?>]" value="<?php $row->status_class; ?>" />
+	    <?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?>
+	</td>
+	<td>
+	    <?php if ( $this->access( Client_Form_ClientInformation::ID) ) : ?>
+		<a href="<?php echo $this->baseUrl( '/client/client/print/id/' . $row->id_perdata ); ?>" target="_blank">
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+		</a>
+	    <?php else : ?>
+		    <?php echo Client_Model_Mapper_Client::buildName( $row ); ?>
+	    <?php endif; ?>
+	</td>
+	<td><?php echo $row->gender; ?></td>
+	<?php if ( $this->competency->count() < 1 ) : ?>
+	    <td>
+		<?php
+		    $attribsText = array(
+			'class' => 'm-wrap span12 focused date-mask date-drop',
+			'id'    => App_General_String::randomHash()
+		    );
+
+		    if ( !empty( $row->status_class ) && $row->status_class == StudentClass_Model_Mapper_StudentClass::DROPPED_OUT ) {
+			
+			$attribsText['required'] = true;
+			$attribsText['class'] .= ' required';
+			
+		    } else
+			$attribsText['disabled'] = true;
+
+		    if ( !$this->studentClassActive()->hasAccessEdit() )
+			$attribsText['disabled'] = true;
+		?>
+		<div class="control-group">
+		    <div class="controls">
+			<?php echo $this->formText( 'date_drop[' . $row->id_perdata . ']', empty( $row->date_drop_out ) ? '' : $this->date( $row->date_drop_out ), $attribsText );  ?>
+		    </div>
+		</div>
+	    </td>
+	<?php else : ?>
+	    <td>
+		<?php echo empty( $row->date_drop_out ) ? '-' : $this->date( $row->date_drop_out ); ?>
+	    </td>
+	<?php endif; ?>
+	<?php if ( $this->competency->count() < 1 ) : ?>
+	    <td>
+		<?php
+		    $options = array( 
+			'class'	    => 'm-wrap span12',
+			'onchange'  => 'StudentClass.Register.setDropOut(this)'
+		    );
+
+		    if ( !$this->studentClassActive()->hasAccessEdit() )
+			$options['disabled'] = true;
+
+		    echo $this->formSelect( 'status_client[' . $row->id_perdata . ']', $row->status_class, $options, $this->optionsStatus ); 
+		?>
+	    </td>
+	<?php else : ?>
+	    <td>
+		<a class="btn green" href="javascript:;" onClick="StudentClass.Register.resultCompetencies( <?php echo $row->id_perdata; ?>);">
+		    <i class="icon-ok-circle"></i>  
+		    Rezultadu                                            
+		</a>
+	    </td>
+	    <td>
+		<?php echo $this->nomenclature()->resultClass( $row->status_class ); ?>
+	    </td>
+	<?php endif; ?>
+    </tr>
+<?php endforeach; ?>

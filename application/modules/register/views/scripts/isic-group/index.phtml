@@ -1,0 +1,22 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <ul class="nav nav-tabs">
+		<li class="active">
+		    <a href="#form" data-toggle="tab">Grupu Rejistu</a>
+		</li>
+		<li>
+		    <a href="#list" data-toggle="tab">Grupu Sira</a>
+		</li>
+	    </ul>
+	    <div class="tab-content">
+		<div class="tab-pane active" id="form">
+		    <?php echo $this->render( 'isic-group/form.phtml' ) ; ?>
+		</div>
+		<div class="tab-pane" id="list">
+		    <?php echo $this->render( 'isic-group/rows.phtml' ) ; ?>
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->enterprise_name; ?></td>
+	<td><?php echo $row->type_enterprise; ?></td>
+	<td><?php echo $row->name_dec; ?></td>
+	<td>
+	    <?php if ( empty( $this->listAjax ) ) : ?>
+		<?php if ( $this->access( Register_Form_EnterpriseInformation::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		    <a class="btn green" href="<?php echo $this->baseUrl( 'register/enterprise/edit/id/' . $row->id_fefpenterprise ); ?>">
+			<i class="icon-edit"></i>  
+			Troka                                            
+		    </a>
+		<?php else : ?>
+		    <a class="btn red" href="javascript:;">
+			<i class="icon-alert icon-lock"></i>  
+			La bele acessu                                            
+		    </a>
+		<?php endif; ?>
+	    <?php else : ?>
+		<a class="btn red action-ajax" href="javascript:;" data-id="<?php echo $row->id_fefpenterprise; ?>">
+		    <i class="icon-ok"></i>                                     
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

@@ -1,0 +1,55 @@
+<div class="filters">
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
+</div>
+
+<?php if (!empty($this->data['rows'])): ?>
+    <table class="relatorio">
+        <thead>
+        	<tr>
+        	    <th>Kontratu</th>
+    		    <th>Benefisiariu</th>
+    		    <th>Status</th>
+    		    <th>Program</th>
+    		    <th>Module</th>
+    		    <th>Valor Contrato</th>
+    		    <th>Financeiros</th>
+    		    <th>Devolução</th>
+    		    <th>Acrescidos</th>
+    		    <th>Bancários</th>
+    		    <th>Total</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<?php foreach ($this->data['rows'] as $row): ?>
+        	    <tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+            		<td><?php echo $row['contract']; ?></td>
+            		<td><?php echo $row['beneficiary']; ?></td>
+            		<td><?php echo $row['status']; ?></td>
+            		<td><?php echo $row['program']; ?></td>
+            		<td><?php echo $row['module']; ?></td>
+            		<td><?php echo $this->currency($row['amount_contract']); ?></td>
+            		<td><?php echo $this->currency($row['amount_financial']); ?></td>
+            		<td><?php echo $this->currency($row['amount_repayment']); ?></td>
+            		<td><?php echo $this->currency($row['amount_addcosts']); ?></td>
+            		<td><?php echo $this->currency($row['amount_banking']); ?></td>
+            		<td><?php echo $this->currency($this->data['total'][$row['id_fefop_contract']]); ?></td>
+        	    </tr>
+        	<?php endforeach; ?>
+        </tbody>
+        <tfoot>
+        	<tr>
+        		<th colspan="5"></th>
+        		<th><?php echo $this->currency(array_sum(array_map(function($row){return App_General_String::toFloat($row['amount_contract']); }, $this->data['rows']))); ?></th>
+        		<th><?php echo $this->currency(array_sum(array_map(function($row){return App_General_String::toFloat($row['amount_financial']); }, $this->data['rows']))); ?></th>
+        		<th><?php echo $this->currency(array_sum(array_map(function($row){return App_General_String::toFloat($row['amount_repayment']); }, $this->data['rows']))); ?></th>
+        		<th><?php echo $this->currency(array_sum(array_map(function($row){return App_General_String::toFloat($row['amount_addcosts']); }, $this->data['rows']))); ?></th>
+        		<th><?php echo $this->currency(array_sum(array_map(function($row){return App_General_String::toFloat($row['amount_banking']); }, $this->data['rows']))); ?></th>
+        		<th><?php echo $this->currency(array_sum($this->data['total'])); ?></th>
+        	</tr>
+        	<tr>
+        	    <th colspan="10">Total</th>
+        	    <th><?php echo count($this->data['rows']); ?></th>
+        	</tr>
+        </tfoot>
+    </table>
+<?php endif; ?>

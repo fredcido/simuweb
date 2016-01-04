@@ -1,0 +1,20 @@
+<tr>
+    <td>
+	<input type="hidden" name="entity[<?php echo $this->row['type']; ?>][]" value="<?php echo $this->row['id']; ?>" class="entity <?php echo $this->row['type']; ?>" />
+	<?php echo $this->row['name']; ?>
+    </td>
+    <td>
+	<?php echo ucfirst( $this->row['type'] ); ?>
+    </td>
+    <td>
+	<?php if ( empty( $this->has_contract ) ) : ?>
+	    <a class="btn red" onclick="Fefop.FERegistration.removeItem( this );">
+		<i class="icon-remove-sign"></i>            
+	    </a>
+	<?php else : ?>
+	    <a class="btn red disabled" href='javascript:;'>
+		<i class="icon-lock"></i>            
+	    </a>
+	<?php endif; ?>
+    </td>
+</tr>

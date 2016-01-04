@@ -1,0 +1,65 @@
+<?php 
+    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/plugins/jquery-file-upload/css/jquery.fileupload-ui.css' ) );
+    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/plugins/bootstrap-tree/bootstrap-tree/css/bootstrap-tree.css' ) );
+
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/vendor/tmpl.min.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload-fp.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload-ui.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/bootstrap-tree/bootstrap-tree/js/bootstrap-tree.js' ) );
+    $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/app/file.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/controller/client/case.js' ) ); 
+?>
+
+<?php echo $this->caseActiveGroup()->getMessage(); ?>
+
+<div class="row-fluid" id="container-case-group">
+    <div class="span12">
+	<?php
+	    echo $this->accordion()
+			->setDefaultColor( 'blue' )
+			->addStep(
+			    array(
+				'ref'	    => 'information',
+				'content'   => $this->action( 'information', 'case-group', 'client', array( 'id' => $this->id ) ),
+				'url'	    => $this->path( 'information/id/' . $this->id ),
+				'label'	    => 'Levantamento Nesesidade',
+				'callback'  => 'Client.CaseGroup.configInformation',
+				'released'  => true,
+				'id'	    => Client_Form_CaseGroup::ID
+			    )
+			)
+			->addStep(
+			    array(
+				'ref'	    => 'client',
+				'label'	    => 'Kliente Sira',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'client/id/' . $this->id ),
+				'callback'  => 'Client.CaseGroup.configClient',
+				'id'	    => Client_Form_CaseGroup::ID
+			    )
+			)
+			->addStep(
+			    array(
+				'ref'	    => 'action-plan',
+				'label'	    => 'Dezenvolvimentu Planu Asaun',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'action-plan/id/' . $this->id ),
+				'callback'  => 'Client.CaseGroup.configActionPlan',
+				'id'	    => Client_Form_CaseGroup::ID
+			    )
+			)
+			->addStep(
+			    array(
+				'ref'	    => 'finish',
+				'label'	    => 'Remata Kazu',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'finish/id/' . $this->id ),
+				'callback'  => 'Client.CaseGroup.reloadFinish',
+				'id'	    => Client_Form_CaseGroup::ID
+			    )
+			);
+	    ?>
+    </div>
+</div>

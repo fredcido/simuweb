@@ -1,0 +1,22 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->title; ?></td>
+	<td><?php echo $row->date; ?></td>
+	<td>
+	    <span class="label label-<?php echo $row->level == 1 ? 'warning' : 'important'; ?>">
+		<?php echo $row->level == 1 ? 'Normal' : 'Urgente' ; ?>
+	    </span>
+	</td>
+	<td><?php echo empty( $row->name ) ? 'Sistema' : $row->name; ?></td>
+	<td>
+	    <span class="label label-<?php echo $row->read == 1 ? 'success' : 'important'; ?>">
+		<?php echo $row->read == 1 ? 'Sim' : 'Lae' ; ?>
+	    </span>
+	</td>
+	<td>
+	    <a class="btn red-stripe" href="javascript:;" onclick="Note.detailNote( <?php echo $row->id_note; ?> )">
+		<i class="icon-eye-open"></i>
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

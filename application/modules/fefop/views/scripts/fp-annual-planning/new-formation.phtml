@@ -1,0 +1,60 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_annual_planning' );
+    echo $this->form->getElement( 'id_planning_course' );
+    echo $this->form->getElement( 'year' );
+    echo $this->form->getElement( 'fk_id_fefpeduinstitution' );
+    echo $this->form->getElement( 'fk_id_unit_cost' );
+ ?>
+<div id="new-formation">
+    <div class="row-fluid">
+	<div class="span6">
+	    <?php echo $this->form->getElement( 'institution' ); ?>
+	</div>
+	<div class="span6">
+	    <?php echo $this->form->getElement( 'year_planning' ); ?>
+	</div>
+    </div>
+    <div class="row-fluid">
+	<div class="span6">
+	    <?php echo $this->form->getElement( 'category' ); ?>
+	</div>
+	<div class="span6">
+	    <?php echo $this->form->getElement( 'fk_id_perscholarity' ); ?>
+	</div>
+    </div>
+    <div class="row-fluid">
+	<div class="span6">
+	    <?php echo $this->form->getElement( 'date_start' ); ?>
+	</div>
+	<div class="span6">
+	    <?php echo $this->form->getElement( 'date_finish' ); ?>
+	</div>
+    </div>
+    <div class="row-fluid">
+	<div class="span4">
+	    <?php echo $this->form->getElement( 'total_woman' ); ?>
+	</div>
+	<div class="span4">
+	    <?php echo $this->form->getElement( 'total_man' ); ?>
+	</div>
+	<div class="span4">
+	    <?php echo $this->form->getElement( 'total_students' ); ?>
+	</div>
+    </div>
+    <div class="row-fluid">
+	<div class="span6">
+	    <?php echo $this->form->getElement( 'unit_cost' ); ?>
+	</div>
+	<div class="span6">
+	    <?php echo $this->form->getElement( 'total_cost' ); ?>
+	</div>
+    </div>
+
+    <?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+</div>
+
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

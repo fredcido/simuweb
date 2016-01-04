@@ -1,0 +1,26 @@
+<table class="table table-striped table-bordered table-hover table-full-width">
+    <thead>
+	<tr>
+	    <th rowspan="2">Número de beneficiários estimado</th>
+	    <th colspan="3">EMPREGO</th>
+	    <th rowspan="2" style="width: 10%">Qtd.</th>
+	    <th rowspan="2" style="width: 12%">Folin Ketak</th>			
+	    <th rowspan="2" style="width: 10%">Folin Total</th>			
+	    <th rowspan="2" >Komentariu</th>
+	    <th rowspan="2" style="width: 5%"></th>
+	</tr>
+	<tr>
+	    <th>Data de inicio</th>
+	    <th>Data de finalização</th>
+	    <th>Loron</th>
+	</tr>
+    </thead>
+    <tbody>
+	<?php 
+	    if ( !empty( $this->items ) ) {
+		foreach ( $this->items as $itemExpense )
+		    echo $this->action( 'add-detailed-employment', 'edc-contract', 'fefop', array( 'row' => $itemExpense ) );
+	    }
+	?>
+    </tbody>
+</table>

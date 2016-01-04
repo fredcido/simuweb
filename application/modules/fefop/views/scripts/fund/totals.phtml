@@ -1,0 +1,53 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="portlet box blue">
+	    <div class="portlet-title">
+		<div class="caption"><i class="icon-dollar"></i>Total Fundu</div>
+	    </div>
+	    <div class="portlet-body form">
+		<table class="table table-striped table-bordered table-hover table-full-width">
+		    <thead>
+			<tr>
+			    <th rowspan="2" class="text-center">Fundu</th>
+			    <th class="text-center" colspan="<?php echo count( $this->totals['years'] ); ?>">Tinan</th>
+			    <th rowspan="2">Balansu to <?php echo $this->date(); ?></th>
+			</tr>
+			<tr>
+			    <?php foreach ( $this->totals['years'] as $year => $amount ): ?>
+				<th class="text-center"><?php echo $year; ?></th>
+			    <?php endforeach; ?>
+			</tr>
+		    </thead>
+		    <tbody>
+			<?php foreach ( $this->totals['totals'] as $fund => $years ) : ?>
+			    <tr>
+				<td><?php echo $fund; ?></td>
+				<?php foreach ( $this->totals['years'] as $year => $amount ) : ?>
+				    <td>
+					<?php
+					    $amount = 0;
+					    if ( !empty( $years[$year] ) )
+						$amount = $years[$year];
+					    
+					    echo $this->currency( $amount );
+					?>
+				    </td>
+				<?php endforeach; ?>
+				<td>
+				    <?php echo $this->currency( $this->totals['balance'][$fund] ); ?>
+				</td>
+			    </tr>
+			<?php endforeach; ?>
+			<tr>
+			    <th>Total</th>
+			    <?php foreach ( $this->totals['years'] as $amount ): ?>
+				<th><?php echo $this->currency( $amount ); ?></th>
+			    <?php endforeach; ?>
+			    <th><?php echo $this->currency( $this->totals['total_balance'] ); ?></th>
+			</tr>   
+		    </tbody>
+		</table>
+	    </div>
+	</div>
+    </div>
+</div>

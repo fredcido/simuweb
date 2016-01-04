@@ -1,0 +1,27 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->render( 'beneficiary-blacklist/form.phtml' ),
+				'label'	    => 'Rejistu Foun',
+				'released'  => true,
+				'id'	    => Fefop_Form_BeneficiaryBlacklist::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'list',
+				'label'	    => 'Lista',
+				'released'  => true,
+				'url'	    => $this->path( 'list' ),
+				'id'	    => Fefop_Form_BeneficiaryBlacklist::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

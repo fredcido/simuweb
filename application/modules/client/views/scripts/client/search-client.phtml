@@ -1,0 +1,53 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?></td>
+	<td><?php echo Client_Model_Mapper_Client::buildName( $row ); ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->birth_date_format; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->age; ?></td>
+	<td><?php echo $row->gender; ?></td>
+	<td class="hidden-phone hidden-tablet"><?php echo $row->name_dec; ?></td>
+	<td style="width: 21%">
+	    <?php if ( empty( $this->listAjax ) ) : ?>
+		<?php if ( $this->access( Client_Form_ClientInformation::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		    <a class="btn green-stripe" href="<?php echo $this->baseUrl( 'client/client/view/id/' . $row->id_perdata ); ?>">
+			<i class="icon-eye-open"></i>  
+			Haree                                           
+		    </a>
+		<?php else : ?>
+		    <a class="btn red" href="javascript:;">
+			<i class="icon-alert icon-lock"></i>  
+			La bele acessu                                            
+		    </a>
+		<?php endif; ?>
+
+		<?php if ( $this->access( Client_Form_ActionPlan::ID ) ) : ?>
+
+		    <?php if ( $row->case == 1 ) : ?>
+			<a class="btn green" href="<?php echo $this->baseUrl( 'client/case/edit/id/' . $row->id_action_plan ); ?>">
+			    <i class="icon-folder-open"></i>  
+			    Kazu                                           
+			</a>
+		    <?php else : ?>
+			<a class="btn blue" href="javascript:;" onclick="Client.Case.checkClientData( <?php echo $row->id_perdata; ?> );">
+			    <i class="icon-folder-open"></i>  
+			    Kazu                                           
+			</a>
+		    <?php endif; ?>
+
+		<?php endif; ?>
+	    <?php else : ?>
+
+		<?php if ( $row->active == 1 ) : ?>
+		    <a class="btn red action-ajax" href="javascript:;" data-id="<?php echo $row->id_perdata; ?>">
+			<i class="icon-ok"></i>                                     
+		    </a>
+	    
+		<?php else : ?>
+		    <a class="btn red" href="javascript:;">
+			<i class="icon-alert icon-lock"></i>
+		    </a>
+		<?php endif; ?>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

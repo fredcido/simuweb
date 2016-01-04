@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<?php
+	    $this->headMeta()
+		    ->appendHttpEquiv( 'Content-Language', 'en-US' )
+		    ->appendHttpEquiv( 'expires', 'Wed, 26 Feb 2012 08:21:57 GMT' )
+		    ->appendHttpEquiv( 'pragma', 'no-cache' )
+		    ->appendHttpEquiv( 'Cache-Control', 'no-cache' )
+		    ->appendHttpEquiv( 'imagetoolbar', 'no' )
+		    ->appendHttpEquiv( 'Content-Encoding', 'gzip' )
+		    ->appendName( 'viewport', 'width=device-width, initial-scale=1.0' );
+	    
+	    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/css/pages/error.css' ) );
+
+	    echo $this->headTitle();
+	    echo $this->headMeta() . "\n";
+	    echo $this->headLink() . "\n";
+	    echo $this->headScript() . "\n";
+	?>
+    </head>
+    
+    <body class="page-500-full-page">
+	<div class="row-fluid">
+	    <div class="span12 page-500">
+		<div class=" number">
+			500
+		</div>
+		<div class=" details">
+		    <h3>Oops, Buat ida la diak.</h3>
+		    <p>
+			    Ami koko halo ida diak!<br />
+			    Favor ida, ita bele mai fila fali orsida.<br /><br />
+		    </p>
+		     <p>
+			<a href="<?php echo $this->baseUrl( '/' ); ?>">
+			    Ba Home
+			</a>
+			<br>
+		    </p>
+		    <p>
+			<?php 
+			    if ( !empty( $this->exception ) ) :
+				echo $this->exception->getMessage();
+				echo '<br />';
+				echo $this->exception->getTraceAsString();
+			    endif;
+			?>
+		    </p>
+		</div>
+	    </div>
+	</div>
+    </body>
+
+</html>

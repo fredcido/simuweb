@@ -1,0 +1,32 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $row->title; ?></td>
+	<td><?php echo $row->counselor; ?></td>
+	<td><?php echo $row->date_start; ?></td>
+	<td><?php echo $row->type == 'G' ? 'Grupu' : 'Individual'; ?></td>
+	<td style="width: 10%" class="hidden-phone hidden-tablet">
+	    <?php 
+		if ( $row->status == 1 ) {
+		  
+		    $label = 'success';
+		    $status = 'Loke';  
+		    
+		} else {
+		    
+		    $label = ( $row->status == 2 ) ? 'warning' : 'important';
+		    $status = ( $row->status == 2 ) ? 'Kansela' : 'Taka';	
+		}
+	    ?>
+	    
+	    <span class="label label-<?php echo $label; ?>">
+		<?php echo $status; ?>
+	    </span>
+	</td>
+	<td>
+	    <a class="btn green" href="<?php echo $this->baseUrl( 'client/' . ( $row->type == 'G' ? 'case-group' : 'case' ) . '/edit/id/' . $row->id ); ?>">
+		<i class="icon-edit"></i>  
+		Troka                                            
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

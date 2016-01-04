@@ -1,0 +1,57 @@
+body {
+    background: #fff !important;
+    font-size: 11px;
+}
+
+.logo-print {
+    text-align: center;
+    height: 81px;
+}
+
+.form-section {
+    background-color: #EAEAEA !important;
+    -webkit-print-color-adjust: exact; 
+    padding: 5px;
+    margin: 0 !important;
+}
+
+.border-bottom {
+    border: 1px solid #ccc;
+    border-width: 0 0 1px 0;
+}
+
+label {
+    font-size: 13px;
+    margin-top: 0 !important;
+}
+
+.controls .text {
+    font-size: 13px;
+    margin-top: 0 !important;
+}
+
+.row-fluid [class*="span"] {
+    min-height: 20px !important;
+}
+
+hr {
+    margin: 10px 0;
+}
+
+h4 {
+    font-size: 14.5px;
+    margin: 2px 0;
+}
+
+.bold {
+    font-weight: 900 !important;
+}
+
+.photo {
+    width: 120px;
+    height: 141px;
+    background: #fff;
+    float: right;
+    margin: 0 0 5px 0;
+    background: url("../images/no-picture.gif") center center no-repeat #fff;
+}

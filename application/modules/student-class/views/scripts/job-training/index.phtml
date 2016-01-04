@@ -1,0 +1,74 @@
+<?php $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/controller/client/client.js' ) );  ?>
+<div class="row-fluid" id="container-job-training">
+    
+    <?php echo $this->jobTrainingActive()->getMessage(); ?>
+    
+    <div class="row-fluid text-center <?php echo empty( $this->id ) ? 'hide' : ''; ?> margin-bottom-15" id="container-print">
+	<button class="btn green" type="button" onclick="StudentClass.JobTraining.printStudentClass();">
+	    <i class="icon-print m-icon-white"></i>
+	    Imprimir Job Training
+	</button>
+    </div> 
+    
+    <div class="row-fluid">
+	<div class="span12">
+	    <?php
+		$this->accordion()
+			    ->setDefaultColor( 'yellow' )
+			    ->addStep(
+				array(
+				    'ref'	=> 'information',
+				    'content'   => $this->action( 'information', 'job-training', 'student-class', array( 'id' => $this->id ) ),
+				    'url'	=> $this->path( 'information/id/' . $this->id ),
+				    'label'	=> 'Dadus Principais',
+				    'callback'  => 'StudentClass.JobTraining.configInformation',
+				    'released'  => true,
+				    'id'	=> StudentClass_Form_JobTrainingInformation::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'course',
+				    'label'	    => 'Kursu',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'course/id/' . $this->id ),
+				    'callback'	    => 'StudentClass.JobTraining.configCourse',
+				    'id'	    => StudentClass_Form_JobTrainingCourse::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'candidate',
+				    'label'	    => 'Lista Kandidatu',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'candidate/id/' . $this->id ),
+				    'callback'	    => 'StudentClass.JobTraining.configCandidate',
+				    'id'	    => StudentClass_Form_JobTrainingInformation::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'client',
+				    'label'	    => 'Partisipante',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'client/id/' . $this->id ),
+				    'callback'	    => 'StudentClass.JobTraining.configTrainee',
+				    'id'	    => StudentClass_Form_JobTrainingInformation::ID
+				)
+			    )
+			    ->addStep(
+				array(
+				    'ref'	    => 'finish',
+				    'label'	    => 'Remata Job Training',
+				    'released'	    => !empty( $this->id ),
+				    'url'	    => $this->path( 'finish/id/' . $this->id ),
+				    'callback'	    => 'StudentClass.JobTraining.reloadFinish',
+				    'id'	    => StudentClass_Form_JobTrainingInformation::ID
+				)
+			    );
+		    
+		    echo $this->accordion();
+		?>
+	</div>
+    </div>
+</div>

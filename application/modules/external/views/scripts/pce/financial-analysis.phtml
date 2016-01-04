@@ -1,0 +1,135 @@
+<h4><strong>ANÁLIZE FINANSEIRA</strong></h4>
+
+<?php 
+    $attribsValue = array( 
+			'class'	    => 'text-right text-numeric m-wrap',
+			'maxlength' => 3
+		    ); 
+    
+    if ( $this->submitted )
+	$attribsValue['disabled'] = true;
+?>
+<div class="row-fluid">
+    <div class="span12">
+	<table class="table table-striped table-bordered table-hover table-full-width" id="revenue-expense-list">
+	    <thead>
+		<tr>
+		    <th style="width: 42%"></th>
+		    <th class="well" style="width: 8%"><?php echo $this->financial_analysis['first_year']; ?></th>	
+		    <?php foreach ( $this->financial_analysis['years'] as $year ) : ?>
+			<th class="well" style="width: 8%"><?php echo $year; ?></th>
+		    <?php endforeach; ?>
+		</tr>
+		<tr>
+		    <th>Reseita sira</th>
+		    <th></th>
+		    <?php foreach ( $this->financial_analysis['years'] as $year ) : ?>
+			<th><?php echo $this->currency( $this->financial_analysis['incomes'][$year] ); ?></th>
+		    <?php endforeach; ?>
+		</tr>
+		<tr class="well">
+		    <th>Kreximentu Reseita sira nian</th>
+		    <th>
+			<div class="control-group">
+			    <div class="controls">
+				<div class="input-prepend">
+				    <?php echo $this->formText( 'total_fields[income_incr]', (int)$this->financial_analysis['income_incr'], $attribsValue ); ?>
+				    <span class="add-on">%</span>
+				</div>
+			    </div>
+			</div>
+		    </th>
+		    <th colspan="<?php echo count($this->financial_analysis['years']); ?>"></th>
+		</tr>
+		<tr>
+		    <th>Investimentu inisiál</th>
+		    <th><?php echo $this->currency( $this->financial_analysis['initial'] ); ?></th>
+		    <th colspan="<?php echo count($this->financial_analysis['years']); ?>"></th>
+		</tr>
+		<tr class="well">
+		    <th>Kreximentu Kustus sira nian</th>
+		    <th>
+			<div class="control-group">
+			    <div class="controls">
+				<div class="input-prepend">
+				    <?php echo $this->formText( 'total_fields[income_cost]', (int)$this->financial_analysis['income_cost'], $attribsValue ); ?>
+				    <span class="add-on">%</span>
+				</div>
+			    </div>
+			</div>
+		    </th>
+		    <th colspan="<?php echo count($this->financial_analysis['years']); ?>"></th>
+		</tr>
+	    </thead>
+	    <tbody>
+		<?php foreach ( $this->financial_analysis['expenses'] as $expense ) : ?>
+		    <tr>
+			<td colspan="2"><?php echo $expense['description']; ?></td>
+			<?php foreach ( $expense['years'] as $expenseYear ) : ?>
+			    <td><?php echo $this->currency( $expenseYear ); ?></td>
+			<?php endforeach; ?>
+		    </tr>
+		<?php endforeach; ?>
+	    </tbody>
+	    <tfoot>
+		<tr class="well">
+		    <th>TOTÁL BA KUSTUS ANUÁL</th>
+		    <td></td>
+		    <?php foreach ( $this->financial_analysis['annual_cost'] as $annualCost ) : ?>
+			<th><?php echo $this->currency( $annualCost ); ?></th>
+		    <?php endforeach; ?>
+		</tr>
+		<tr>
+		    <th>Resultadu antes de impostu (RAI)</th>
+		    <td></td>
+		    <?php foreach ( $this->financial_analysis['rai'] as $annualCost ) : ?>
+			<th><?php echo $this->currency( $annualCost ); ?></th>
+		    <?php endforeach; ?>
+		</tr>
+		<tr>
+		    <th>Impostu ba fa'an</th>
+		    <td>
+			<div class="control-group">
+			    <div class="controls">
+				<div class="input-prepend">
+				    <?php echo $this->formText( 'total_fields[sale_tax]', (int)$this->financial_analysis['sale_tax'], $attribsValue ); ?>
+				    <span class="add-on">%</span>
+				</div>
+			    </div>
+			</div>
+		    </td>
+		    <?php foreach ( $this->financial_analysis['sale_tax_item'] as $annualCost ) : ?>
+			<th><?php echo $this->currency( $annualCost ); ?></th>
+		    <?php endforeach; ?>
+		</tr>
+		<tr class="well">
+		    <th class="text-center">Rezultadu Líkidu</th>
+		    <td></td>
+		    <?php foreach ( $this->financial_analysis['net_income'] as $annualCost ) : ?>
+			<th><?php echo $this->currency( $annualCost ); ?></th>
+		    <?php endforeach; ?>
+		</tr>
+		<tr class="well">
+		    <th><h5 class="bold">Cash-flow Investimentu nian</h5></th>
+		    <th><?php echo $this->currency( $this->financial_analysis['initial'] ); ?></th>
+		    <?php foreach ( $this->financial_analysis['cash_flow'] as $annualCost ) : ?>
+			<th><?php echo $this->currency( $annualCost ); ?></th>
+		    <?php endforeach; ?>
+		</tr>
+		<tr class="well">
+		    <th><h4 class="bold">PAYBACK</h4></th>
+		    <th><?php echo $this->currency( $this->financial_analysis['initial'] ); ?></th>
+		    <?php foreach ( $this->financial_analysis['payback'] as $annualCost ) : ?>
+			<th><?php echo $this->currency( $annualCost ); ?></th>
+		    <?php endforeach; ?>
+		</tr>
+		<tr class="well text-warning">
+		    <th>TINAN PAYBACK NIAN</th>
+		    <th><?php echo $this->financial_analysis['year_payback']; ?></th>
+		    <th colspan="4">RETURN ON INVESTMENT (ROI)</th>
+		    <th><?php echo $this->financial_analysis['roi']; ?></th>
+		</tr>
+	    </tfoot>
+	</table>
+    </div>
+</div>

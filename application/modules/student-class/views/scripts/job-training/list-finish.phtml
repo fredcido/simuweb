@@ -1,0 +1,11 @@
+<?php foreach ( $this->itensFinish['itens'] as $key => $item ): ?>
+    <tr>
+	<td><?php echo ++$key; ?></td>
+	<td><?php echo $item['msg']; ?></td>
+	<td>
+	    <a class="btn icn-only <?php echo $item['valid'] ? 'green' : 'red'; ?>" href="javascript:;" title="<?php echo $item['msg']; ?>">
+		<i class="m-icon-white icon-<?php echo $item['valid'] ? 'ok' : 'warning-sign'; ?>"></i>
+	    </a>
+	</td>
+    </tr>
+<?php endforeach; ?>

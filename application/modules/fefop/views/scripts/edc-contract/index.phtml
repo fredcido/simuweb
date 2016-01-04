@@ -1,0 +1,52 @@
+<?php 
+    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/plugins/jquery-file-upload/css/jquery.fileupload-ui.css' ) );
+    $this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/plugins/bootstrap-tree/bootstrap-tree/css/bootstrap-tree.css' ) );
+
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/vendor/tmpl.min.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload-fp.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/jquery-file-upload/js/jquery.fileupload-ui.js' ) ); 
+    $this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/bootstrap-tree/bootstrap-tree/js/bootstrap-tree.js' ) );
+    $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/controller/fefop/contract.js' ) ); 
+?>
+<div id="container-contract">
+    <?php echo $this->action( 'contract', 'index', 'fefop', array( 'id' => $this->id_contract ) ); ?>
+</div>
+<hr />
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->action( 'information', 'edc-contract', 'fefop', array( 'id' => $this->id ) ),
+				'label'	    => 'Dadus Kontraktu',
+				'released'  => true,
+				'id'	    => Fefop_Form_RIContract::ID
+			    )
+			  )
+			 ->addTab(
+			    array(
+				'ref'	    => 'followup',
+				'label'	    => 'Follow-up',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'index', 'followup', 'fefop', array( 'id' => $this->id_contract ) ),
+				'id'	    => Fefop_Form_Followup::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'document',
+				'label'	    => 'Dokumentu',
+				'released'  => !empty( $this->id ),
+				'id'	    => Fefop_Form_Document::ID,
+				'url'	    => $this->path( 'index', 'document', 'fefop', array( 'id' => $this->id_contract ) ),
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

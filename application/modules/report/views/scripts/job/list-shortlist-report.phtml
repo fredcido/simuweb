@@ -1,0 +1,41 @@
+<div class="filters">
+    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+</div>
+
+<table class="relatorio">
+    <thead>
+	<tr>
+	    <th>Rejistu</th>
+	    <th>Naran</th>
+	    <th>Kontatu</th>
+	    <th>Titulu Vaga</th>
+	    <th>Empreza</th>
+	    <th>Okupasaun</th>
+	    <th>Hetan Serbisu?</th>
+	</tr>
+    </thead>
+   
+    <tbody>
+	<?php foreach ( $this->data['rows'] as $row ) : ?>
+	
+	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
+		<td><?php echo Client_Model_Mapper_Client::buildNumRow( $row ); ?></td>
+		<td><?php echo Client_Model_Mapper_Client::buildName( $row ); ?></td>
+		<td><?php echo App_General_String::cleanFone( $row->client_fone ); ?></td>
+		<td><?php echo $row['vacancy_titule']; ?></td>
+		<td><?php echo $row['enterprise_name']; ?></td>
+		<td><?php echo $row['ocupation_name_timor']; ?></td>
+		<td><?php echo $row['hired'] ? 'SIM' : 'LAE'; ?></td>
+	    </tr>
+	    
+	<?php endforeach; ?>
+	    
+    </tbody>
+    
+     <tfoot>
+	<tr>
+	    <th colspan="5">Total</th>
+	    <th><?php echo count( $this->data['rows'] ); ?></th>
+	</tr>
+    </tfoot>
+</table>

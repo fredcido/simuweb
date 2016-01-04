@@ -1,0 +1,67 @@
+<?php 
+    foreach ( $this->rows as $row ) : 
+	$data = array(
+	  'fk_id_barrier_type'		  => $row->fk_id_barrier_type,
+	  'fk_id_barrier_name'		  => $row->fk_id_barrier_name,
+	  'fk_id_barrier_intervention'    => $row->fk_id_barrier_intervention,
+	  'fk_id_action_plan_group'       => $row->fk_id_action_plan_group
+	);
+?>
+    <tr data-row='<?php echo json_encode( $data ); ?>'>
+	<td>
+	    <input type="hidden" class="valid-barrier" value="<?php echo $row->fk_id_barrier_type; ?>" />
+	    <input type="hidden" class="valid-barrier" value="<?php echo $row->fk_id_barrier_name; ?>" />
+	    <input type="hidden" class="valid-barrier" value="<?php echo $row->fk_id_barrier_intervention; ?>" />
+	    <?php echo $row->barrier_type_name; ?>
+	</td>
+	<td><?php echo $row->barrier_name; ?></td>
+	<td><?php echo $row->barrier_Intervention_name; ?></td>
+	<td><?php echo $row->user; ?></td>
+	<td>
+	    <div class="btn-group" style="margin: 0px !important;">
+		<a class="btn yellow" href="javascript:;" data-toggle="dropdown">
+		    <i class="icon-bolt"></i> Asaun
+		    <i class="icon-angle-down"></i>
+		</a>
+		<ul class="dropdown-menu">
+		    <li>
+			<a href="javascript:;" onClick="Client.CaseGroup.setResultBarrier( this );">
+			    <i class="icon-ok"></i> 
+			    Rezultadu
+			</a>
+		    </li>
+		    <li>
+			<a href="javascript:;" onClick="Client.CaseGroup.searchJob( <?php echo $row->fk_id_barrier_intervention; ?> );">
+			    <i class="icon-briefcase"></i> 
+			    Buka Empregu
+			</a>
+		    </li>
+		    <li>
+			<a href="javascript:;" onClick="Client.CaseGroup.searchClass( <?php echo $row->fk_id_barrier_intervention; ?> );">
+			    <i class="icon-book"></i> 
+			    Buka Turma
+			</a>
+		    </li>
+		    <li>
+			<a href="javascript:;" onClick="Client.CaseGroup.searchJobTraining( <?php echo $row->fk_id_barrier_intervention; ?> );">
+			    <i class="icon-user-md"></i> 
+			    Buka OJT
+			</a>
+		    </li>
+		    <li>
+			<a href="javascript:;" onClick="Client.CaseGroup.printBarrier( this, 0 );">
+			    <i class="icon-thumbs-up"></i> 
+			    Print liu
+			</a>
+		    </li>
+		    <li>
+			<a href="javascript:;" onClick="Client.CaseGroup.printBarrier( this, 1 );">
+			    <i class="icon-thumbs-down"></i> 
+			    Print hotu
+			</a>
+		    </li>
+		</ul>
+	    </div>
+	</td>
+    </tr>
+<?php endforeach; ?>

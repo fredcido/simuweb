@@ -1,0 +1,15 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo $this->nomenclature()->scholarityCategory( $row->category ); ?></td>
+	<td><?php echo ( empty( $row->external_code ) ? '' : $row->external_code . ' - ' ) . $row->scholarity; ?></td>
+	<td><?php echo $row->user; ?></td>
+	<td><?php echo $this->date( $row->date_inserted ); ?></td>
+	<td>
+	    <span class="label label-<?php echo $row->status ? 'success' : 'warning'; ?>">
+		<?php echo $row->status ? 'Sim' : 'Lae'; ?>
+	    </span>
+	</td>
+	<td><?php echo $row->comment; ?></td>
+	<td><?php echo $this->currency( $row->cost , 'en_US' ); ?></td>
+    </tr>
+<?php endforeach;

@@ -1,0 +1,63 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">	    
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'data',
+				'content'   => $this->action( 'information', 'education-institution', 'register', array( 'id' => $this->id ) ),
+				'label'	    => 'Dados Principais',
+				'released'  => true,
+				'id'	    => Register_Form_EducationInstitutionInformation::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'contact',
+				'label'	    => 'Contatu',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'contact/id/' . $this->id ),
+				'id'	    => Register_Form_EducationInstitutionContact::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'course',
+				'label'	    => 'Kursu',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'course/id/' . $this->id ),
+				'id'	    => Register_Form_EducationInstitutionCourse::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'staff',
+				'label'	    => 'Funcionariu',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'staff/id/' . $this->id ),
+				'id'	    => Register_Form_EducationInstitutionStaff::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'qualification',
+				'label'	    => 'Kualifikasaun Treinador',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'qualification/id/' . $this->id ),
+				'id'	    => Register_Form_EducationInstitutionQualification::ID
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'address',
+				'label'	    => 'Hela fatin',
+				'released'  => !empty( $this->id ),
+				'url'	    => $this->path( 'address/id/' . $this->id ),
+				'id'	    => Register_Form_EducationInstitutionAddress::ID
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

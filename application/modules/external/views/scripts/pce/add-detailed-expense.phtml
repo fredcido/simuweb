@@ -1,0 +1,41 @@
+<tr>
+    <td>
+	<?php $atribbsItem = array( 'class' => 'm-wrap span12 focused required' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'detailed_expense[item_expense][' . $this->expense . '][]', $this->defaultValues['description'], $atribbsItem ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsQuantity = array( 'class' => 'm-wrap span12 required expense-quantity text-numeric' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'detailed_expense[quantity][' . $this->expense . '][]', $this->defaultValues['quantity'], $attribsQuantity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsPriceUnity = array( 'class' => 'm-wrap span12 expense-amount required money-mask' ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'detailed_expense[amount_unit][' . $this->expense . '][]', $this->defaultValues['amount_unit'], $attribsPriceUnity ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php $attribsPriceTotal = array( 'class' => 'm-wrap span12 required expense-total money-mask', 'readOnly' => true ); ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php echo $this->formText( 'detailed_expense[amount_total][' . $this->expense . '][]', $this->defaultValues['amount_total'], $attribsPriceTotal ); ?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php if ( !$this->no_edit ) : ?>
+	    <a class="btn red" onclick="Pce.removeItem( this );">
+		<i class="icon-remove-sign"></i>            
+	    </a>
+	<?php endif; ?>
+    </td>
+</tr>

@@ -1,0 +1,32 @@
+<div class="tabbable tabbable-custom boxless">
+    <?php
+	echo $this->tab()
+		  ->addTab(
+			array(
+			    'ref'	    => 'automatic',
+			    'label'	    => 'Automatico',
+			    'released'  => true,
+			    'url'	    => $this->path( 'automatic/id/' . $this->id ),
+			    'id'	    => Job_Form_Match::ID
+			)
+		    )
+		    ->addTab(
+			array(
+			    'ref'	    => 'manual',
+			    'label'	    => 'Manual',
+			    'released'  => true,
+			    'url'	    => $this->path( 'manual/id/' . $this->id ),
+			    'id'	    => Job_Form_Match::ID
+			)
+		    )
+		    ->addTab(
+			array(
+			    'ref'	    => 'direct',
+			    'label'	    => 'ShortList Diretu',
+			    'released'  => true,
+			    'url'	    => $this->path( 'direct/id/' . $this->id ),
+			    'id'	    => Job_Form_Match::ID
+			)
+		    );
+    ?>
+</div>

@@ -1,0 +1,17 @@
+<tr>
+    <td>
+	<input type="hidden" name="clients[]" class="client-group" value="<?php echo $this->client->id_perdata; ?>" />
+	<?php echo Client_Model_Mapper_Client::buildName( $this->client ); ?>
+    </td>
+    <td><?php echo Client_Model_Mapper_Client::buildNumRow( $this->client ); ?></td>
+    <td><?php echo $this->client->electoral; ?></td>
+    <td><?php echo $this->client->gender; ?></td>
+    <td><?php echo Client_Model_Mapper_Client::isHandicapped( $this->client->id_perdata ) ? 'Sin' : 'Lae'; ?></td>
+    <td>
+	<?php if ( !$this->no_edit && ( empty( $this->client->bussines_plan_developer ) || $this->client->id_perdata != $this->client->bussines_plan_developer ) ) : ?>
+	    <a class="btn red" onclick="Pce.removeClient( this );">
+		<i class="icon-remove-sign"></i>            
+	    </a>
+	<?php endif; ?>
+    </td>
+</tr>

@@ -1,0 +1,30 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo External_Model_Mapper_Pce::buildNumRow( $row ); ?></td>
+	<td><?php echo empty( $row->fk_id_fefop_contract ) ? '-' : Fefop_Model_Mapper_Contract::buildNumById( $row->fk_id_fefop_contract ); ?></td>
+	<td><?php echo Client_Model_Mapper_Client::buildNameById( $row->bussines_plan_developer ); ?></td>
+	<td><?php echo $row->module; ?></td>
+	<td><?php echo $row->partisipants == 'S' ? 'Single' : 'Group'; ?></td>
+	<td><?php echo $row->submitted ? 'Tiha Ona' : 'Seidauk'; ?></td>
+	<td><?php echo empty( $row->fk_id_fefop_contract ) ? '-' : $this->fefopContract( $row->fk_id_fefop_contract )->renderStatusLabel(); ?></td>
+	<td>
+	    <?php if ( empty( $this->listAjax ) ) : ?>
+		<?php if ( $this->access( Fefop_Form_PCEContract::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+		    <a class="btn green" href="<?php echo $this->baseUrl( 'fefop/pce-contract/contract/id/' . $row->id_businessplan ); ?>">
+			<i class="icon-edit"></i>  
+			Troka                                            
+		    </a>
+		<?php else : ?>
+		    <a class="btn red" href="javascript:;">
+			<i class="icon-alert icon-lock"></i>  
+			La bele acessu                                            
+		    </a>
+		<?php endif; ?>
+	    <?php else : ?>
+		<a class="btn red action-ajax" href="javascript:;" data-id="<?php echo $row->id_businessplan; ?>">
+		    <i class="icon-ok"></i>                                     
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

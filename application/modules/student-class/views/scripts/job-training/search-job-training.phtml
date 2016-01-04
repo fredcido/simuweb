@@ -1,0 +1,56 @@
+<?php foreach ( $this->rows as $row ) : ?>
+    <tr>
+	<td><?php echo str_pad( $row->id_jobtraining, 5, '0', STR_PAD_LEFT ); ?></td>
+	<td><?php echo $row->title; ?></td>
+	<td><?php echo $row->entity; ?></td>
+	<td><?php echo $row->scholarity_area; ?></td>
+	<td><?php echo $row->total_participants; ?></td>
+	<td style="width: 10%" class="hidden-phone hidden-tablet">
+	    <?php 
+		if ( $row->status == 1 ) {
+		    $label = 'success';
+		    $status = 'Loke';
+		} else {
+		    
+		    $label = 'important';
+		    $status = ( $row->status == 2 ) ? 'Kansela' : 'Taka';	
+		}
+	    ?>
+	    
+	    <span class="label label-<?php echo $label; ?>">
+		<?php echo $status; ?>
+	    </span>
+	</td>
+	<td style="width: 12%">
+	    <?php if ( $this->access( StudentClass_Form_RegisterInformation::ID, Admin_Model_Mapper_SysUserHasForm::SAVE ) ) : ?>
+	    
+		<?php if ( empty( $this->listAjax ) ) : ?>
+		    <a class="btn green" href="<?php echo $this->baseUrl( 'student-class/job-training/edit/id/' . $row->id_jobtraining ); ?>">
+			<i class="icon-edit"></i>                                         
+		    </a>
+		    <a class="btn blue" target="_blank" href="<?php echo $this->baseUrl( 'student-class/job-training/print/id/' . $row->id_jobtraining ); ?>">
+			<i class="icon-print"></i>  
+		    </a>
+		<?php else : ?>
+	    
+		    <a class="btn red-stripe" target="_blank" href="<?php echo $this->baseUrl( 'student-class/job-training/print/id/' . $row->id_jobtraining ); ?>">
+			<i class="icon-eye-open"></i>                                     
+		    </a>
+		    
+		    <?php if ( $row->status == 1 ) : ?>
+			<a class="btn red action-ajax" href="javascript:;" data-id="<?php echo $row->id_jobtraining; ?>">
+			    <i class="icon-ok"></i>                                     
+			</a>
+		    <?php endif; ?>
+	    
+		<?php endif; ?>
+	    
+	    <?php else : ?>
+		<a class="btn red" href="javascript:;">
+		    <i class="icon-alert icon-lock"></i>  
+		    La bele acessu                                            
+		</a>
+	    <?php endif; ?>
+	</td>
+    </tr>
+<?php endforeach; ?>

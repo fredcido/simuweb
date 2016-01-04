@@ -1,0 +1,25 @@
+<div class="row-fluid">
+    <div class="span12">
+	<div class="tabbable tabbable-custom boxless">
+	    <?php
+		echo $this->tab()
+			  ->addTab(
+			    array(
+				'ref'	    => 'list-job-barrier',
+				'content'   => $this->action( 'list-job-barrier', 'case', 'client' ),
+				'label'	    => 'Lista Vaga Empregu',
+				'released'  => true
+			    )
+			  )
+			  ->addTab(
+			    array(
+				'ref'	    => 'search-job',
+				'label'	    => 'Buka Empregu',
+				'released'  => $this->caseActive()->hasAccessEdit(),
+				'url'	    => $this->path( 'search-job/id/' . $this->id )
+			    )
+			  );
+	    ?>
+	</div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<tr class="row-contract">
+    <td class="text-center">
+	<a href="javascript:;" class="hide-expenses"><i class="icon-minus"></i></a>
+    </td>
+    <td class="bold">
+	<input type="hidden" class="id-contract" name="fk_id_fefop_contract[<?php echo $this->row['id_fefop_contract']; ?>]"
+	       value="<?php echo $this->row['id_fefop_contract']; ?>" />
+	<?php echo Fefop_Model_Mapper_Contract::buildNumById( $this->row['id_fefop_contract'] ); ?>
+    </td>
+    <td>
+	<?php 
+	    $attribsTotal = array( 
+		'class'	    => 'submit-field bold text-right span12 required contract-total money-mask',
+		'id'	    => 'contract_total_' . $this->row['id_fefop_contract'],
+		'style'	    => 'font-size: 19px;',
+		'readOnly'  => true 
+	    ); 
+	 ?>
+	<div class="control-group">
+	    <div class="controls">
+		<?php 
+		    $totalContract = '';
+		    if ( !empty( $this->row['total_contract'] )  ) {
+			$totalContract = number_format( $this->row['total_contract'],2,  '.', ',' );
+		    }
+		
+		    echo $this->formText( 'total_contract[' . $this->row['id_fefop_contract'] . ']', $totalContract, $attribsTotal ); 
+		?>
+	    </div>
+	</div>
+    </td>
+    <td>
+	<?php if ( !array_key_exists( 'can-delete', $this->row ) || !empty( $this->row['can-delete'] ) ) : ?>
+	    <a class="btn red" title="Remove Kontratu" onclick="Fefop.BankStatement.removeContract( this );">
+		<i class="icon-remove-sign"></i>            
+	    </a>
+	<?php else : ?>
+	    <a class="btn red" href="javascript:;" title="Konsolidadu tiha ona">
+		<i class="icon-alert icon-lock"></i>                                        
+	    </a>
+	<?php endif; ?>
+	 <a class="btn blue" title="Aumenta Expense" onclick="Fefop.BankStatement.addExpense( this );">
+	    <i class="icon-plus-sign"></i>            
+	</a>
+    </td>
+</tr>

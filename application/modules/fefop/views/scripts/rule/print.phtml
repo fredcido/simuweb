@@ -1,0 +1,93 @@
+<div class="form-actions no-print">
+    <button type="button" class="btn blue" onClick="self.print();"><i class="icon-print"></i> Print</button>
+    <button type="button" class="btn red" onClick="self.close();"><i class="icon-remove-sign"></i> Taka</button>
+</div>
+
+<?php echo $this->action( 'header-report', 'index', 'default', array('id' => $this->user->fk_id_dec) ); ?>
+
+<h3 class="text-center">
+    Konfigurasaun Regra - <?php echo $this->identifier; ?>
+</h3>
+
+<div class="form-view">
+    <?php foreach ( $this->rules as $rule ) : ?>
+    <div class="row-fluid">
+
+	<h4 class="form-section bold">
+	    <?php echo $this->rulesOptions[$rule['rule']]; ?>
+	</h4>
+	
+	<div class="row-fluid">
+	    <div class="span4">
+		<div class="control-group">
+		    <label class="control-label bold">Valor:</label>
+		    <div class="controls">
+			<span class="text">
+			    <?php 
+				switch( $rule['rule'] ) {
+				    case Fefop_Model_Mapper_Rule::AGE_MIN:
+				    case Fefop_Model_Mapper_Rule::AGE_MAX:
+					echo $rule->value;
+					break;
+				    case Fefop_Model_Mapper_Rule::AMOUNT_MAX:
+				    case Fefop_Model_Mapper_Rule::AMOUNT_MIN:
+					echo $this->currency( $rule->value );
+					break;
+				    case Fefop_Model_Mapper_Rule::DURATION_MAX:
+				    case Fefop_Model_Mapper_Rule::DURATION_MAX:
+					$values = explode( '-', $rule->value );
+					
+					switch ( $values[1] ) {
+					    case 'D':
+						$measure = 'Loron';
+						break;
+					    case 'M':
+						$measure = 'Fulan';
+						break;
+					    case 'Y':
+						$measure = 'Tinan';
+						break;
+					}
+					
+					echo $values[0] . ' - ' . $measure;
+					
+					break;
+				}
+			    ?>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	    <div class="span2">
+		<div class="control-group">
+		    <label class="control-label bold">Obrigatoriu:</label>
+		    <div class="controls">
+			<span class="text">
+			    <?php echo $rule->required ? 'Sin' : 'Lae'; ?>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	    <div class="span6">
+		<div class="control-group">
+		    <label class="control-label bold">Messajem:</label>
+		    <div class="controls">
+			<span class="text">
+			    <?php echo $rule->message; ?>
+			</span>
+		    </div>
+		</div>
+	    </div>
+	</div>
+
+    </div>
+    <?php endforeach; ?>
+</div>
+
+<div class="row-fluid margin-bottom-25">
+</div>
+<div class="row-fluid">
+    <div class="span12 text-right">
+	<small><em>SECRETARIA DE ESTADO PARA POLÍTICA DA FORMAÇÃO PROFISSIONAL E EMPREGO</em></small>
+    </div>
+</div>
