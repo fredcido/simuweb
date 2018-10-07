@@ -19,6 +19,7 @@ class Client_Form_ActionPlan extends App_Form_Default
 	$elements[] = $this->createElement( 'hidden', 'fk_id_barrier_type' )->setIsArray( true );
 	$elements[] = $this->createElement( 'hidden', 'fk_id_barrier_name' )->setIsArray( true );
 	$elements[] = $this->createElement( 'hidden', 'fk_id_barrier_intervention' )->setIsArray( true );
+	$elements[] = $this->createElement( 'hidden', 'responsible' )->setIsArray( true );
 	
 	$elements[] = $this->createElement( 'hidden', 'id_action_plan' )
 			    ->setAttrib( 'class', 'no-clear' )

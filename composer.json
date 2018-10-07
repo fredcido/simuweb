@@ -1,0 +1,11 @@
+{
+    "name": "sepfope/simuweb",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Frederico Estrela",
+            "email": "contato@fredericoestrela.com.br"
+        }
+    ],
+    "require": {}
+}

@@ -1648,7 +1648,7 @@
          elseif ( $Mode == LEGEND_HORIZONTAL )
           {
            $Lines = preg_split("/\n/",$Serie["Description"]);
-           $Width = "";
+           $Width = [];
            foreach($Lines as $Key => $Value)
             {
              $BoxArray = $this->getTextBox($vX+$IconAreaWidth+6,$Y+$IconAreaHeight/2+(($this->FontSize+3)*$Key),$FontName,$FontSize,0,$Value);

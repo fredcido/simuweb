@@ -27,16 +27,20 @@
 			    <th>No KARTAUN EVIDENSIA</th>
 			    <th>NARAN</th>
 			    <th>SEKSU</th>
+			    <th>TINAN HIRA</th>
+			    <th>CEOP</th>
 			    <th>TELEMOVEL</th>
 			</tr>
 		</thead>
 		<tbody>
-		    <?php foreach ( $this->shortlist as $key => $client ) : ?>
+			<?php foreach ( $this->shortlist as $key => $client ) : ?>
 			<tr>
 			    <td><?php echo ++$key; ?></td>
 			    <td><?php echo Client_Model_Mapper_Client::buildNumRow( $client ); ?></td>
 			    <td><?php echo Client_Model_Mapper_Client::buildName( $client ); ?></td>
 			    <td><?php echo $client->gender; ?></td>
+			    <td><?php echo $client->age; ?></td>
+			    <td><?php echo $client->name_dec; ?></td>
 			    <td><?php echo empty( $client->client_fone ) ? ' - ' : $client->client_fone; ?></td>
 			</tr>
 

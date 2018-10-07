@@ -2,23 +2,22 @@
 <html lang="en">
     <head>
 	<?php
-	$this->headMeta()
-		->appendHttpEquiv( 'Content-Language', 'en-US' )
-		->appendHttpEquiv( 'expires', 'Wed, 26 Feb 2012 08:21:57 GMT' )
-		->appendHttpEquiv( 'pragma', 'no-cache' )
-		->appendHttpEquiv( 'Cache-Control', 'no-cache' )
-		->appendHttpEquiv( 'imagetoolbar', 'no' )
-		->appendHttpEquiv( 'Content-Encoding', 'gzip' )
-		->appendName( 'viewport', 'width=device-width, initial-scale=1.0' );
+		$this->headMeta()
+			->appendHttpEquiv( 'Content-Language', 'en-US' )
+			->appendHttpEquiv( 'expires', 'Wed, 26 Feb 2012 08:21:57 GMT' )
+			->appendHttpEquiv( 'pragma', 'no-cache' )
+			->appendHttpEquiv( 'Cache-Control', 'no-cache' )
+			->appendHttpEquiv( 'imagetoolbar', 'no' )
+			->appendHttpEquiv( 'Content-Encoding', 'gzip' )
+			->appendName( 'viewport', 'width=device-width, initial-scale=1.0' );
 
 
-	$this->headScript()->appendFile( $this->baseUrl( 'public/template/scripts/login.js' ) );
-	$this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/css/pages/login.css' ) );
+		$this->headScript()->appendFile( $this->baseUrl( 'public/template/scripts/login.js' ) );
+		$this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/css/pages/login.css' ) );
 
-	echo $this->headTitle( 'Login SIMU-Web', 'SET' );
-	echo $this->headMeta() . "\n";
-	echo $this->headLink() . "\n";
-	echo $this->headScript() . "\n";
+		echo $this->headTitle( 'Login SIMU-Web', 'SET' );
+		echo $this->headMeta() . "\n";
+		echo $this->headLink() . "\n";
 	?>
 
         <script type="text/javascript">
@@ -211,13 +210,14 @@
 	    Departamento da Informação sobre o Mercado de Trabalho - DMIT.
 	</div>
 
+	</body>
 
+	<script type="text/javascript" src="<?php echo $this->baseUrl( 'public/dist/js/scripts.min.js'); ?>"></script>
+	<?php echo $this->headScript() . "\n"; ?>
 	<script type="text/javascript">
 	    jQuery(document).ready(function() {     
-		App.init();
-		Login.init();
+			App.init();
+			Login.init();
 	    });
 	</script>
-
-    </body>
 </html>

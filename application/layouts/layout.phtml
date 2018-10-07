@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<?php
-	    $this->headMeta()
-		    ->appendHttpEquiv( 'Content-Language', 'en-US' )
-		    ->appendHttpEquiv( 'expires', 'Wed, 26 Feb 2012 08:21:57 GMT' )
-		    ->appendHttpEquiv( 'pragma', 'no-cache' )
-		    ->appendHttpEquiv( 'Cache-Control', 'no-cache' )
-		    ->appendHttpEquiv( 'imagetoolbar', 'no' )
-		    ->appendHttpEquiv( 'Content-Encoding', 'gzip' )
-		    ->appendName( 'viewport', 'width=device-width, initial-scale=1.0' );
-	    
-	    $this->headScript()->appendFile( $this->baseUrl( 'public/scripts/app/note.js' ) );
+		<?php
+			$this->headMeta()
+				->appendHttpEquiv( 'Content-Language', 'en-US' )
+				->appendHttpEquiv( 'expires', 'Wed, 26 Feb 2012 08:21:57 GMT' )
+				->appendHttpEquiv( 'pragma', 'no-cache' )
+				->appendHttpEquiv( 'Cache-Control', 'no-cache' )
+				->appendHttpEquiv( 'imagetoolbar', 'no' )
+				->appendHttpEquiv( 'Content-Encoding', 'gzip' )
+				->appendName( 'viewport', 'width=device-width, initial-scale=1.0' );
+			
+			$this->headScript()->appendFile( $this->baseUrl( 'public/scripts/app/note.js' ) );
 
-	    echo $this->headTitle();
-	    echo $this->headMeta() . "\n";
-	    echo $this->headLink() . "\n";
-	    echo $this->headScript() . "\n";
-	?>
-	
-        <script type="text/javascript">
-            var BASE_URL = '<?php echo $this->baseUrl(); ?>';
-        </script>
+			echo $this->headTitle();
+			echo $this->headMeta() . "\n";
+
+			echo $this->headLink() . "\n";
+		?>
+		
+		<!-- <link rel="stylesheet" href="<?php echo $this->baseUrl( 'public/dist/css/style.min.css' ); ?>"> -->
+		<script type="text/javascript">
+			var BASE_URL = '<?php echo $this->baseUrl(); ?>';
+		</script>
     </head>
     
     <body class="page-header-fixed">
@@ -153,14 +154,17 @@
 		<button type="button" data-dismiss="modal" class="btn">Taka</button>
 	    </div>
 	</div>
-    </body>
+	</body>
+	
+	<script type="text/javascript" src="<?php echo $this->baseUrl( 'public/dist/js/scripts.min.js'); ?>"></script>
+	<?php echo $this->headScript() . "\n"; ?>
     
     <script type="text/javascript">
 	
 	$( document ).ready(
 	    function() 
 	    {    
-		App.init();
+			App.init();
 	    }
 	);
     

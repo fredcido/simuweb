@@ -1,0 +1,19 @@
+<?php 
+    $this->placeholder( 'form' )->captureStart();
+    echo $this->form->getElement( 'id_perinterest' );
+    echo $this->form->getElement( 'fk_id_perdata' );
+    echo $this->form->getElement( 'step' );
+ ?>
+    <div class="box-content">
+		<div class="row-fluid">
+			<div class="span12">
+				<?php echo $this->form->getElement( 'comment' ); ?>
+			</div>
+		</div>
+
+		<?php echo $this->form->getDisplayGroup( 'toolbar' ); ?>
+    </div>
+<?php
+    $this->placeholder( 'form' )->captureEnd();
+    echo $this->form( $this->form->getId(), $this->form->getAttribs(), $this->placeholder( 'form' ) );
+?>

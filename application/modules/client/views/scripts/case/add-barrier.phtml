@@ -1,52 +1,57 @@
 <?php
     $optionsSelect = array(
-	'class'	    => 'm-wrap span12 chosen valid-barrier',
-	'multiple'  => false
+			'class'	    => 'm-wrap span12 chosen valid-barrier',
+			'multiple'  => false
     );
     
     $optionsType = $optionsSelect + array(
-	'onchange' => 'Client.Case.loadBarriers( this );',
-	'id'	   => App_General_String::randomHash()
+			'onchange' => 'Client.Case.loadBarriers( this );',
+			'id'	   => App_General_String::randomHash()
     );
     
     $optionsBarrier = $optionsSelect + array(
-	'onchange' => 'Client.Case.loadIntervention( this );',
-	'id'	   => App_General_String::randomHash()
+			'onchange' => 'Client.Case.loadIntervention( this );',
+			'id'	   => App_General_String::randomHash()
     );
     
-     $optionsIntervention = $optionsSelect + array(
-	'onchange' => 'Client.Case.validateBarriers( this );',
-	'id'	   => App_General_String::randomHash()
+    $optionsIntervention = $optionsSelect + array(
+			'onchange' => 'Client.Case.validateBarriers( this );',
+			'id'	   => App_General_String::randomHash()
     );
 ?>
 
 <tr>
     <td>
-	<input type="hidden" name="id_action_barrier[]" class="id-barrier" value="<?php echo $this->id_action_barrier; ?>" />
-	<div class="control-group">
-	    <?php echo $this->formSelect( 'fk_id_barrier_type[]', $this->fk_id_barrier_type, $optionsType, $this->optType );  ?>
-	</div>
+			<input type="hidden" name="id_action_barrier[]" class="id-barrier" value="<?php echo $this->id_action_barrier; ?>" />
+			<div class="control-group">
+				<?php echo $this->formSelect('fk_id_barrier_type[]', $this->fk_id_barrier_type, $optionsType, $this->optType);  ?>
+			</div>
     </td>
     <td>
-	<div class="control-group">
-	    <?php echo $this->formSelect( 'fk_id_barrier_name[]', $this->fk_id_barrier_name, $optionsBarrier, $this->optBarrier );  ?>
-	</div>
+			<div class="control-group">
+				<?php echo $this->formSelect('fk_id_barrier_name[]', $this->fk_id_barrier_name, $optionsBarrier, $this->optBarrier);  ?>
+			</div>
     </td>
     <td>
-	<div class="control-group">
-	    <?php echo $this->formSelect( 'fk_id_barrier_intervention[]', $this->fk_id_barrier_intervention, $optionsIntervention, $this->optIntervention );  ?>
-	</div>
+			<div class="control-group">
+				<?php echo $this->formSelect('fk_id_barrier_intervention[]', $this->fk_id_barrier_intervention, $optionsIntervention, $this->optIntervention);  ?>
+			</div>
     </td>
     <td><?php echo $this->user; ?></td>
     <td>
-	<?php if ( $this->caseActive()->hasAccessEdit() ) : ?>
-	    <a class="btn red" onclick="Client.Case.removeBarrier( this );">
-		<i class="icon-remove-sign"></i>            
-	    </a>
-	<?php else : ?>
-	    <a class="btn red" href="javascript:;">
-		<i class="icon-alert icon-lock"></i>                                   
-	    </a>
-	<?php endif; ?>
+			<div class="control-group">
+				<?php echo $this->formSelect('responsible[]', $this->responsible, $optionsSelect, $this->optResponsible);  ?>
+			</div>
+		</td>
+    <td>
+		<?php if ($this->caseActive()->hasAccessEdit()) : ?>
+			<a class="btn red" onclick="Client.Case.removeBarrier( this );">
+			<i class="icon-remove-sign"></i>            
+			</a>
+		<?php else : ?>
+			<a class="btn red" href="javascript:;">
+			<i class="icon-alert icon-lock"></i>                                   
+			</a>
+		<?php endif; ?>
     </td>
 </tr>

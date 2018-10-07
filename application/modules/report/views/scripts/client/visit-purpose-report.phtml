@@ -1,58 +1,156 @@
 <div class="filters">
-    <p><?php echo $this->filterReport( $this->data['filters'] ); ?></p>
+    <p><?php echo $this->filterReport($this->data['filters']); ?></p>
 </div>
 
+<?php
+	$total = $this->data['total'];
+	$age = $this->data['age'];
+	$school = $this->data['school'];
+?>
 <table class="relatorio">
     <thead>
-	<tr>
-	    <th>Total Geral:</th>
-	    <th colspan="3">
-		<?php echo $this->data['total']; ?>
-	    </th>
-	</tr>
-	<tr>
-	    <th>Objetivu</th>
-	    <th>Mane</th>
-	    <th>Feto</th>
-	    <th>Total</th>
-	</tr>
+		<tr>
+			<th>Total Geral:</th>
+			<th colspan="3">
+			<?php echo $total['total']; ?>
+			</th>
+		</tr>
+		<tr>
+			<th>Objetivu</th>
+			<th>Mane</th>
+			<th>Feto</th>
+			<th>Total</th>
+		</tr>
     </thead>
 
     <tbody>
-	<?php foreach ( $this->data['rows'] as $row ) : ?>
-
-	    <tr class="<?php echo $this->cycle( array( 'one', 'two') )->next(); ?>">
-		<td><?php echo $row['purpose']; ?></td>
-		<td><?php echo $row['total_man']; ?></td>
-		<td><?php echo $row['total_woman']; ?></td>
-		<td><?php echo $row['total']; ?></td>
-	    </tr>
-	    
-	<?php endforeach; ?>
-	    
+		<?php foreach ($total['rows'] as $row): ?>
+			<tr class="<?php echo $this->cycle(array('one', 'two'))->next(); ?>">
+				<td><?php echo $row['purpose']; ?></td>
+				<td><?php echo $row['total_man']; ?></td>
+				<td><?php echo $row['total_woman']; ?></td>
+				<td><?php echo $row['total']; ?></td>
+			</tr>
+		<?php endforeach;?>
     </tbody>
-    
+
     <tfoot>
-	<tr>
-	    <th>Total</th>
-	    <th><?php echo $this->data['total_man']; ?></th>
-	    <th><?php echo $this->data['total_woman']; ?></th>
-	    <th><?php echo $this->data['total']; ?></th>
-	</tr>
-	<tr>
-	    <th>Porcentagem (%)</th>
-	    <th><?php echo $this->data['total_man_porcent']; ?> %</th>
-	    <th><?php echo $this->data['total_woman_porcent']; ?> %</th>
-	    <th>100 %</th>
-	</tr>
+		<tr>
+			<th>Total</th>
+			<th><?php echo $total['total_man']; ?></th>
+			<th><?php echo $total['total_woman']; ?></th>
+			<th><?php echo $total['total']; ?></th>
+		</tr>
+		<tr>
+			<th>Porcentagem (%)</th>
+			<th><?php echo $total['total_man_porcent']; ?> %</th>
+			<th><?php echo $total['total_woman_porcent']; ?> %</th>
+			<th>100 %</th>
+		</tr>
     </tfoot>
-    
+</table>
+
+<?php function total_cols($data, $tag = 'h') { ?>
+	<t<?php echo $tag; ?>><?php echo $data['man']; ?></t<?php echo $tag; ?>>
+	<t<?php echo $tag; ?>><?php echo $data['woman']; ?></t<?php echo $tag; ?>>
+<?php } ?>
+
+<table class="relatorio">
+    <thead>
+		<tr>
+			<th colspan="11">Grupu Idade</th>
+		</tr>
+		<tr>
+			<th>Grupu idade</th>
+			<?php foreach ($age['groups'] as $group) : ?>
+				<th colspan="2"><?php echo $group; ?></th>
+			<?php endforeach; ?>
+		</tr>
+		<?php $totalGroups = count($age['groups']); ?>
+		<tr>
+			<th>Objetivu</th>
+			<?php for ($i = 0; $i < $totalGroups; $i++): ?>
+				<th>Mane</th>
+				<th>Feto</th>
+			<?php endfor; ?>
+		</tr>
+		<tr>
+			<th>Total</th>
+			<?php foreach ($age['total'] as $total) : ?>
+				<?php total_cols($total); ?>
+			<?php endforeach; ?>
+		</tr>
+		<tr>
+			<th>Porcentagem (%)</th>
+			<?php foreach ($age['percent'] as $percent) : ?>
+				<th><?php echo round($percent['man'], 2); ?>%</th>
+				<th><?php echo round($percent['woman'], 2); ?>%</th>
+			<?php endforeach; ?>
+		</tr>
+    </thead>
+   
+    <tbody>
+		<?php foreach ($age['rows'] as $label => $groups) : ?>
+			<tr class="<?php echo $this->cycle(array('one', 'two') )->next(); ?>">
+				<td><?php echo $label; ?></td>
+				<?php foreach ($groups as $total) : ?>
+					<?php total_cols($total, 'd'); ?>
+				<?php endforeach; ?>
+			</tr>
+		<?php endforeach; ?>
+    </tbody>
+</table>
+
+<?php $totalSchools = count($school['levels']); ?>
+<table class="relatorio">
+    <thead>
+		<tr>
+			<th colspan="<?php echo $totalSchools * 2 + 1; ?>">Nivel Edukasaun</th>
+		</tr>
+		<tr>
+			<th>Nivel Edukasaun</th>
+			<?php foreach ($school['levels'] as $group) : ?>
+				<th colspan="2"><?php echo $group; ?></th>
+			<?php endforeach; ?>
+		</tr>
+		<tr>
+			<th>Objetivu</th>
+			<?php for ($i = 0; $i < $totalSchools; $i++): ?>
+				<th>Mane</th>
+				<th>Feto</th>
+			<?php endfor; ?>
+		</tr>
+		<tr>
+			<th>Total</th>
+			<?php foreach ($school['total'] as $total) : ?>
+				<?php total_cols($total); ?>
+			<?php endforeach; ?>
+		</tr>
+		<tr>
+			<th>Porcentagem (%)</th>
+			<?php foreach ($school['percent'] as $percent) : ?>
+				<th><?php echo round($percent['man'], 2); ?>%</th>
+				<th><?php echo round($percent['woman'], 2); ?>%</th>
+			<?php endforeach; ?>
+		</tr>
+    </thead>
+   
+    <tbody>
+		<?php foreach ($school['rows'] as $label => $levels) : ?>
+			<tr class="<?php echo $this->cycle(array('one', 'two') )->next(); ?>">
+				<td><?php echo $label; ?></td>
+				<?php foreach ($levels as $total) : ?>
+					<?php total_cols($total, 'd'); ?>
+				<?php endforeach; ?>
+			</tr>
+		<?php endforeach; ?>
+    </tbody>
 </table>
 
 <div class="graphs">
-    <?php foreach ( $this->data['graph'] as $id => $graph ) : ?>
-	<div>
-	    <img src="<?php echo $this->serverUrl( $this->baseUrl( 'report/general/image/id/' . $id ) ); ?>/image.png" />
-	</div>
-    <?php endforeach; ?>
+    <?php foreach ($this->data['graph'] as $id => $graph): ?>
+		<div>
+			<img src="<?php echo $this->serverUrl($this->baseUrl('report/general/image/id/' . $id)); ?>" />
+		</div>
+    <?php endforeach;?>
 </div>

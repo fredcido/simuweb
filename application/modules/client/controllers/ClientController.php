@@ -307,6 +307,60 @@ class Client_ClientController extends App_Controller_Default
 
 	$this->view->form = $formKnowledge;
     }
+
+    /**
+     * 
+     */
+    public function personCompetencyAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        
+        // Form Person Competency
+        $formPersonCompetency = $this->_initForm( 'perCompetency' );
+
+        $id = $this->_getParam( 'id' );
+        if ( !empty( $id ) ) {
+
+            $data = array();
+            $data['fk_id_perdata'] = $id;
+
+            $competency = $this->_mapper->getCompetency($id);
+            if (!empty($competency)) {
+                $data = $competency->toArray();
+            }
+            
+            $formPersonCompetency->populate( $data );
+        }
+
+        $this->view->form = $formPersonCompetency;
+    }
+
+    /**
+     * 
+     */
+    public function interestAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        
+        // Form Person Intereset
+        $formInterest = $this->_initForm( 'interest' );
+
+        $id = $this->_getParam( 'id' );
+        if ( !empty( $id ) ) {
+
+            $data = array();
+            $data['fk_id_perdata'] = $id;
+
+            $interest = $this->_mapper->getInterest($id);
+            if (!empty($interest)) {
+                $data = $interest->toArray();
+            }
+            
+            $formInterest->populate( $data );
+        }
+
+        $this->view->form = $formInterest;
+    }
     
     /**
      * 
@@ -885,17 +939,20 @@ class Client_ClientController extends App_Controller_Default
      */
     public function printAction()
     {
-	$this->_helper->layout()->setLayout( 'print' );
-	$id = $this->_getParam( 'id' );
-	
-	$this->view->client = $this->_mapper->detailClient( $id );
-	$this->view->address = $this->_mapper->listAddress( $id );
-	$this->view->language = $this->_mapper->listLanguagePrint( $id );
-	$this->view->knowledge = $this->_mapper->listKnowledgePrint( $id );
-	$this->view->formalScholarity = $this->_mapper->listScholarity( $id, 1 );
-	$this->view->nonFormalScholarity = $this->_mapper->listScholarity( $id, 2 );
-	$this->view->experience = $this->_mapper->listExperience( $id );
-	$this->view->contact = $this->_mapper->listContact( $id );
+        $this->_helper->layout()->setLayout( 'print' );
+        $id = $this->_getParam( 'id' );
+        
+        $this->view->client = $this->_mapper->detailClient( $id );
+        $this->view->address = $this->_mapper->listAddress( $id );
+        $this->view->language = $this->_mapper->listLanguagePrint( $id );
+        $this->view->knowledge = $this->_mapper->listKnowledgePrint( $id );
+        $this->view->formalScholarity = $this->_mapper->listScholarity( $id, 1 );
+        $this->view->nonFormalScholarity = $this->_mapper->listScholarity( $id, 2 );
+        $this->view->experience = $this->_mapper->listExperience( $id );
+        $this->view->contact = $this->_mapper->listContact( $id );
+
+        $this->view->competency = $this->_mapper->getCompetency( $id );
+        $this->view->interest = $this->_mapper->getInterest( $id );
     }
     
     /**

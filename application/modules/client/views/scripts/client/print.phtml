@@ -190,6 +190,16 @@
 	    Kompetensia
 	</h4>
 
+	<?php if (!empty($this->competency) && !empty($this->competency->comment)) : ?>
+		<h5 class="bold">Jenerál</h5>
+		<p><?php echo $this->competency->comment; ?></p>
+	<?php endif; ?>
+
+	<?php if (!empty($this->interest) && !empty($this->interest->comment)) : ?>
+		<h5 class="bold">Interesse sira</h5>
+		<p><?php echo $this->interest->comment; ?></p>
+	<?php endif; ?>
+
 	<?php if ( !empty( $this->language ) ) : ?>
 	    
 	    <h5 class="bold">Lian Fuan</h5>

@@ -2,22 +2,40 @@
     <?php
 	echo $this->tab()
 		  ->addTab(
-			array(
-			    'ref'	    => 'language',
-			    'label'	    => 'Lian Fuan',
-			    'released'	    => true,
-			    'url'	    => $this->path( 'language/id/' . $this->id ),
-			    'id'	    => Client_Form_ClientCompetency::ID
-			)
+				array(
+					'ref'	    => 'language',
+					'label'	    => 'Lian Fuan',
+					'released'	    => true,
+					'url'	    => $this->path( 'language/id/' . $this->id ),
+					'id'	    => Client_Form_ClientCompetency::ID
+				)
 		    )
 		    ->addTab(
-			array(
-			    'ref'	    => 'knowledge',
-			    'label'	    => 'Konesimentu',
-			    'released'	    => true,
-			    'url'	    => $this->path( 'knowledge/id/' . $this->id ),
-			    'id'	    => Client_Form_ClientCompetency::ID
+				array(
+					'ref'	    => 'knowledge',
+					'label'	    => 'Konesimentu',
+					'released'	    => true,
+					'url'	    => $this->path( 'knowledge/id/' . $this->id ),
+					'id'	    => Client_Form_ClientCompetency::ID
+				)
 			)
-		    );
+			->addTab(
+				array(
+					'ref'	    => 'person-competency',
+					'label'	    => 'Kompetensia sira',
+					'released'	    => true,
+					'url'	    => $this->path( 'person-competency/id/' . $this->id ),
+					'id'	    => Client_Form_ClientCompetency::ID
+				)
+			)
+			->addTab(
+				array(
+					'ref'	    	=> 'interest',
+					'label'	    => 'Interesse sira',
+					'released'	=> true,
+					'url'	    	=> $this->path( 'interest/id/' . $this->id ),
+					'id'	    	=> Client_Form_ClientCompetency::ID
+				)
+			);
     ?>
 </div>

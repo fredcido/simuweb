@@ -68,7 +68,7 @@
    /* Class creator */
    function pData()
     {
-     $this->Data = "";
+     $this->Data = [];
      $this->Data["XAxisDisplay"]	= AXIS_FORMAT_DEFAULT;
      $this->Data["XAxisFormat"]		= NULL;
      $this->Data["XAxisName"]		= NULL;
@@ -774,7 +774,7 @@
 
    /* Convert a string to a single elements array */
    function convertToArray($Value)
-    { $Values = ""; $Values[] = $Value; return($Values); }
+    { $Values[] = $Value; return($Values); }
 
    /* Class string wrapper */
    function __toString()
