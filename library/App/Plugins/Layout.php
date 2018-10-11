@@ -76,9 +76,9 @@ class App_Plugins_Layout extends Zend_Controller_Plugin_Abstract
 	$view->headLink()->appendStylesheet( $view->baseUrl( 'public/template/plugins/jquery-multi-select/css/multi-select-metro.css' ) );
 	$view->headLink()->appendStylesheet( $view->baseUrl( 'public/template/plugins/glyphicons/css/glyphicons.css' ) );
 	$view->headLink()->appendStylesheet( $view->baseUrl( 'public/template/plugins/glyphicons_halflings/css/halflings.css' ) );
+	$view->headLink()->appendStylesheet( $view->baseUrl( 'public/styles/timeline.css' ), '' );
 	$view->headLink()->appendStylesheet( $view->baseUrl( 'public/styles/app.css' ), '' );
 	
-	/*
 	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery-1.10.1.min.js' ) );
 	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery-migrate-1.2.1.min.js' ) );
 	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js' ) );
@@ -115,7 +115,6 @@ class App_Plugins_Layout extends Zend_Controller_Plugin_Abstract
 	$view->headScript()->appendFile( $view->baseUrl( 'public/scripts/app/message.js' ) );
 	$view->headScript()->appendFile( $view->baseUrl( 'public/scripts/app/form.js' ) );
 	$view->headScript()->appendFile( $view->baseUrl( 'public/scripts/app/portlet.js' ) );
-	*/
 	
 	$view->config = Zend_Registry::get( 'config' );
     }

@@ -1,0 +1,41 @@
+<?php if (count($this->rows) < 1) : ?>
+  <div class="alert alert-warning">
+      La iha liña tempu.
+  </div>
+<?php else : ?>
+  <?php foreach ($this->rows as $row) : ?>
+    <li>
+      <div>
+        <time>
+          <?php echo $this->date($row->date_start); ?>
+          <?php 
+            if (!empty($row->date_end)) :
+              echo ' - ' . $this->date($row->date_end);
+            endif;
+          ?>
+        </time> 
+        <p><?php echo $this->truncate($row->description, 300); ?></p>
+
+        <?php if (!empty($row->institution)) : ?>
+            <p><strong>Instituisaun:</strong> <?php echo $row->institution;?></p>
+        <?php endif; ?>
+
+        <a class="btn green-stripe" href="javascript:;" onclick="Client.Case.detailTimeline( <?php echo $row->id_action_plan_timeline; ?> )">
+          <i class="icon-eye-open"></i>
+        </a>
+        <?php 
+          $userIds = [$row->fk_id_sysuser, $row->fk_id_sysuser_created];
+          if (in_array($this->logged_user, $userIds) && $this->caseActive()->hasAccessEdit()): 
+        ?>
+          <a class="btn green" onclick="Client.Case.editTimeline( <?php echo $row->id_action_plan_timeline; ?> );">
+            <i class="icon-edit"></i>
+          </a>
+          <a class="btn red" onclick="Client.Case.deleteTimeline( <?php echo $row->id_action_plan_timeline; ?> );">
+            <i class="icon-remove-sign"></i>
+          </a>
+          <?php endif;?>
+      </div>
+    </li>
+  <?php endforeach; ?>
+
+<?php endif; ?>

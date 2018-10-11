@@ -805,16 +805,21 @@ Client.Case = {
 		return false;
 	},
 
-	timeline: function (barrier) {
-		this.barrierSelected = barrier;
+	timeline: function (barrier, action_plan) {
+		Client.Case.barrierSelected = barrier;
+		var action_plan = action_plan || $('#id_action_plan').val();
 
 		var settings = {
 			title: 'Liña Tempu',
-			url: '/client/case/timeline/barrier/' + barrier + '/id/' + $('#id_action_plan').val(),
+			url: '/client/case/timeline/barrier/' + barrier + '/id/' + action_plan,
 			callback: function (modal) {
 				modal.css({
 					width: '90%',
-					marginLeft: '-45%'
+					marginLeft: '-45%',
+				});
+
+				modal.find('.modal-body').css({
+					maxHeight: '600px',
 				});
 
 				Client.Case.listTimeline(barrier);
@@ -827,6 +832,67 @@ Client.Case = {
 		General.ajaxModal(settings);
 	},
 
+	detailTimeline: function (id) {
+		var settings = {
+			title: 'Liña Tempu detallu',
+			url: '/client/case/case-timeline-detail/id/' + id
+		};
+
+		General.ajaxModal(settings);
+	},
+
+	editTimeline: function (id) {
+		$.ajax({
+			type: 'GET',
+			dataType: 'json',
+			url: General.getUrl('/client/case/fetch-case-timeline/id/' + id),
+			beforeSend: function () {
+				App.blockUI('#timeline-list');
+			},
+			complete: function () {
+				App.unblockUI('#timeline-list');
+			},
+			success: function (response) {
+				$('#register-timeline form').populate(response, {
+					resetForm: true
+				});
+
+				$('#register-timeline form #fk_id_sysuser').trigger('change');
+				$('#register-timeline').closest('.tabbable').find('.nav-tabs a').eq(2).trigger('click');
+			},
+			error: function () {
+				Message.msgError('Operasaun la diak', '#timeline-list');
+			}
+		});
+	},
+
+	deleteTimeline: function (id) {
+		remove = function () {
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: General.getUrl('/client/case/delete-case-timeline/'),
+				data: {
+					id: id
+				},
+				beforeSend: function () {
+					App.blockUI('#timeline-list');
+				},
+				complete: function () {
+					App.unblockUI('#timeline-list');
+				},
+				success: function (response) {
+					Client.Case.listTimeline(Client.Case.barrierSelected);
+				},
+				error: function () {
+					Message.msgError('Operasaun la diak', '#timeline-list');
+				}
+			});
+		};
+
+		General.confirm('Ita hakarak hamoos liña tempu ida ne\'e ?', 'Hamoos liña tempu', remove);
+	},
+
 	listTimeline: function (barrier, modal) {
 		if (modal)
 			modal.find('.nav-tabs a').eq(0).trigger('click');
@@ -834,6 +900,11 @@ Client.Case = {
 		var action = $('#id_action_plan').val();
 
 		General.loadTable('#timeline-list', '/client/case/list-timeline-rows/barrier/' + barrier + '/id/' + action);
+
+		var url = General.getUrl('/client/case/timeline-stream-rows/barrier/' + barrier + '/id/' + action);
+		$.get(url, function(data) {
+			$('#ul-timeline-stream').html(data);
+		});
 	},
 
 	configTimeline: function (modal) {
@@ -850,7 +921,7 @@ Client.Case = {
 					if (response.status) {
 
 						form.find('#clear').trigger('click');
-						Client.Case.listTimeline(modal);
+						Client.Case.listTimeline(Client.Case.barrierSelected, modal);
 					}
 
 					App.unblockUI(form);

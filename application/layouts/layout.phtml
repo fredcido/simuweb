@@ -12,6 +12,9 @@
 				->appendName( 'viewport', 'width=device-width, initial-scale=1.0' );
 			
 			$this->headScript()->appendFile( $this->baseUrl( 'public/scripts/app/note.js' ) );
+			$this->headScript()->appendFile( $this->baseUrl( 'public/scripts/app/activity.js' ) );
+			$this->headLink()->appendStylesheet( $this->baseUrl( 'public/template/plugins/fullcalendar/fullcalendar/fullcalendar.css' ), '' );
+    		$this->headScript()->appendFile( $this->baseUrl( 'public/template/plugins/fullcalendar/fullcalendar/fullcalendar.min.js' ) );
 
 			echo $this->headTitle();
 			echo $this->headMeta() . "\n";
@@ -59,49 +62,76 @@
 				</a>          
 				
 				<ul class="nav pull-right">
+					<li id="user-activities" class="dropdown hide">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+							<i class="icon-calendar"></i>
+							<span class="badge">0</span>
+						</a>
+						<ul class="dropdown-menu extended notification">
+							<li>
+								<p>Ita iha <span class="count">0</span> atividade sira.</p>
+							</li>
+							<li>
+								<ul class="dropdown-menu-list scroller">
+								</ul>
+							</li>
+							<li class="external">
+								<a href="javascript:;" onclick="Activity.all()">Haree atividade hotu-hotu <i class="m-icon-swapright"></i></a>
+							</li>
+						</ul>
+					</li>
+					<!--
+					<li class="dropdown hidden-phone tasks">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-calendar"></i>
+							<span class="badge">1</span>
+						</a>
+						<span></span>
+					</li>
+					-->
 				    <li class="dropdown hidden-phone">
-					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-					    <i class="icon-envelope"></i>
-					</a>
-					<ul class="dropdown-menu">
-					    <li>
-						<a href="javascript:;" onclick="Note.newNote()">
-						    <i class="icon-upload-alt"></i> Avizu Foun
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-envelope"></i>
 						</a>
-					    </li>
-					    <li>
-						<a href="javascript:;" onclick="Note.listAll()">
-						    <i class="icon-hdd"></i> Avizu hotu-hotu
-						</a>
-					    </li>
-					</ul>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="javascript:;" onclick="Note.newNote()">
+									<i class="icon-upload-alt"></i> Avizu Foun
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;" onclick="Note.listAll()">
+									<i class="icon-hdd"></i> Avizu hotu-hotu
+								</a>
+							</li>
+						</ul>
 				    </li>
 				    <li class="dropdown">
-					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-					    <i class="icon-user pico icon-white"></i>
-					    <span class="username">
-						<?php echo Zend_Auth::getInstance()->getIdentity()->name; ?>
-					    </span>
-					    <i class="icon-angle-down"></i>
-					</a>
-					<ul class="dropdown-menu">
-					    <li>
-						<a href="javascript:;">
-						    <i class="icon-globe"></i> 
-						    <?php echo Zend_Auth::getInstance()->getIdentity()->name_dec; ?>
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-user pico icon-white"></i>
+							<span class="username">
+								<?php echo Zend_Auth::getInstance()->getIdentity()->name; ?>
+							</span>
+							<i class="icon-angle-down"></i>
 						</a>
-					    </li>
-					    <li>
-						<a href="<?php echo $this->baseUrl( 'auth/profile' ); ?>">
-						    <i class="icon-user"></i> Perfil
-						</a>
-					    </li>
-					    <li>
-						<a href="<?php echo $this->baseUrl( 'auth/logout' ); ?>">
-						    <i class="icon-key"></i> Sai Sistema
-						</a>
-					    </li>
-					</ul>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="javascript:;">
+									<i class="icon-globe"></i> 
+									<?php echo Zend_Auth::getInstance()->getIdentity()->name_dec; ?>
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo $this->baseUrl( 'auth/profile' ); ?>">
+									<i class="icon-user"></i> Perfil
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo $this->baseUrl( 'auth/logout' ); ?>">
+									<i class="icon-key"></i> Sai Sistema
+								</a>
+							</li>
+						</ul>
 				    </li>
 				</ul>
 			</div>
@@ -110,53 +140,132 @@
 	<div class="page-container row-fluid">
 	    
 	    <div class="page-sidebar nav-collapse collapse">
-		<?php echo $this->menu(); ?>
-	    </div>
+			<?php echo $this->menu(); ?>
+		</div>
 	    
 	    <div class="page-content">
-		<div class="container-fluid">
-		    <div class="row-fluid">
-			<div class="span12">
-			    <?php 
-				echo $this->title();
-				echo $this->breadcrumb();
-			    ?>
-			</div>
-		    </div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+				<div class="span12">
+					<?php 
+						echo $this->title();
+						echo $this->breadcrumb();
+					?>
+				</div>
+				</div>
 
-		    <?php echo $this->layout()->content; ?>
+				<?php echo $this->layout()->content; ?>
+			</div>
 		</div>
-	    </div>
+		
+		<!--
+		<div class="drawer">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="tabbable tabbable-custom boxless">
+					<ul class="nav nav-tabs">
+						<li class="active "><a data-toggle="tab" href="#tasks-ohin">Ohin</a></li>
+						<li class=""><a data-toggle="tab" href="#tasks-aban">Aban</a></li>
+					</ul>
+					<div class="tab-content">
+						<div id="tasks-ohin" class="active tab-pane">
+							<ul class="tasks-list">
+								<li>
+									<h4>Title</h4>
+									<strong>John Smith</strong>
+									<p>
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+										Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+										when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+										It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+									</p>
+									<a class="btn green pull-right">Haree</a>
+								</li>
+								<li>
+									<h4>Title</h4>
+									<strong>John Smith</strong>
+									<p>
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+										Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+										when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+										It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+									</p>
+									<a class="btn green pull-right">Haree</a>
+								</li>
+								<li>
+									<h4>Title</h4>
+									<strong>John Smith</strong>
+									<p>
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+										Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+										when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+										It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+									</p>
+									<a class="btn green pull-right">Haree</a>
+								</li>
+								<li>
+									<h4>Title</h4>
+									<strong>John Smith</strong>
+									<p>
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+										Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+										when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+										It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+									</p>
+									<a class="btn green pull-right">Haree</a>
+								</li>
+								<li>
+									<h4>Title</h4>
+									<strong>John Smith</strong>
+									<p>
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+										Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+										when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+										It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+									</p>
+									<a class="btn green pull-right">Haree</a>
+								</li>
+							</ul>
+						</div>
+						<div id="tasks-aban" class="tab-pane">
+						<h3>Ohin</h3>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		-->
 	</div>
 
 	<div class="footer">
 	    <div class="footer-inner">
-		2013 &copy; Secretaria de Estado para Política da Formação Profissional e Emprego - SEPFOPE. <br />
-		Departamento da Informação sobre o Mercado de Trabalho - DMIT.
+			2013 &copy; Secretaria de Estado da Formação Profissional e Emprego. <br />
+			Direção Nacional de Informação do Mercado de Trabalho.
 	    </div>
 	    <div class="footer-tools">
-		<span class="go-top">
-		    <i class="icon-angle-up"></i>
-		</span>
+			<span class="go-top">
+				<i class="icon-angle-up"></i>
+			</span>
 	    </div>
 	</div>
 	
 	<div id="modal-root" class="modal hide fade active" style="width: 75%; margin-left: -35%">
 	    <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-		<h3 class="">
-		    <i></i>
-		</h3>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+			<h3 class="">
+				<i></i>
+			</h3>
 	    </div>
 	    <div class="modal-body">
 	    </div>
 	    <div class="modal-footer">
-		<button type="button" data-dismiss="modal" class="btn">Taka</button>
+			<button type="button" data-dismiss="modal" class="btn">Taka</button>
 	    </div>
 	</div>
 	</body>
 	
-	<script type="text/javascript" src="<?php echo $this->baseUrl( 'public/dist/js/scripts.min.js'); ?>"></script>
+	<!-- <script type="text/javascript" src="<?php echo $this->baseUrl( 'public/dist/js/scripts.min.js'); ?>"></script> -->
 	<?php echo $this->headScript() . "\n"; ?>
     
     <script type="text/javascript">
@@ -165,6 +274,9 @@
 	    function() 
 	    {    
 			App.init();
+			$('.tasks a').on('click', function() {
+				$('.drawer').toggleClass('open');
+			});
 	    }
 	);
     

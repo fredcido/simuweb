@@ -1,16 +1,21 @@
 <?php 
     $this->placeholder( 'form' )->captureStart();
     echo $this->form->getElement( 'id_action_plan_timeline' );
-    echo $this->form->getElement( 'fk_id_action_plan' );
+    echo $this->form->getElement( 'fk_id_action_barrier' );
  ?>
     <div class="row-fluid">
-        <div class="span4">
+        <div class="span6">
             <?php echo $this->form->getElement( 'date_start' ); ?>
         </div>
-        <div class="span4">
+        <div class="span6">
             <?php echo $this->form->getElement( 'date_end' ); ?>
         </div>
-        <div class="span4">
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            <?php echo $this->form->getElement( 'fk_id_sysuser' ); ?>
+        </div>
+        <div class="span6">
             <?php echo $this->form->getElement( 'institution' ); ?>
         </div>
     </div>

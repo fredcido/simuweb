@@ -15,7 +15,7 @@ class Client_Model_Mapper_CaseTimeline extends App_Model_Abstract
     protected function _getDbTable()
     {
         if (is_null($this->_dbTable)) {
-            $this->_dbTable = new Model_DbTable_CaseTimeline();
+            $this->_dbTable = new Model_DbTable_ActionPlanTimeline();
         }
 
         return $this->_dbTable;
@@ -26,7 +26,7 @@ class Client_Model_Mapper_CaseTimeline extends App_Model_Abstract
      * @param int $id
      * @return Zend_Db_Table_Rowset
      */
-    public function listTimelines($id)
+    public function listTimelines($barrier)
     {
         $dbActionPlanTimeline = App_Model_DbTable_Factory::get('ActionPlanTimeline');
         $dbActionPlanBarrier = App_Model_DbTable_Factory::get('ActionPlanBarrier');
@@ -45,9 +45,8 @@ class Client_Model_Mapper_CaseTimeline extends App_Model_Abstract
                 'u.id_sysuser = ct.fk_id_sysuser',
                 array('user' => 'name')
             )
-            ->where('ct.fk_id_action_plan = ?', $id)
-            ->where('ct.fk_id_action_plan = ?', $id)
-            ->order(array('date_insert DESC'));
+            ->where('ct.fk_id_action_barrier = ?', $barrier)
+            ->order(array('ct.date_start ASC'));
 
         return $dbActionPlanTimeline->fetchAll($select);
     }
@@ -59,23 +58,22 @@ class Client_Model_Mapper_CaseTimeline extends App_Model_Abstract
      */
     public function detailTimeline($id)
     {
-        $dbCaseTimelines = App_Model_DbTable_Factory::get('Case_Timeline');
+        $dbActionPlanTimeline = App_Model_DbTable_Factory::get('ActionPlanTimeline');
         $dbUser = App_Model_DbTable_Factory::get('SysUser');
 
-        $select = $dbCaseTimelines->select()
-            ->from(array('cn' => $dbCaseTimelines))
+        $select = $dbActionPlanTimeline->select()
+            ->from(array('ctt' => $dbActionPlanTimeline))
             ->setIntegrityCheck(false)
             ->join(
                 array('u' => $dbUser),
-                'u.id_sysuser = cn.fk_id_sysuser',
+                'u.id_sysuser = ctt.fk_id_sysuser',
                 array(
-                    'name',
-                    'date_insert_formated' => new Zend_Db_Expr('DATE_FORMAT( cn.date_insert, "%d/%m/%Y %H:%i" )'),
+                    'user' => 'name',
                 )
             )
-            ->where('cn.id_case_note = ?', $id);
+            ->where('ctt.id_action_plan_timeline = ?', $id);
 
-        return $dbCaseTimelines->fetchRow($select);
+        return $dbActionPlanTimeline->fetchRow($select);
     }
 
     /**
@@ -88,10 +86,10 @@ class Client_Model_Mapper_CaseTimeline extends App_Model_Abstract
         $dbAdapter->beginTransaction();
         try {
 
-            $dbCaseTimeline = App_Model_DbTable_Factory::get('Case_Timeline');
+            $dbCaseTimeline = App_Model_DbTable_Factory::get('ActionPlanTimeline');
 
             $where = array(
-                $dbAdapter->quoteInto('id_case_note = ?', $this->_data['id']),
+                $dbAdapter->quoteInto('id_action_plan_timeline = ?', $this->_data['id']),
             );
 
             $dbCaseTimeline->delete($where);
@@ -117,14 +115,18 @@ class Client_Model_Mapper_CaseTimeline extends App_Model_Abstract
         $dbAdapter = Zend_Db_Table_Abstract::getDefaultAdapter();
         $dbAdapter->beginTransaction();
         try {
+            if (empty($this->_data['id_action_plan_timeline'])) {
+                $this->_data['fk_id_sysuser_created'] = Zend_Auth::getInstance()->getIdentity()->id_sysuser;
+            }
 
-            if (empty($this->_data['id_case_note'])) {
+            if (!empty($this->_data['date_start'])) {
+                $dateStart = new Zend_Date($this->_data['date_start']);
+                $this->_data['date_start'] = $dateStart->toString('yyyy-MM-dd');
+            }
 
-                $mapperCase = new Client_Model_Mapper_Case();
-                $case = $mapperCase->detailCase($this->_data['fk_id_action_plan']);
-
-                $this->_data['fk_id_perdata'] = $case->fk_id_perdata;
-                $this->_data['fk_id_sysuser'] = Zend_Auth::getInstance()->getIdentity()->id_sysuser;
+            if (!empty($this->_data['date_end'])) {
+                $dateFinish = new Zend_Date($this->_data['date_end']);
+                $this->_data['date_end'] = $dateFinish->toString('yyyy-MM-dd');
             }
 
             // Save the Timeline
@@ -134,7 +136,6 @@ class Client_Model_Mapper_CaseTimeline extends App_Model_Abstract
             return $id;
 
         } catch (Exception $e) {
-
             $dbAdapter->rollBack();
             $this->_message->addMessage($this->_config->messages->error, App_Message::ERROR);
             return false;

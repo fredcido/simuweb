@@ -25,6 +25,7 @@ function css() {
           'public/template/plugins/jquery-multi-select/css/multi-select-metro.css',
           'public/template/plugins/glyphicons/css/glyphicons.css',
           'public/template/plugins/glyphicons_halflings/css/halflings.css',
+          'public/styles/timeline.css',
           'public/styles/app.css',
         ])
         .pipe(minifier({
