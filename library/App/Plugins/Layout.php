@@ -82,7 +82,7 @@ class App_Plugins_Layout extends Zend_Controller_Plugin_Abstract
 	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery-1.10.1.min.js' ) );
 	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery-migrate-1.2.1.min.js' ) );
 	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js' ) );
-	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery-validation/dist/jquery.validate.min.js' ) );
+	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery-validation/js/jquery.validate.min.js' ) );
 	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/bootstrap/js/bootstrap.min.js' ) );
 	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery.cookie.min.js' ) );
 	$view->headScript()->appendFile( $view->baseUrl( 'public/template/plugins/jquery.blockui.min.js' ) );
