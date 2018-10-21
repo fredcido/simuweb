@@ -425,8 +425,8 @@ class Default_Model_Mapper_Dashboard extends App_Model_Abstract
                 array(
                     'id'  => 'fk_id_action_plan',
                     'type' => new Zend_Db_Expr('"A"'),
-                    'title' => 'CONCAT("Audiensia: ", GROUP_CONCAT(apo.objective_desc)) COLLATE utf8_general_ci',
-                    'description' => 'ap.appointment_desc COLLATE utf8_general_ci',
+                    'title' => 'CONCAT("Audiensia: ", GROUP_CONCAT(apo.objective_desc))',
+                    'description' => 'appointment_desc',
                     'date' => 'ap.date_appointment' // new Zend_Db_Expr('DATE_FORMAT(ap.date_appointment, "%d/%m/%Y %H:%i")'),
                 )
             )
@@ -463,8 +463,8 @@ class Default_Model_Mapper_Dashboard extends App_Model_Abstract
                 array(
                     'id'  => 'ap.id_action_plan',
                     'type' => new Zend_Db_Expr('"T"'),
-                    'title' => 'CONCAT("Liña tempu: ", c.first_name, " ", c.last_name) COLLATE utf8_general_ci',
-                    'description' => 'tl.description COLLATE utf8_general_ci',
+                    'title' => 'CONCAT("Liña tempu: ", c.first_name, " ", c.last_name)',
+                    'description',
                     'date' => 'tl.date_end'// new Zend_Db_Expr('DATE_FORMAT(tl.date_end, "%d/%m/%Y")'),
                 )
             )
