@@ -4,13 +4,15 @@ Login page
 
 /* logo page */
 .login {
-  background-color: #444 !important;
+  background: #32323a url("../img/lock-screen.jpg") no-repeat fixed 0 0 / cover ;
+    height: 100%;
+    width: 100%;
 }
 
 .login .logo {
   width: 247px;
   margin: 0 auto;   
-  margin-top:60px;
+  margin-top:10px;
   padding: 15px;
   text-align: center;
 }  
@@ -22,7 +24,8 @@ Login page
   margin-bottom: 0px;
   padding: 30px;  
   padding-top: 20px;  
-  padding-bottom: 15px;  
+  padding-bottom: 15px; 
+  opacity: 0.9;
 }
 
 .login .content h3 {
@@ -70,6 +73,8 @@ Login page
 .login .content .form-title {
   font-weight: 300;
   margin-bottom: 25px;
+  text-align: center;
+  font-weight: 600px;
 }
 
 .login .content .form-actions {
@@ -123,7 +128,7 @@ Login page
   /*width: 250px;*/
   margin: 0 auto; 
   padding: 10px 10px 0 10px;
-  color: #999;
+  color: #252525;
   font-size: 11px;
 }
 
