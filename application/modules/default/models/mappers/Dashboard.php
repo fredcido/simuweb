@@ -426,7 +426,7 @@ class Default_Model_Mapper_Dashboard extends App_Model_Abstract
                     'id'  => 'fk_id_action_plan',
                     'type' => new Zend_Db_Expr('"A"'),
                     'title' => 'CONCAT("Audiensia: ", GROUP_CONCAT(apo.objective_desc)) COLLATE utf8_general_ci',
-                    'description' => 'appointment_desc COLLATE utf8_general_ci',
+                    'description' => 'ap.appointment_desc COLLATE utf8_general_ci',
                     'date' => 'ap.date_appointment' // new Zend_Db_Expr('DATE_FORMAT(ap.date_appointment, "%d/%m/%Y %H:%i")'),
                 )
             )
