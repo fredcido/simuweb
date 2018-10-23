@@ -26,9 +26,7 @@ Activity = {
     var count = $('.dropdown-menu-list li', container).length;
     if (count > 0) {
       $('.badge, .count', container).html(count);
-      container.removeClass('hide');
-    } else {
-      container.addClass('hide');
+      // container.removeClass('hide');
     }
   },
 
