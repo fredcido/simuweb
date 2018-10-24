@@ -67,6 +67,8 @@ class Report_Model_Mapper_Client extends App_Model_Mapper_Abstract
             $select->where('c.fk_id_dec = ?', $filters['fk_id_dec']);
         }
 
+        $select->group('c.id_perdata');
+
         $rows = $dbPerData->fetchAll($select);
         return $rows;
     }

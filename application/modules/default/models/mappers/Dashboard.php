@@ -31,8 +31,8 @@ class Default_Model_Mapper_Dashboard extends App_Model_Abstract
     
         $select = $dbPerData->select()
                 ->from(
-                array( 'c' => $dbPerData ),
-                array( 'total' => new Zend_Db_Expr('COUNT(1)') )
+                    array( 'c' => $dbPerData ),
+                    array( 'total' => new Zend_Db_Expr('COUNT(1)') )
                 )
                 ->setIntegrityCheck(false);
     
