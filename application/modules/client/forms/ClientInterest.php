@@ -33,7 +33,7 @@ class Client_Form_ClientInterest extends Client_Form_ClientCompetency
               ->setAttrib( 'cols', 100 )
               ->setRequired( true )
               ->setAttrib( 'rows', 4 )
-              ->setLabel( 'Interesse sira' );
+              ->setLabel( 'Interesse, valores sira' );
       
       App_Form_Toolbar::build( $this, self::ID );
       $this->addElements( $elements );
